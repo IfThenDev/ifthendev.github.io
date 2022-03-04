@@ -31,7 +31,8 @@ img.emoji {
 	padding: 0 !important;
 }
 </style>
-	<link rel='stylesheet' id='wp-block-library-css'  href='../wp-includes/css/dist/block-library/style.minf658.css?ver=5.8.1' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-css'  href='../contact/contact.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='../wp-includes/css/dist/block-library/style.minf658.css?ver=5.8.1' type='text/css' media='all' />
 <link rel='stylesheet' id='wpforms-full-css'  href='../wp-content/plugins/wpforms-lite/assets/css/wpforms-full.min7d4c.css?ver=1.7.0' type='text/css' media='all' />
 <link rel='stylesheet' id='neve-style-css'  href='../wp-content/themes/neve/style-main.mine776.css?ver=2.10.4' type='text/css' media='all' />
 <style id='neve-style-inline-css' type='text/css'>
@@ -180,16 +181,31 @@ img.emoji {
 	<main id="content" class="neve-main" role="main">
 
 <div class="container single-page-container">
-	<div class="row">
-				<div class="nv-single-page-wrap col">
-			<div class="nv-page-title-wrap nv-big-title">
-	<div class="nv-page-title ">
-				<h1>Contact</h1>
-					</div><!--.nv-page-title-->
-</div> <!--.nv-page-title-wrap-->
-<div class="nv-content-wrap entry-content">
-<p>Use the button below to send us an email.<br>Please include the app name along with your question.<br>Thanks.</p>
-<a href="mailto:help@ifthendev.com?subject=App Question or Help Needed">Email Us</a>
+<div class="container">
+  <form action="mailto:help@ifthendev.com?subject=Question or Comment About App" method="post" enctype="text/plain">
+
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" placeholder="Your name..."></br>
+    
+    <label for="app">App</label>
+    <select id="app" name="app">
+      <option value="---">Choose App Name</option>
+      <option value="BookScanner">BookScanner</option>
+      <option value="Bookshelf Scanner">Bookshelf Scanner</option>
+	  <option value="HeliumTrack">HeliumTrack</option>
+      <option value="Monitor My Reviews">Monitor My Reviews</option>
+      <option value="Quick Baseball Scoreboard">Quick Baseball Scoreboard</option>
+      <option value="QuickScan Book Leveler">QuickScan Book Leveler</option>
+      <option value="Simple Soccer Scoreboard">Simple Soccer Scoreboard</option>
+      <option value="TWiT on TV">TWiT on TV</option>
+      <option value="Other">Other</option>
+    </select></br>
+
+    <label for="body">Question or Comment</label>
+    <textarea id="body" name="body" placeholder="Type your question or comment here..." style="height:200px"></textarea></br>
+    <input type="submit" value="Send">
+  </form>
+</div>
 
 
 </div>
