@@ -63,3 +63,8 @@ button {
      the labels and their text fields */
   margin-left: .5em;
 }
+
+	#status-page-embed {
+		height : 600px;
+		width : 600px;
+	}
