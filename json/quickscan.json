@@ -1,4 +1,4 @@
 {
-  "checkInterval": 22,
-  "maxScans": 2
+  "checkInterval": 86400,
+  "maxScans": 5
 }
