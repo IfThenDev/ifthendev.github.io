@@ -1,4 +1,24 @@
-{
-  "checkInterval": 86400,
-  "maxScans": 5
+{                                                                                                                                                               
+    "checkInterval": 600,                                                                                                                                         
+    "maxScans": 5,                                                                                                                                                
+    "isbnSourceOrder": [                                                                                                                                          
+      "google_books",                                                                                                                                             
+      "openlib_search",                                                                                                                                           
+      "bookfinder",                                                                                                                                               
+      "openlib_bibkeys",                                                                                                                                          
+      "amazon",                                                                                                                                                   
+      "librarything",                                                                                                                                             
+      "isbnsearch",                                                                                                                                               
+      "isbndb"                                                                                                                                                    
+    ],                                                                                                                                                            
+    "isbnSourcesEnabled": {                                                                                                                                       
+      "google_books": true,                                                                                                                                       
+      "openlib_search": true,                                                                                                                                     
+      "bookfinder": true,                                                                                                                                         
+      "openlib_bibkeys": true,                                                                                                                                    
+      "amazon": true,                                                                                                                                             
+      "librarything": true,                                                                                                                                       
+      "isbnsearch": true,                                                                                                                                         
+      "isbndb": true                                                                                                                                              
+    }                                                                                                                                                             
 }
