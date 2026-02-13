@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & FAQ - QuickScan Book Leveler</title>
+    <meta name="description" content="Get help with QuickScan Book Leveler. Learn how to scan books, find ISBNs, use widgets, export data, and troubleshoot common issues.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --blue: #408FDB;
+            --purple: #4A1CAF;
+            --yellow: #F0D547;
+            --dark-bg: #090665;
+            --gray-bg: #B6B6B6;
+            --white: #ffffff;
+            --text-light: rgba(255, 255, 255, 0.9);
+            --text-muted: rgba(255, 255, 255, 0.65);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-atmosphere {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .bg-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--purple);
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .bg-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--blue);
+            bottom: 20%;
+            left: -100px;
+            animation-delay: -7s;
+        }
+
+        .bg-orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--yellow);
+            top: 50%;
+            right: 10%;
+            opacity: 0.2;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--yellow) 0%, #FFE066 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Table of Contents */
+        .toc {
+            padding: 40px 0;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .toc-link {
+            display: block;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        .toc-link:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .toc-link .icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .toc-link .label {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* FAQ Sections */
+        .faq-section {
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .section-label {
+            display: inline-block;
+            background: rgba(64, 143, 219, 0.15);
+            color: var(--blue);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        /* FAQ Cards */
+        .faq-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        .faq-card.highlight {
+            background: linear-gradient(135deg, rgba(74, 28, 175, 0.15) 0%, rgba(64, 143, 219, 0.15) 100%);
+            border-color: rgba(240, 213, 71, 0.2);
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .faq-answer p {
+            margin-bottom: 12px;
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-answer ul, .faq-answer ol {
+            margin: 12px 0;
+            padding-left: 24px;
+        }
+
+        .faq-answer li {
+            margin-bottom: 8px;
+        }
+
+        .faq-answer strong {
+            color: var(--text-light);
+        }
+
+        .faq-answer code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        /* Tips Box */
+        .tip-box {
+            background: rgba(240, 213, 71, 0.1);
+            border-left: 3px solid var(--yellow);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        .tip-box-title {
+            font-weight: 600;
+            color: var(--yellow);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .tip-box p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Steps List */
+        .steps-list {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+        }
+
+        .steps-list li {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 16px;
+        }
+
+        .steps-list li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 60px 0;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(240, 213, 71, 0.15) 0%, transparent 50%);
+            animation: shimmer 15s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .cta-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--purple);
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--white);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 0 30px;
+            }
+
+            .toc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .faq-section {
+                padding: 40px 0;
+            }
+
+            .cta-card {
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background atmosphere -->
+    <div class="bg-atmosphere">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="https://ifthendev.com/quickscan" class="logo">
+                    <div class="logo-icon">📚</div>
+                    <span class="logo-text">QuickScan Help</span>
+                </a>
+                <a href="https://ifthendev.com/contact" class="nav-link">Contact Support</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                Help & <span class="highlight">FAQ</span>
+            </h1>
+            <p class="hero-subtitle">
+                Everything you need to know about scanning books and finding reading levels.
+            </p>
+        </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <section class="toc">
+        <div class="container">
+            <div class="toc-grid">
+                <a href="#isbn" class="toc-link">
+                    <span class="icon">🔍</span>
+                    <span class="label">Finding ISBNs</span>
+                </a>
+                <a href="#scanning" class="toc-link">
+                    <span class="icon">📷</span>
+                    <span class="label">Scanning Tips</span>
+                </a>
+                <a href="#reading-levels" class="toc-link">
+                    <span class="icon">📊</span>
+                    <span class="label">Reading Levels</span>
+                </a>
+                <a href="#history" class="toc-link">
+                    <span class="icon">📋</span>
+                    <span class="label">Scan History</span>
+                </a>
+                <a href="#export" class="toc-link">
+                    <span class="icon">📤</span>
+                    <span class="label">Export Data</span>
+                </a>
+                <a href="#mac" class="toc-link">
+                    <span class="icon">💻</span>
+                    <span class="label">Mac App</span>
+                </a>
+                <a href="#widgets" class="toc-link">
+                    <span class="icon">📱</span>
+                    <span class="label">Widgets</span>
+                </a>
+                <a href="#troubleshooting" class="toc-link">
+                    <span class="icon">🔧</span>
+                    <span class="label">Troubleshooting</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ISBN Section -->
+    <section id="isbn" class="faq-section">
+        <div class="container">
+            <span class="section-label">ISBNs</span>
+            <h2 class="section-title">Finding & Understanding ISBNs</h2>
+
+            <div class="faq-card highlight animate-on-scroll">
+                <h3 class="faq-question">Where can I find the ISBN on a book?</h3>
+                <div class="faq-answer">
+                    <p>The ISBN (International Standard Book Number) can be found in several places:</p>
+                    <ul>
+                        <li><strong>Back cover:</strong> Usually above or near the barcode, printed as a 13-digit number</li>
+                        <li><strong>Inside front cover:</strong> On the copyright page, often listed as "ISBN" or "ISBN-13"</li>
+                        <li><strong>Barcode:</strong> The barcode itself encodes the ISBN - just scan it!</li>
+                        <li><strong>Spine:</strong> Some books print the ISBN on the spine near the bottom</li>
+                    </ul>
+                    <div class="tip-box">
+                        <div class="tip-box-title">Pro Tip</div>
+                        <p>If the barcode won't scan, flip to the copyright page inside the front cover. The ISBN is always printed there in plain text.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Why does my book have multiple ISBNs?</h3>
+                <div class="faq-answer">
+                    <p>Books often have multiple ISBNs because each format gets its own number:</p>
+                    <ul>
+                        <li><strong>Hardcover</strong> - Different ISBN than paperback</li>
+                        <li><strong>Paperback</strong> - Different ISBN than hardcover</li>
+                        <li><strong>Large Print</strong> - Has its own ISBN</li>
+                        <li><strong>Different editions</strong> - Anniversary editions, revised editions, etc.</li>
+                        <li><strong>Different publishers</strong> - US vs UK editions may differ</li>
+                    </ul>
+                    <p><strong>If one ISBN doesn't find reading levels, try another!</strong> The hardcover edition often has better reading level data than newer paperback reprints.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What's the difference between ISBN-10 and ISBN-13?</h3>
+                <div class="faq-answer">
+                    <p><strong>ISBN-13</strong> is the current standard (13 digits, starts with 978 or 979). <strong>ISBN-10</strong> is the older format (10 digits, used before 2007).</p>
+                    <p>QuickScan accepts both formats. If you have an ISBN-10, you can enter it directly - we'll convert it automatically. Most barcodes use ISBN-13.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">The book has no ISBN. What can I do?</h3>
+                <div class="faq-answer">
+                    <p>Some books don't have ISBNs:</p>
+                    <ul>
+                        <li><strong>Very old books</strong> - ISBNs were introduced in 1970</li>
+                        <li><strong>Self-published books</strong> - ISBNs are optional for self-publishing</li>
+                        <li><strong>Library bound editions</strong> - May use different identifiers</li>
+                        <li><strong>Promotional/advance copies</strong> - Often lack final ISBNs</li>
+                    </ul>
+                    <p>Unfortunately, QuickScan requires an ISBN to look up book data. For books without ISBNs, you may need to check reading levels manually through AR BookFinder or Scholastic Book Wizard websites.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Why wasn't my book found?</h3>
+                <div class="faq-answer">
+                    <p>If a book isn't found, it's usually one of these reasons:</p>
+                    <ul>
+                        <li><strong>ISBN entered incorrectly</strong> - Double-check all digits, especially 0's and O's</li>
+                        <li><strong>Very new book</strong> - Just-released books may not be in databases yet</li>
+                        <li><strong>Out of print</strong> - Very old editions may have been removed from databases</li>
+                        <li><strong>Regional edition</strong> - Some international editions aren't in US databases</li>
+                        <li><strong>Network issue</strong> - Check your internet connection</li>
+                    </ul>
+                    <div class="tip-box">
+                        <div class="tip-box-title">Try This</div>
+                        <p>Look inside the book for a different ISBN (hardcover vs paperback). Different editions often have different data availability.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scanning Section -->
+    <section id="scanning" class="faq-section">
+        <div class="container">
+            <span class="section-label">Scanning</span>
+            <h2 class="section-title">Scanning Tips</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How do I get the best scan results?</h3>
+                <div class="faq-answer">
+                    <ol class="steps-list">
+                        <li><strong>Good lighting</strong> - Natural light or bright indoor light works best. Avoid glare on glossy covers.</li>
+                        <li><strong>Hold steady</strong> - Keep the book and your device still while scanning.</li>
+                        <li><strong>Fill the frame</strong> - Position the barcode so it fills most of the scanner area.</li>
+                        <li><strong>Clean barcode</strong> - Wipe off any stickers, tape, or dirt covering the barcode.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">The barcode won't scan. What should I do?</h3>
+                <div class="faq-answer">
+                    <p>If the barcode won't scan:</p>
+                    <ul>
+                        <li><strong>Try manual entry</strong> - Tap the keyboard icon and type the ISBN directly</li>
+                        <li><strong>Check for damage</strong> - Scratched or faded barcodes may not scan</li>
+                        <li><strong>Remove stickers</strong> - Library stickers or price tags can block the barcode</li>
+                        <li><strong>Adjust lighting</strong> - Too dark or too much glare can prevent scanning</li>
+                        <li><strong>Try the other barcode</strong> - Some books have multiple barcodes; one may scan better</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Can I switch between front and back cameras?</h3>
+                <div class="faq-answer">
+                    <p><strong>On iPhone/iPad:</strong> Go to Settings in the app and toggle "Use Front Camera" under the Camera section.</p>
+                    <p><strong>On Mac:</strong> Go to Settings and select your preferred camera from the dropdown. This is helpful if you have an external webcam.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reading Levels Section -->
+    <section id="reading-levels" class="faq-section">
+        <div class="container">
+            <span class="section-label">Reading Levels</span>
+            <h2 class="section-title">Understanding Reading Levels</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What reading level systems does QuickScan show?</h3>
+                <div class="faq-answer">
+                    <p>QuickScan displays up to 6 different reading level systems when available:</p>
+                    <ul>
+                        <li><strong>AR (ATOS)</strong> - Accelerated Reader level (e.g., 4.5)</li>
+                        <li><strong>Lexile</strong> - Lexile measure (e.g., 680L)</li>
+                        <li><strong>F&P / GRL</strong> - Fountas & Pinnell Guided Reading Level (e.g., Level R)</li>
+                        <li><strong>DRA</strong> - Developmental Reading Assessment (e.g., 40)</li>
+                        <li><strong>Grade Level</strong> - Approximate grade equivalent (e.g., Grade 4)</li>
+                        <li><strong>Interest Level</strong> - Target audience (LG, MG, MG+, UG)</li>
+                    </ul>
+                    <p>Additionally, AR data includes quiz number, points, and word count when available.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Why are some reading levels missing?</h3>
+                <div class="faq-answer">
+                    <p>Not every book has been assessed by every reading level system:</p>
+                    <ul>
+                        <li><strong>Children's books</strong> - Usually have the most complete data</li>
+                        <li><strong>Adult books</strong> - Often only have Lexile, if anything</li>
+                        <li><strong>New releases</strong> - May not have been assessed yet</li>
+                        <li><strong>Self-published</strong> - Rarely have official reading levels</li>
+                    </ul>
+                    <p>When exact data isn't available, QuickScan may show converted/estimated levels based on available data.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Where does QuickScan get reading level data?</h3>
+                <div class="faq-answer">
+                    <p>QuickScan aggregates reading level data from multiple trusted sources including AR BookFinder, Scholastic, and Lexile databases. We don't store a database of books - we query these sources in real-time to ensure you get the most current information available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="faq-section">
+        <div class="container">
+            <span class="section-label">History</span>
+            <h2 class="section-title">Scan History</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How do I view my scan history?</h3>
+                <div class="faq-answer">
+                    <ol class="steps-list">
+                        <li>Tap the <strong>History</strong> tab at the bottom of the screen</li>
+                        <li>Browse your scanned books by date</li>
+                        <li>Use the search bar to find specific titles or authors</li>
+                        <li>Tap any book to see its full reading level details</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Does my history sync across devices?</h3>
+                <div class="faq-answer">
+                    <p><strong>Yes!</strong> Your scan history automatically syncs across all your devices (iPhone, iPad, and Mac) via iCloud. Make sure you're signed into the same iCloud account on all devices.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How do I delete a book from my history?</h3>
+                <div class="faq-answer">
+                    <p>Swipe left on any book in your history list to reveal the delete button, then tap <strong>Delete</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Export Section -->
+    <section id="export" class="faq-section">
+        <div class="container">
+            <span class="section-label">Export</span>
+            <h2 class="section-title">Exporting Your Data</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How do I export my book list?</h3>
+                <div class="faq-answer">
+                    <ol class="steps-list">
+                        <li>Go to the <strong>History</strong> tab</li>
+                        <li>Tap the <strong>share icon</strong> (square with arrow)</li>
+                        <li>Choose <strong>CSV</strong> for spreadsheets or <strong>PDF</strong> for printing</li>
+                        <li>Share via email, AirDrop, save to Files, or any other method</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What's included in the export?</h3>
+                <div class="faq-answer">
+                    <p>Exports include:</p>
+                    <ul>
+                        <li>Book title and author</li>
+                        <li>ISBN</li>
+                        <li>All available reading levels (AR, Lexile, GRL, etc.)</li>
+                        <li>Date scanned</li>
+                    </ul>
+                    <p><strong>CSV exports</strong> open in Excel, Google Sheets, or any spreadsheet app. <strong>PDF exports</strong> are formatted for printing with the app name and date.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mac Section -->
+    <section id="mac" class="faq-section">
+        <div class="container">
+            <span class="section-label">Mac</span>
+            <h2 class="section-title">Mac App</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How do I scan books on my Mac?</h3>
+                <div class="faq-answer">
+                    <ol class="steps-list">
+                        <li>Download QuickScan from the Mac App Store (same purchase as iOS)</li>
+                        <li>Grant camera permission when prompted</li>
+                        <li>Hold a book's barcode in front of your webcam</li>
+                        <li>Reading levels appear automatically</li>
+                    </ol>
+                    <div class="tip-box">
+                        <div class="tip-box-title">Scanning Tip</div>
+                        <p>Good lighting is especially important for webcam scanning. Position your book in a well-lit area for best results.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Can I use an external webcam?</h3>
+                <div class="faq-answer">
+                    <p><strong>Yes!</strong> If you have multiple cameras, go to <strong>Settings > Camera</strong> to select which one to use. External webcams often provide better quality than built-in cameras.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What are the keyboard shortcuts?</h3>
+                <div class="faq-answer">
+                    <ul>
+                        <li><strong>Cmd + S</strong> - Start scanning</li>
+                        <li><strong>Cmd + I</strong> - Enter ISBN manually</li>
+                        <li><strong>Cmd + H</strong> - View history</li>
+                        <li><strong>Cmd + E</strong> - Export library</li>
+                        <li><strong>Cmd + ,</strong> - Open Settings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Widgets Section -->
+    <section id="widgets" class="faq-section">
+        <div class="container">
+            <span class="section-label">Widgets</span>
+            <h2 class="section-title">Home Screen Widgets</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How do I add a QuickScan widget?</h3>
+                <div class="faq-answer">
+                    <ol class="steps-list">
+                        <li>Long-press on your Home Screen until apps jiggle</li>
+                        <li>Tap the <strong>+</strong> button in the top corner</li>
+                        <li>Search for "QuickScan"</li>
+                        <li>Choose your preferred widget size</li>
+                        <li>Tap "Add Widget"</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What widget sizes are available?</h3>
+                <div class="faq-answer">
+                    <ul>
+                        <li><strong>Small</strong> - Quick scan shortcut to open the scanner</li>
+                        <li><strong>Medium</strong> - Shows your last scanned book with reading levels</li>
+                        <li><strong>Large</strong> - Shows your recent scans list</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Why does my widget show "Upgrade Required"?</h3>
+                <div class="faq-answer">
+                    <p>Widgets are a premium feature available with a QuickScan subscription. Tap the widget to open the app and subscribe to unlock widgets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting Section -->
+    <section id="troubleshooting" class="faq-section">
+        <div class="container">
+            <span class="section-label">Troubleshooting</span>
+            <h2 class="section-title">Common Issues</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">The app says "Book Not Found"</h3>
+                <div class="faq-answer">
+                    <p>This means we couldn't find the book in any of our data sources. Try:</p>
+                    <ul>
+                        <li>Double-check the ISBN for typos</li>
+                        <li>Look for a different ISBN in the book (try hardcover vs paperback)</li>
+                        <li>Check inside the front cover for additional ISBNs</li>
+                        <li>Very new or self-published books may not be in databases</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">The app says "Connection Problem"</h3>
+                <div class="faq-answer">
+                    <p>This indicates a network issue. Try:</p>
+                    <ul>
+                        <li>Check your WiFi or cellular connection</li>
+                        <li>Try again in a few moments</li>
+                        <li>Make sure you're not in Airplane Mode</li>
+                    </ul>
+                    <p>QuickScan requires an internet connection to look up book data.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">My history isn't syncing between devices</h3>
+                <div class="faq-answer">
+                    <ul>
+                        <li>Make sure you're signed into the same iCloud account on all devices</li>
+                        <li>Check that iCloud is enabled for QuickScan in Settings > [Your Name] > iCloud</li>
+                        <li>Ensure both devices have an internet connection</li>
+                        <li>Try closing and reopening the app</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Camera permission was denied</h3>
+                <div class="faq-answer">
+                    <p>To enable camera access:</p>
+                    <ol class="steps-list">
+                        <li>Open your device's <strong>Settings</strong> app</li>
+                        <li>Scroll down and tap <strong>QuickScan</strong></li>
+                        <li>Toggle <strong>Camera</strong> to ON</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h2 class="cta-title">Still need help?</h2>
+                    <p class="cta-subtitle">
+                        Our support team is here to help you get the most out of QuickScan.
+                    </p>
+                    <a href="https://ifthendev.com/contact" class="cta-button">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://ifthendev.com/quickscan" class="footer-link">QuickScan Home</a>
+                    <a href="https://ifthendev.com/privacy-policy/" class="footer-link">Privacy Policy</a>
+                    <a href="https://ifthendev.com/contact" class="footer-link">Contact</a>
+                </div>
+                <div class="footer-copy">
+                    &copy; 2026 If Then Dev, LLC. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 50);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
