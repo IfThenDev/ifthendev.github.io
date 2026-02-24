@@ -125,12 +125,14 @@
         .logo-icon {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .logo-text {
@@ -501,7 +503,9 @@
         <div class="container">
             <div class="header-content">
                 <a href="https://ifthendev.com/quickscan" class="logo">
-                    <div class="logo-icon">📚</div>
+                    <div class="logo-icon">
+                        <img src="images/app-icon.png" alt="QuickScan Book Leveler">
+                    </div>
                     <span class="logo-text">QuickScan Help</span>
                 </a>
                 <a href="https://ifthendev.com/contact" class="nav-link">Contact Support</a>
@@ -759,6 +763,24 @@
                     <p>Swipe left on any book in your history list to reveal the delete button, then tap <strong>Delete</strong>.</p>
                 </div>
             </div>
+            
+                  <div class="faq-card animate-on-scroll">
+                      <h3 class="faq-question">How does the Grade Level filter work?</h3>
+                      <div class="faq-answer">
+                          <p>The Grade Level filter in History shows books that match the selected grade using the best available data for each book. It checks three sources in order:</p>
+                          <ol>
+                              <li><strong>Stored grade</strong> - The grade returned directly from reading level databases (e.g., AR BookFinder)</li>
+                              <li><strong>ATOS conversion</strong> - If no stored grade, the book's ATOS level is converted to an approximate grade (e.g., ATOS 3.1 = Grade 3)</li>
+                              <li><strong>Lexile conversion</strong> - As a last resort, the Lexile measure is converted to an approximate grade (e.g., 500L = Grade 3)</li>
+                          </ol>
+                          <p>This means books appear in your filtered results even if they don't have an explicit grade, as long as their ATOS or Lexile level maps to the selected grade.</p>
+                          <div class="tip-box">
+                              <div class="tip-box-title">Good to Know</div>
+                              <p>Grade conversions from ATOS and Lexile are approximate. Different reading level systems don't always agree on exact grade equivalents, so use these as a starting point for book selection.</p>
+                          </div>
+                      </div>
+                  </div>
+
         </div>
     </section>
 
