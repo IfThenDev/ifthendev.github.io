@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshelf Scanner - Manage Your Classroom Library with Ease</title>
+    <meta name="description" content="Scan book barcodes, track student checkouts, and manage your entire classroom library from your iPhone, iPad, or Mac.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #D49C26;
+            --gold-light: #E5B84A;
+            --amber: #C47F17;
+            --brown: #8B6914;
+            --dark-bg: #1A1208;
+            --dark-surface: #251C0F;
+            --white: #ffffff;
+            --text-light: rgba(255, 255, 255, 0.9);
+            --text-muted: rgba(255, 255, 255, 0.65);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-atmosphere {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .bg-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--amber);
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .bg-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--brown);
+            bottom: 20%;
+            left: -100px;
+            animation-delay: -7s;
+        }
+
+        .bg-orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--gold);
+            top: 50%;
+            right: 10%;
+            opacity: 0.15;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 100px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50px;
+            padding: 8px 18px;
+            font-size: 0.85rem;
+            margin-bottom: 32px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        .hero-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        .app-store-badge {
+            transition: transform 0.3s ease;
+        }
+
+        .app-store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .app-store-badge img {
+            height: 54px;
+            width: auto;
+        }
+
+        .hero-platforms {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            animation: fadeInUp 0.6s ease-out 0.35s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Phone Mockup with Screenshot */
+        .hero-visual {
+            position: relative;
+            max-width: 340px;
+            margin: 60px auto 0;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .phone-frame {
+            background: linear-gradient(145deg, #3a2a1e 0%, #2a1a0e 50%, #1a0f05 100%);
+            border-radius: 52px;
+            padding: 14px;
+            box-shadow:
+                0 50px 100px -20px rgba(0, 0, 0, 0.6),
+                0 30px 60px -30px rgba(212, 156, 38, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 28px;
+            background: #1a0f05;
+            border-radius: 20px;
+            z-index: 10;
+        }
+
+        .phone-screen {
+            border-radius: 40px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .phone-screen img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: rgba(212, 156, 38, 0.15);
+            color: var(--gold);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .feature-card.featured {
+            background: linear-gradient(135deg, rgba(212, 156, 38, 0.12) 0%, rgba(196, 127, 23, 0.08) 100%);
+            border-color: rgba(212, 156, 38, 0.25);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--gold) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .capability-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .capability-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.02) 50%, transparent 100%);
+        }
+
+        .how-it-works-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 24px;
+        }
+
+        .step-number {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--gold) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, var(--amber) 0%, var(--gold) 100%);
+            border-radius: 32px;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+            animation: shimmer 15s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--dark-bg);
+        }
+
+        .cta-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(26, 18, 8, 0.8);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--white);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 50px 0 80px;
+            }
+
+            .hero-visual {
+                max-width: 260px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-card {
+                padding: 40px 24px;
+                border-radius: 24px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background atmosphere -->
+    <div class="bg-atmosphere">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <img src="images/app-icon.png" alt="Bookshelf Scanner">
+                    </div>
+                    <span class="logo-text">Bookshelf Scanner</span>
+                </a>
+                <a href="https://ifthendev.com" class="nav-link">If Then Dev</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                <span>Version 2.0 Now Available</span>
+            </div>
+
+            <h1 class="hero-title">
+                Your Classroom Library,<br>
+                <span class="highlight">Organized in Minutes</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Scan book barcodes, track student checkouts, and manage your entire classroom library.
+                Built by a teacher, for teachers.
+            </p>
+
+            <div class="hero-cta">
+                <!-- TODO: Replace with your App Store link -->
+                <a href="https://apps.apple.com/us/app/bookshelf-scanner/id1435647681" class="app-store-badge">
+                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1619740800" alt="Download on the App Store">
+                </a>
+            </div>
+
+            <div class="hero-platforms">
+                <span>Available on iPhone, iPad, and Mac</span>
+            </div>
+
+            <!-- Screenshot in Phone Mockup -->
+            <div class="hero-visual">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <!-- TODO: Replace with your app screenshot -->
+                        <img src="images/screenshot-library.png" alt="Bookshelf Scanner showing a classroom library">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <span class="section-label">Features</span>
+            <h2 class="section-title">Everything you need to run your library</h2>
+            <p class="section-subtitle">
+                From scanning books to tracking checkouts, Bookshelf Scanner handles it all.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card featured animate-on-scroll">
+                    <div class="feature-icon">📷</div>
+                    <h3 class="feature-title">Instant Barcode Scanning</h3>
+                    <p class="feature-desc">
+                        Point your camera at any book's ISBN barcode to add it to your library in seconds.
+                        Title, author, and cover art are fetched automatically.
+                    </p>
+                </div>
+
+                <div class="feature-card featured animate-on-scroll">
+                    <div class="feature-icon">👩‍🏫</div>
+                    <h3 class="feature-title">Student Checkout Tracking</h3>
+                    <p class="feature-desc">
+                        Lend books to students and track who has what. Set due dates, record returns, and keep a full checkout history.
+                    </p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">Library Organization</h3>
+                    <p class="feature-desc">
+                        Organize books by status, location, and shelf. Create custom statuses and locations that match your classroom setup.
+                    </p>
+                    <div class="capability-tags">
+                        <span class="capability-tag">Custom Statuses</span>
+                        <span class="capability-tag">Locations</span>
+                        <span class="capability-tag">Shelves</span>
+                    </div>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">📤</div>
+                    <h3 class="feature-title">Export to CSV &amp; PDF</h3>
+                    <p class="feature-desc">
+                        Export your book catalog or student roster as spreadsheets or printable reports.
+                        Share with colleagues or keep for your records.
+                    </p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">💾</div>
+                    <h3 class="feature-title">Backup &amp; Restore</h3>
+                    <p class="feature-desc">
+                        Create full library backups saved to iCloud Drive.
+                        Restore your entire library on a new device with one tap.
+                    </p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Private &amp; Ad-Free</h3>
+                    <p class="feature-desc">
+                        No ads, no tracking, no analytics. Your library data stays on your device and in your iCloud account. Student data is never shared.
+                    </p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">☁️</div>
+                    <h3 class="feature-title">iCloud Sync</h3>
+                    <p class="feature-desc">
+                        Your library syncs automatically across all your Apple devices.
+                        Add a book on your phone, check it out on your iPad.
+                    </p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">💻</div>
+                    <h3 class="feature-title">Mac Support</h3>
+                    <p class="feature-desc">
+                        Manage your library from your Mac with webcam barcode scanning.
+                        Same great app, now on your desktop.
+                    </p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">📋</div>
+                    <h3 class="feature-title">Bulk Student Import</h3>
+                    <p class="feature-desc">
+                        Import your class roster from a CSV file.
+                        No need to type each student name individually.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="how-it-works-header">
+                <span class="section-label">How It Works</span>
+                <h2 class="section-title">Up and running in three steps</h2>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Scan Your Books</h3>
+                    <p class="step-desc">
+                        Point your camera at each book's barcode. Bookshelf Scanner looks up the title, author, and cover automatically.
+                    </p>
+                </div>
+
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Add Your Students</h3>
+                    <p class="step-desc">
+                        Type student names or import a roster from a CSV file. Assign borrower codes for quick checkout.
+                    </p>
+                </div>
+
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Start Lending</h3>
+                    <p class="step-desc">
+                        Check out books to students with a tap. Track due dates, record returns, and see your full lending history.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h2 class="cta-title">Start organizing your library today</h2>
+                    <p class="cta-subtitle">
+                        Free to download with up to 10 books.<br>
+                        Available on iPhone, iPad, and Mac.
+                    </p>
+                    <div class="cta-buttons">
+                        <!-- TODO: Replace with your App Store link -->
+                        <a href="https://apps.apple.com/us/app/bookshelf-scanner/id1435647681" class="app-store-badge">
+                            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1619740800" alt="Download on the App Store">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://ifthendev.com" class="footer-link">If Then Dev</a>
+                    <a href="privacypolicy.html" class="footer-link">Privacy Policy</a>
+                    <a href="https://ifthendev.com/contact/index.html?app=Bookshelf%20Scanner" class="footer-link">Contact</a>
+                </div>
+                <div class="footer-copy">
+                    &copy; 2026 If Then Dev, LLC. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

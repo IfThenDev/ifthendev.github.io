@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & FAQ - Bookshelf Scanner</title>
+    <meta name="description" content="Get help with Bookshelf Scanner. Learn how to scan books, manage students, track checkouts, export data, and troubleshoot common issues.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #D49C26;
+            --gold-light: #E5B84A;
+            --amber: #C47F17;
+            --brown: #8B6914;
+            --dark-bg: #1A1208;
+            --dark-surface: #251C0F;
+            --white: #ffffff;
+            --text-light: rgba(255, 255, 255, 0.9);
+            --text-muted: rgba(255, 255, 255, 0.65);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-atmosphere {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .bg-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--amber);
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .bg-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--brown);
+            bottom: 20%;
+            left: -100px;
+            animation-delay: -7s;
+        }
+
+        .bg-orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--gold);
+            top: 50%;
+            right: 10%;
+            opacity: 0.15;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--white);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0 50px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* Section */
+        .section-label {
+            display: inline-block;
+            background: rgba(212, 156, 38, 0.15);
+            color: var(--gold);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        /* FAQ Sections */
+        .faq-sections {
+            padding: 40px 0 80px;
+        }
+
+        .faq-category {
+            margin-bottom: 48px;
+        }
+
+        .faq-category-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--amber) 0%, var(--gold) 100%);
+            border-radius: 10px;
+            font-size: 1.2rem;
+            margin-right: 12px;
+            vertical-align: middle;
+        }
+
+        .faq-category-title {
+            display: inline;
+            font-size: 1.3rem;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+        .faq-list {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Accordion */
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .faq-item.active {
+            border-color: rgba(212, 156, 38, 0.3);
+            background: rgba(212, 156, 38, 0.05);
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            gap: 16px;
+        }
+
+        .faq-question:hover {
+            color: var(--white);
+        }
+
+        .faq-chevron {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .faq-item.active .faq-chevron {
+            transform: rotate(180deg);
+            color: var(--gold);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer-inner {
+            padding: 0 24px 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            padding: 0 0 80px;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, var(--amber) 0%, var(--gold) 100%);
+            border-radius: 24px;
+            padding: 48px 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+            animation: shimmer 15s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark-bg);
+            margin-bottom: 12px;
+        }
+
+        .contact-subtitle {
+            font-size: 1rem;
+            color: rgba(26, 18, 8, 0.7);
+            margin-bottom: 24px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background: var(--dark-bg);
+            color: var(--gold-light);
+            padding: 12px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .contact-button:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--white);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 0 30px;
+            }
+
+            .faq-question {
+                padding: 16px 20px;
+                font-size: 0.95rem;
+            }
+
+            .faq-answer-inner {
+                padding: 0 20px 16px;
+            }
+
+            .contact-card {
+                padding: 36px 24px;
+                border-radius: 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background atmosphere -->
+    <div class="bg-atmosphere">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <img src="images/app-icon.png" alt="Bookshelf Scanner">
+                    </div>
+                    <span class="logo-text">Bookshelf Scanner</span>
+                </a>
+                <a href="https://ifthendev.com" class="nav-link">If Then Dev</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                Help &amp; <span class="highlight">FAQ</span>
+            </h1>
+            <p class="hero-subtitle">
+                Everything you need to know about scanning books, managing students, and running your classroom library.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Sections -->
+    <section class="faq-sections">
+        <div class="container">
+
+            <!-- Getting Started -->
+            <div class="faq-category">
+                <span class="faq-category-icon">🚀</span>
+                <h2 class="faq-category-title">Getting Started</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I add a book?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Tap the barcode icon in the Library toolbar to scan a book's barcode, or tap the + button to add a book manually. When scanning, book details are fetched automatically from the ISBN.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I organize my library?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Go to Settings to create Locations (like shelves or rooms) and custom Statuses. Then assign them to individual books from the book detail screen.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Does my library sync across devices?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes. When you're signed into iCloud, your library syncs automatically across all your iOS, iPadOS, and Mac devices. Changes may take a few minutes to appear.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scanning -->
+            <div class="faq-category">
+                <span class="faq-category-icon">📷</span>
+                <h2 class="faq-category-title">Scanning</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I scan a book?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Tap the barcode icon in the Library toolbar, then point your camera at the book's barcode. The app supports ISBN (EAN-13) and Codabar library barcodes, and book details are fetched automatically.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Can I scan multiple books at once?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Yes. After your first scan, keep scanning additional books. They accumulate in a batch queue. Tap the badge to review all scanned books before adding them to your library.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>What barcode types are supported?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                ISBN (EAN-13 and EAN-8) for commercial books and Codabar for library labels. You can also enter book details manually if a barcode isn't available.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I switch cameras or use flash?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Camera controls appear below the viewfinder on iOS. On Mac, you can select from available external webcams using the camera picker.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Library Management -->
+            <div class="faq-category">
+                <span class="faq-category-icon">📚</span>
+                <h2 class="faq-category-title">Library Management</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I create locations?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Go to Settings > Locations, then tap Add to create a new location. Drag to reorder them in the list.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I create custom statuses?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Go to Settings > Statuses, then add a new status with a custom name and color.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I export my library?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Tap the export button in the Library toolbar, choose CSV or PDF format, select your preferred sort order, then share using the system share sheet.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>What's included in exports?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Exports include book details (title, author, ISBN), location, status, and current borrower. PDF exports also include cover images.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Students & Checkout -->
+            <div class="faq-category">
+                <span class="faq-category-icon">👩‍🏫</span>
+                <h2 class="faq-category-title">Students &amp; Checkout</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I add students?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Go to the Students tab and tap + to add a student. You can also use Bulk Import to paste multiple student names at once.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I check out a book?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Open the book detail screen, tap Check Out, and select a student. The due date is set automatically based on your default loan period.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I return a book?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Open the book detail screen and tap Return, or use Bulk Returns from the Library toolbar to return multiple books at once.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I change the default loan period?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Go to Settings > Checkout and use the stepper to adjust the default loan period in days.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="faq-category">
+                <span class="faq-category-icon">🔧</span>
+                <h2 class="faq-category-title">Troubleshooting</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>My books aren't syncing across devices</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Verify you're signed into the same iCloud account on all devices and that iCloud Drive is enabled in Settings > iCloud. Changes may take a few minutes to propagate.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>The camera isn't working for scanning</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Check that Bookshelf Scanner has camera permission in Settings > Privacy > Camera. Make sure no other app is using the camera, and try restarting the app.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>I migrated from v1 but some books are missing</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Go to Settings > Migration > Run Migration Again (a backup is created first). Make sure the original v1 data was fully synced before migrating.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I restore a backup?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Go to Settings > Backup & Restore and tap a backup to restore it. This replaces your current data with the backup contents.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <div class="container">
+            <div class="contact-card">
+                <div class="contact-content">
+                    <h2 class="contact-title">Still need help?</h2>
+                    <p class="contact-subtitle">
+                        We're here to help. Send us an email and we'll get back to you.
+                    </p>
+                    <a href="mailto:help@ifthendev.com?subject=Bookshelf%20Scanner%20Help" class="contact-button">
+                        Contact Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="privacypolicy.html" class="footer-link">Privacy Policy</a>
+                    <a href="mailto:help@ifthendev.com" class="footer-link">Contact</a>
+                </div>
+                <div class="footer-copy">
+                    &copy; 2026 If Then Dev, LLC. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FAQ Toggle Script -->
+    <script>
+        function toggleFaq(button) {
+            const item = button.parentElement;
+            const wasActive = item.classList.contains('active');
+
+            // Close all items in the same category
+            const category = item.closest('.faq-list');
+            category.querySelectorAll('.faq-item.active').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Toggle the clicked item
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
