@@ -487,7 +487,7 @@
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
-                                Tap the barcode icon in the Library toolbar to scan a book's barcode, or tap the + button to add a book manually. When scanning, book details are fetched automatically from the ISBN.
+                                Tap the + button in the Library toolbar to open the add menu. Choose Scan Barcode to use your camera, or Enter Manually to type the details yourself. When scanning, book details are fetched automatically from the ISBN.
                             </div>
                         </div>
                     </div>
@@ -513,6 +513,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I find a book in my library?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Use the search bar at the top of the Library tab to search by title, author, ISBN, or barcode. You can also filter by location or status using the filter chips below the search bar.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -528,18 +539,18 @@
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
-                                Tap the barcode icon in the Library toolbar, then point your camera at the book's barcode. The app supports ISBN (EAN-13) and Codabar library barcodes, and book details are fetched automatically.
+                                Tap the + button in the Library toolbar and choose Scan Barcode. Point your camera at the book's barcode. The app supports ISBN (EAN-13) and library label barcodes (Codabar, Code 39, Code 128, Interleaved 2 of 5), and book details are fetched automatically.
                             </div>
                         </div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFaq(this)">
-                            <span>Can I scan multiple books at once?</span>
+                            <span>Can I scan multiple books in a row?</span>
                             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
-                                Yes. After your first scan, keep scanning additional books. They accumulate in a batch queue. Tap the badge to review all scanned books before adding them to your library.
+                                Yes. After each scan, a result card appears with the book's details. Tap Add to save the book, and the scanner resets immediately so you can scan the next one.
                             </div>
                         </div>
                     </div>
@@ -550,18 +561,18 @@
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
-                                ISBN (EAN-13 and EAN-8) for commercial books and Codabar for library labels. You can also enter book details manually if a barcode isn't available.
+                                ISBN (EAN-13 and EAN-8) for commercial books, and Codabar, Code 39, Code 128, and Interleaved 2 of 5 for library labels. You can also enter book details manually if a barcode isn't available.
                             </div>
                         </div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFaq(this)">
-                            <span>How do I switch cameras or use flash?</span>
+                            <span>How do I switch cameras or use the flash?</span>
                             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
-                                Camera controls appear below the viewfinder on iOS. On Mac, you can select from available external webcams using the camera picker.
+                                Camera controls appear in the top-right corner of the scanner. On iOS, tap the bolt icon to toggle the flash, or tap the camera icon to switch between front and back cameras. On Mac, a dropdown lets you choose from available cameras.
                             </div>
                         </div>
                     </div>
@@ -580,7 +591,7 @@
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
-                                Go to Settings > Locations, then tap Add to create a new location. Drag to reorder them in the list.
+                                Go to Settings > Locations, then tap Add to create a new location. Locations are sorted alphabetically.
                             </div>
                         </div>
                     </div>
@@ -602,7 +613,7 @@
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
-                                Tap the export button in the Library toolbar, choose CSV or PDF format, select your preferred sort order, then share using the system share sheet.
+                                Go to the Reports tab and tap All Books under the Export section. Choose CSV or PDF format, select your preferred sort order, then share using the system share sheet. You can also export your student list from the same section.
                             </div>
                         </div>
                     </div>
@@ -613,7 +624,7 @@
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
-                                Exports include book details (title, author, ISBN), location, status, and current borrower. PDF exports also include cover images.
+                                Book exports include title, author, ISBN, location, status, and current borrower. PDF exports also include cover images. Student exports include name, borrower ID, contact details, and the number of books currently checked out.
                             </div>
                         </div>
                     </div>
@@ -672,6 +683,36 @@
                 </div>
             </div>
 
+            <!-- Reports -->
+            <div class="faq-category">
+                <span class="faq-category-icon">📊</span>
+                <h2 class="faq-category-title">Reports</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I see overdue books?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Go to the Reports tab and tap Overdue Books. You can sort the list by most overdue, by student, or by title. Tap the export button to share the report as CSV or PDF.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I see all checked-out books?</span>
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Go to the Reports tab and tap Checked Out. The list shows every book currently on loan, with the student name and due date. You can sort and export this report as well.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Troubleshooting -->
             <div class="faq-category">
                 <span class="faq-category-icon">🔧</span>
@@ -706,7 +747,7 @@
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
-                                Go to Settings > Migration > Run Migration Again (a backup is created first). Make sure the original v1 data was fully synced before migrating.
+                                Open Settings and tap the Migrate from v1 button to run the migration again (a backup is created first). Make sure the original v1 data was fully synced before migrating.
                             </div>
                         </div>
                     </div>
