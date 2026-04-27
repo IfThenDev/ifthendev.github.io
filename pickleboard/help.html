@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help &amp; FAQ — PickleBoard</title>
+    <meta name="description" content="Help and FAQ for PickleBoard, the Watch-first pickleball scoreboard. Learn how to use scoring modes, voice announcements, Live Activity, widgets, and more.">
+    <meta name="theme-color" content="#0F2A45">
+    <link rel="icon" href="images/app-icon.png">
+
+    <style>
+        :root {
+            /* === Brand === */
+            --pb-blue:        #1F4F79;
+            --pb-blue-light:  #2A5A8A;
+            --pb-blue-deep:   #0F2A45;
+            --pb-green:       #DAE64A;
+            --pb-green-soft:  rgba(218, 230, 74, 0.15);
+
+            /* === Neutrals === */
+            --white:          #ffffff;
+            --text-light:     rgba(255, 255, 255, 0.92);
+            --text-muted:     rgba(255, 255, 255, 0.65);
+            --border-subtle:  rgba(255, 255, 255, 0.08);
+            --border-strong:  rgba(255, 255, 255, 0.18);
+
+            /* === Spacing scale (multiples of 4) === */
+            --s-1: 4px;
+            --s-2: 8px;
+            --s-3: 12px;
+            --s-4: 16px;
+            --s-5: 24px;
+            --s-6: 32px;
+            --s-7: 48px;
+            --s-8: 64px;
+            --s-9: 96px;
+            --s-10: 128px;
+
+            /* === Layout === */
+            --container-max: 900px;   /* help.html — narrower for reading-friendly TOC + FAQ */
+
+            /* === Radius === */
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 32px;
+            --radius-pill: 50px;
+
+            /* === Type scale === */
+            --fs-xs:   0.85rem;
+            --fs-sm:   0.95rem;
+            --fs-body: 1.05rem;
+            --fs-lg:   1.25rem;
+            --fs-h3:   1.5rem;
+            --fs-h2:   clamp(1.75rem, 4vw, 2.5rem);
+            --fs-h1:   clamp(2.25rem, 6vw, 3.75rem);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--pb-blue-deep);
+            color: var(--text-light);
+            font-size: var(--fs-body);
+            line-height: 1.6;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* === Skip Link === */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: var(--s-2);
+            background: var(--pb-green);
+            color: var(--pb-blue);
+            padding: var(--s-2) var(--s-4);
+            border-radius: var(--s-1);
+            text-decoration: none;
+            font-weight: 600;
+            z-index: 100;
+            transition: top 0.2s;
+        }
+
+        .skip-link:focus {
+            top: var(--s-2);
+        }
+
+        /* === Background atmosphere === */
+        .bg-atmosphere {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .bg-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--pb-blue);
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .bg-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--pb-blue-light);
+            bottom: 20%;
+            left: -100px;
+            animation-delay: -7s;
+        }
+
+        .bg-orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--pb-green);
+            top: 50%;
+            right: 10%;
+            opacity: 0.18;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33%      { transform: translate(30px, -30px) scale(1.05); }
+            66%      { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* === Header === */
+        header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-5);
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: var(--s-3);
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: var(--fs-lg);
+            letter-spacing: -0.02em;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: var(--fs-sm);
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--white);
+        }
+
+        /* === Main === */
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* === Help Hero (page banner) === */
+        .help-hero {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-9) var(--s-5) var(--s-7);
+            text-align: center;
+        }
+
+        .help-hero h1 {
+            font-size: var(--fs-h1);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--white);
+            margin-bottom: var(--s-5);
+        }
+
+        .help-subtitle {
+            font-size: var(--fs-lg);
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* === Table of Contents === */
+        .help-toc {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-5) var(--s-5) var(--s-7);
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--s-4);
+        }
+
+        .toc-card {
+            display: block;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: var(--s-5);
+            text-decoration: none;
+            color: var(--text-light);
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .toc-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--pb-green);
+            transform: translateY(-2px);
+        }
+
+        .toc-num {
+            display: block;
+            font-size: var(--fs-xs);
+            font-weight: 600;
+            color: var(--pb-green);
+            letter-spacing: 0.1em;
+            margin-bottom: var(--s-2);
+        }
+
+        .toc-card h3 {
+            font-size: var(--fs-body);
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: var(--s-2);
+        }
+
+        .toc-card p {
+            font-size: var(--fs-sm);
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* === Section Eyebrow Label === */
+        .section-label {
+            display: inline-block;
+            background: var(--pb-green-soft);
+            color: var(--pb-green);
+            padding: var(--s-1) var(--s-3);
+            border-radius: var(--radius-pill);
+            font-size: var(--fs-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--s-4);
+        }
+
+        /* === Help Section === */
+        .help-section {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-9) var(--s-5);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .help-section h2 {
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            color: var(--white);
+            margin-bottom: var(--s-5);
+        }
+
+        .help-section h3 {
+            font-size: var(--fs-h3);
+            font-weight: 600;
+            color: var(--white);
+            margin-top: var(--s-6);
+            margin-bottom: var(--s-3);
+        }
+
+        .help-section p {
+            font-size: var(--fs-body);
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: var(--s-4);
+        }
+
+        .help-section ul,
+        .help-section ol {
+            margin: 0 0 var(--s-4) var(--s-5);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .help-section ul li,
+        .help-section ol li {
+            margin-bottom: var(--s-2);
+            font-size: var(--fs-body);
+        }
+
+        .help-section a {
+            color: var(--pb-green);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .help-section a:hover {
+            text-decoration: none;
+        }
+
+        /* === Steps List (numbered with circular badges) === */
+        .steps-list {
+            counter-reset: step;
+            list-style: none !important;
+            padding: 0 !important;
+            margin: var(--s-4) 0 !important;
+        }
+
+        .steps-list li {
+            position: relative;
+            padding-left: var(--s-7);
+            margin-bottom: var(--s-4);
+            min-height: 32px;
+        }
+
+        .steps-list li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--pb-blue);
+            border: 2px solid var(--pb-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--fs-sm);
+            font-weight: 700;
+            color: var(--pb-green);
+        }
+
+        /* === Tip Box === */
+        .tip-box {
+            background: var(--pb-green-soft);
+            border-left: 3px solid var(--pb-green);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: var(--s-4) var(--s-5);
+            margin: var(--s-5) 0;
+            font-size: var(--fs-sm);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .tip-box strong {
+            color: var(--pb-green);
+        }
+
+        /* === FAQ Card (native <details>/<summary>) === */
+        details.faq-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: var(--s-5);
+            margin-bottom: var(--s-3);
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        details.faq-card[open] {
+            background: rgba(255, 255, 255, 0.06);
+            border-left: 3px solid var(--pb-green);
+        }
+
+        details.faq-card > summary {
+            list-style: none;
+            cursor: pointer;
+            font-size: var(--fs-h3);
+            font-weight: 600;
+            color: var(--white);
+            position: relative;
+            padding-right: var(--s-7);
+            line-height: 1.3;
+        }
+
+        details.faq-card > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.faq-card > summary::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: var(--fs-h3);
+            line-height: 1;
+            color: var(--pb-green);
+            transition: transform 0.2s ease;
+        }
+
+        details.faq-card[open] > summary::after {
+            content: '\00d7';
+        }
+
+        details.faq-card .faq-answer {
+            margin-top: var(--s-4);
+            color: var(--text-light);
+            font-size: var(--fs-body);
+            line-height: 1.6;
+        }
+
+        details.faq-card .faq-answer p {
+            margin-bottom: var(--s-3);
+        }
+
+        details.faq-card .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* === Closing CTA === */
+        .cta-help {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-9) var(--s-5);
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, var(--pb-blue-light) 0%, var(--pb-blue) 100%);
+            border-radius: var(--radius-xl);
+            padding: var(--s-8) var(--s-7);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, var(--pb-green-soft) 0%, transparent 50%);
+            animation: shimmer 15s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0%   { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-card h2 {
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--s-4);
+        }
+
+        .cta-subtitle {
+            font-size: var(--fs-lg);
+            color: var(--text-light);
+            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto var(--s-6);
+        }
+
+        .contact-button {
+            display: inline-block;
+            background: var(--pb-green);
+            color: var(--pb-blue-deep);
+            padding: var(--s-3) var(--s-6);
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: var(--fs-body);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* === Footer === */
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: var(--s-7) var(--s-5);
+            max-width: var(--container-max);
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--s-5);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--s-5);
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: var(--fs-sm);
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--white);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: var(--fs-xs);
+        }
+
+        /* === Focus indicators === */
+        a:focus-visible,
+        button:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid var(--pb-green);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        /* === Scroll-reveal === */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === Responsive === */
+        @media (max-width: 768px) {
+            .help-hero {
+                padding: var(--s-7) var(--s-5) var(--s-5);
+            }
+
+            .help-section {
+                padding: var(--s-7) var(--s-5);
+            }
+
+            .help-toc {
+                padding: var(--s-3) var(--s-5) var(--s-5);
+            }
+
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-help {
+                padding: var(--s-7) var(--s-5);
+            }
+
+            .cta-card {
+                padding: var(--s-7) var(--s-5);
+                border-radius: var(--radius-lg);
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+
+            details.faq-card > summary {
+                font-size: var(--fs-lg);
+            }
+        }
+
+        /* === Reduced motion gate === */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .bg-orb { animation: none; }
+            .cta-card::before { animation: none; }
+            .animate-on-scroll {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="bg-atmosphere" aria-hidden="true">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+    </div>
+
+    <header>
+        <a href="index.html" class="logo-link" aria-label="PickleBoard home">
+            <img src="images/app-icon.png" alt="PickleBoard app icon" class="logo">
+            <span class="logo-text">PickleBoard</span>
+        </a>
+        <nav>
+            <a href="https://ifthendev.com" class="nav-link">If Then Dev</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="help-hero">
+            <h1>Help &amp; FAQ</h1>
+            <p class="help-subtitle">Everything you need to play with PickleBoard.</p>
+        </section>
+
+        <section class="help-toc" aria-label="Table of contents">
+            <div class="toc-grid">
+                <a href="#getting-started" class="toc-card">
+                    <span class="toc-num">01</span>
+                    <h3>Getting Started</h3>
+                    <p>Watch vs iPhone, your first game.</p>
+                </a>
+                <a href="#scoring-modes" class="toc-card">
+                    <span class="toc-num">02</span>
+                    <h3>Scoring Modes</h3>
+                    <p>Doubles, singles, rally, freeze-at-target.</p>
+                </a>
+                <a href="#voice" class="toc-card">
+                    <span class="toc-num">03</span>
+                    <h3>Voice Announcements</h3>
+                    <p>&ldquo;4, 2, 1&rdquo; spoken from your wrist.</p>
+                </a>
+                <a href="#live-activity" class="toc-card">
+                    <span class="toc-num">04</span>
+                    <h3>Live Activity &amp; Dynamic Island</h3>
+                    <p>Score on your Lock Screen, automatically.</p>
+                </a>
+                <a href="#widget" class="toc-card">
+                    <span class="toc-num">05</span>
+                    <h3>Home Screen Widget</h3>
+                    <p>Small and medium widgets on iPhone.</p>
+                </a>
+                <a href="#watch-extras" class="toc-card">
+                    <span class="toc-num">06</span>
+                    <h3>Watch Complication &amp; Always-On</h3>
+                    <p>Quick-launch and a dimmed score on AOD.</p>
+                </a>
+                <a href="#match-stats" class="toc-card">
+                    <span class="toc-num">07</span>
+                    <h3>Match Stats, Weather &amp; Rematch</h3>
+                    <p>Game-over card with weather and one-tap restart.</p>
+                </a>
+                <a href="#timeouts" class="toc-card">
+                    <span class="toc-num">08</span>
+                    <h3>Timeouts</h3>
+                    <p>Two per game, voice-announced.</p>
+                </a>
+                <a href="#subscription" class="toc-card">
+                    <span class="toc-num">09</span>
+                    <h3>Subscription &amp; Pro</h3>
+                    <p>Free vs Pro, how to restore.</p>
+                </a>
+                <a href="#troubleshooting" class="toc-card">
+                    <span class="toc-num">10</span>
+                    <h3>Troubleshooting</h3>
+                    <p>Common issues and fixes.</p>
+                </a>
+            </div>
+        </section>
+
+        <section id="getting-started" class="help-section">
+            <span class="section-label">01 &middot; Getting Started</span>
+            <h2>Getting Started</h2>
+            <p>PickleBoard runs on Apple Watch and iPhone. The Watch app is the primary experience &mdash; a glanceable scoreboard right on your wrist. The iPhone app mirrors the same scoreboard for sideline scoring or Live Activity and Dynamic Island use during a game.</p>
+            <h3>Your first game</h3>
+            <ol class="steps-list">
+                <li>Open PickleBoard on your Watch (or iPhone).</li>
+                <li>Tap a team&rsquo;s side of the scoreboard to add a point.</li>
+                <li>Use the toolbar to undo a point, open Settings, reset the match, or call a timeout.</li>
+                <li>When the game ends, review the game-over card and tap Rematch to play again.</li>
+            </ol>
+            <h3>Free vs Pro</h3>
+            <p>PickleBoard is free to download and play. Pro features &mdash; Live Activity, Dynamic Island, voice announcements, and match stats &mdash; are unlocked with a one-time in-app purchase. See the <a href="#subscription">Subscription &amp; Pro</a> section for details.</p>
+        </section>
+
+        <section id="scoring-modes" class="help-section">
+            <span class="section-label">02 &middot; Scoring Modes</span>
+            <h2>Scoring Modes</h2>
+            <p>PickleBoard supports the three most-played pickleball scoring formats. Switch modes from Settings on either device.</p>
+            <h3>Doubles</h3>
+            <p>Standard pickleball doubles with automatic server rotation, side-out tracking, and a court position indicator. Default mode &mdash; works for the most common rec game.</p>
+            <h3>Singles</h3>
+            <p>Singles serving rules: one server per side, with sides switching based on the server&rsquo;s score. The server number is suppressed because there&rsquo;s only one server per team.</p>
+            <h3>Rally</h3>
+            <p>Score every rally, not just your serve. An optional <strong>freeze-at-target</strong> rule limits the leading team to scoring on their own serve once they reach game point. Default OFF (matches 2026 USAP rules); enable in Settings if your house rules call for it.</p>
+            <h3>Game targets and win-by-2</h3>
+            <p>PickleBoard supports targets of <strong>11</strong> (default), <strong>15</strong>, and <strong>21</strong>. Win-by-2 is enforced automatically &mdash; a game ends only when one team reaches the target with a 2-point lead.</p>
+        </section>
+
+        <section id="voice" class="help-section">
+            <span class="section-label">03 &middot; Voice Announcements</span>
+            <h2>Voice Announcements</h2>
+            <p>After each point, your <strong>Apple Watch</strong> speaks the score aloud &mdash; server, receiver, server number, the way the pros call it. For example, <strong>&ldquo;4, 2, 1&rdquo;</strong> means the serving team has 4 points, the receiving team has 2, and the second server is up. Your eyes stay on the ball.</p>
+            <h3>How to enable</h3>
+            <ol class="steps-list">
+                <li>Open PickleBoard on your Watch.</li>
+                <li>Tap the Settings button on the toolbar.</li>
+                <li>Toggle <strong>Voice Announcements</strong> on.</li>
+            </ol>
+            <p class="tip-box"><strong>Tip:</strong> Voice announcements use the on-device speech synthesizer. No audio is recorded, and nothing is transmitted off your device.</p>
+            <h3>iPhone vs Watch</h3>
+            <p>Voice announcements play on the Apple Watch only. The iPhone scoreboard is silent by design &mdash; Live Activity and Dynamic Island carry the visual update on iPhone.</p>
+        </section>
+
+        <section id="live-activity" class="help-section">
+            <span class="section-label">04 &middot; Live Activity &amp; Dynamic Island</span>
+            <h2>Live Activity &amp; Dynamic Island</h2>
+            <p>When the first point is scored, PickleBoard automatically pins the score to your iPhone Lock Screen as a Live Activity, and to the Dynamic Island on iPhone 14 Pro and later. No app to open. No interruption to play.</p>
+            <h3>What you&rsquo;ll see</h3>
+            <ul>
+                <li><strong>Lock Screen:</strong> Both team names (or &ldquo;Team 1&rdquo; / &ldquo;Team 2&rdquo;), the live score, and the serving team&rsquo;s indicator.</li>
+                <li><strong>Dynamic Island compact:</strong> Score split between the two leading and trailing edges of the island.</li>
+                <li><strong>Dynamic Island expanded:</strong> Long-press the island for the full scoreboard.</li>
+            </ul>
+            <h3>How it ends</h3>
+            <p>The Live Activity dismisses automatically about 30 seconds after the game-over moment, giving you time to glance at the final score before the system clears it.</p>
+        </section>
+
+        <section id="widget" class="help-section">
+            <span class="section-label">05 &middot; Home Screen Widget</span>
+            <h2>Home Screen Widget</h2>
+            <p>Add a PickleBoard widget to your iPhone Home Screen for at-a-glance access to the scoreboard.</p>
+            <h3>Sizes</h3>
+            <ul>
+                <li><strong>Small:</strong> A quick-launch tile that opens straight into the scoreboard.</li>
+                <li><strong>Medium:</strong> A last-game summary with the final score and mode.</li>
+            </ul>
+            <h3>How to add</h3>
+            <ol class="steps-list">
+                <li>Long-press the Home Screen until icons jiggle.</li>
+                <li>Tap the <strong>+</strong> button at the top-left.</li>
+                <li>Search &ldquo;PickleBoard&rdquo; and pick the size you want.</li>
+            </ol>
+        </section>
+
+        <section id="watch-extras" class="help-section">
+            <span class="section-label">06 &middot; Watch Complication &amp; AOD</span>
+            <h2>Watch Complication &amp; Always-On Display</h2>
+            <h3>Complication</h3>
+            <p>Add the PickleBoard complication to a configurable Apple Watch face for one-tap launch. Supported families include Modular Compact, Corner, and the Lock Screen accessory variants.</p>
+            <ol class="steps-list">
+                <li>Long-press the Watch face.</li>
+                <li>Tap <strong>Edit</strong> and swipe to <strong>Complications</strong>.</li>
+                <li>Tap a slot and pick PickleBoard.</li>
+            </ol>
+            <h3>Always-On Display</h3>
+            <p>When you lower your wrist mid-game, the Always-On Display dims to a luminance-friendly version of the scoreboard &mdash; the score is still readable, and there&rsquo;s no extra battery drain. The display restores full brightness when you raise your wrist.</p>
+            <h3>Swipe-to-score gesture</h3>
+            <p>Don&rsquo;t want to tap? Swipe up on a team&rsquo;s side of the scoreboard to add a point. Swipe gestures are an alternative to tap input &mdash; both work the same way.</p>
+        </section>
+
+        <section id="match-stats" class="help-section">
+            <span class="section-label">07 &middot; Match Stats, Weather &amp; Rematch</span>
+            <h2>Match Stats, Weather &amp; Rematch</h2>
+            <p>When the game ends, PickleBoard captures match metadata &mdash; final score, mode, target, duration, and (with your permission) the location and weather conditions of your match. The richer game-over card shows these stats and a <strong>Rematch</strong> button.</p>
+            <h3>Opt-in flow</h3>
+            <p>Match stats are off by default. Enable them from Settings; you&rsquo;ll see a one-time iOS prompt for Location access. Weather data is fetched once per game-end via Apple WeatherKit and is never stored off your device.</p>
+            <h3>Rematch</h3>
+            <p>Tap Rematch on the game-over card to start a new game with the same settings (mode, target, freeze-at-target, timeout count). The score resets to 0&ndash;0 and team names carry over on iPhone.</p>
+            <h3>Share card</h3>
+            <p>Tap Share on the game-over card to generate a 1080&times;1080 image &mdash; team names, final score, mode, and the PickleBoard mark &mdash; ready to share via Messages, Photos, Mail, or any social app.</p>
+            <p class="tip-box"><strong>Privacy:</strong> Location is captured once per game-end (never continuously), and weather data is requested only when stats are enabled. Both are explained in the <a href="privacypolicy.html">Privacy Policy</a>.</p>
+        </section>
+
+        <section id="timeouts" class="help-section">
+            <span class="section-label">08 &middot; Timeouts</span>
+            <h2>Timeouts</h2>
+            <p>Each team gets <strong>2 timeouts per game</strong> by default. The count is configurable in Settings (0, 1, 2, or 3 &mdash; matches USAP rules).</p>
+            <h3>Calling a timeout</h3>
+            <ol class="steps-list">
+                <li>On iPhone: tap the Timeout button on the toolbar, then pick the team.</li>
+                <li>On Watch: tap the Timeout button, then pick the team via the team-select sheet.</li>
+            </ol>
+            <h3>What happens</h3>
+            <ul>
+                <li>The dot indicator below the team&rsquo;s score decrements (3 dots &rarr; 2 &rarr; 1 &rarr; 0).</li>
+                <li>If voice announcements are on, the Watch speaks &ldquo;Time-out, team one&rdquo; or &ldquo;Time-out, team two&rdquo;.</li>
+                <li>Timeouts are <strong>not</strong> undoable (per pickleball rules &mdash; calling one is final). Score actions remain fully undoable via the Undo button.</li>
+            </ul>
+        </section>
+
+        <section id="subscription" class="help-section">
+            <span class="section-label">09 &middot; Subscription &amp; Pro IAP</span>
+            <h2>Subscription &amp; Pro</h2>
+            <p>PickleBoard is free to download. Pro features &mdash; Live Activity, Dynamic Island, voice announcements, and match stats &mdash; are unlocked with a one-time in-app purchase.</p>
+            <h3>Restoring your purchase</h3>
+            <p>If you&rsquo;ve already purchased Pro and want to restore on a new device:</p>
+            <ul>
+                <li><strong>iPhone:</strong> Settings &rarr; Restore Purchase.</li>
+                <li><strong>Watch:</strong> The Subscribe screen on Watch shows a &ldquo;Subscribe on iPhone&rdquo; hand-off &mdash; tap it and your iPhone wakes the paywall. Purchase and restore both flow through iPhone.</li>
+            </ul>
+            <h3>Manage Subscription</h3>
+            <p>Open Settings on iPhone and tap <strong>Manage Subscription</strong> to be taken to your Apple ID subscriptions in the App Store, where you can review or change the purchase.</p>
+        </section>
+
+        <section id="troubleshooting" class="help-section">
+            <span class="section-label">10 &middot; Troubleshooting</span>
+            <h2>Troubleshooting &mdash; FAQ</h2>
+
+            <details class="faq-card">
+                <summary class="faq-question">My Watch doesn&rsquo;t see my iPhone &mdash; what now?</summary>
+                <div class="faq-answer">
+                    <p>Make sure both apps are launched at least once on each device, and that your Watch is paired and within Bluetooth range of your iPhone. PickleBoard uses WatchConnectivity for the paywall hand-off only &mdash; scoreboard state is independent on each device, so a connection issue won&rsquo;t affect your live scoring.</p>
+                </div>
+            </details>
+
+            <details class="faq-card">
+                <summary class="faq-question">Voice announcements aren&rsquo;t playing.</summary>
+                <div class="faq-answer">
+                    <p>Check three things: (1) Voice Announcements is toggled on in Settings on the Watch app, (2) your Watch isn&rsquo;t muted (Silent Mode off), and (3) iPhone Focus or Do Not Disturb isn&rsquo;t suppressing audio. Voice plays only on the Watch &mdash; iPhone is silent by design.</p>
+                </div>
+            </details>
+
+            <details class="faq-card">
+                <summary class="faq-question">My Home Screen widget shows old data.</summary>
+                <div class="faq-answer">
+                    <p>The widget refreshes automatically when an active game starts, when scores change, and at game-over. If you see stale data after a reboot, open the iPhone app once to wake the shared state &mdash; the widget refreshes on the next system timeline tick.</p>
+                </div>
+            </details>
+
+            <details class="faq-card">
+                <summary class="faq-question">The Live Activity isn&rsquo;t showing on my Lock Screen.</summary>
+                <div class="faq-answer">
+                    <p>Live Activities require iOS 16.1 or later (PickleBoard targets iOS 26). Check Settings &rarr; PickleBoard &rarr; Live Activities is enabled. Live Activities also respect system-level settings (Settings &rarr; Face ID &amp; Passcode &rarr; Live Activities).</p>
+                </div>
+            </details>
+
+            <details class="faq-card">
+                <summary class="faq-question">Can I undo a timeout?</summary>
+                <div class="faq-answer">
+                    <p>No &mdash; timeouts are not undoable. Calling a timeout is treated like calling one in a real match: it counts. Score actions (add point, side-out) are fully undoable via the Undo button.</p>
+                </div>
+            </details>
+
+            <details class="faq-card">
+                <summary class="faq-question">Match stats won&rsquo;t capture weather.</summary>
+                <div class="faq-answer">
+                    <p>WeatherKit requires an internet connection at game-end and your iPhone must have Location services enabled with PickleBoard authorized for &ldquo;When in Use.&rdquo; If the network is unreachable or location is denied, the game-over card still shows score, mode, and target &mdash; the weather chip is simply omitted.</p>
+                </div>
+            </details>
+
+            <details class="faq-card">
+                <summary class="faq-question">How do I restore my Pro purchase on a new Watch?</summary>
+                <div class="faq-answer">
+                    <p>Open PickleBoard on your Watch and tap the Subscribe screen. You&rsquo;ll see a &ldquo;Subscribe on iPhone&rdquo; hand-off &mdash; tap it to wake your paired iPhone&rsquo;s paywall, then tap Restore Purchase. Once iPhone confirms the restore, the Watch picks up Pro on its next sync.</p>
+                </div>
+            </details>
+        </section>
+
+        <section class="cta-help">
+            <div class="cta-card animate-on-scroll">
+                <h2>Still need help?</h2>
+                <p class="cta-subtitle">Email us &mdash; we read every message.</p>
+                <a href="mailto:help@ifthendev.com" class="contact-button">Contact Support</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html" class="footer-link">PickleBoard</a>
+            <a href="privacypolicy.html" class="footer-link">Privacy Policy</a>
+            <a href="https://ifthendev.com" class="footer-link">If Then Dev</a>
+            <a href="mailto:help@ifthendev.com" class="footer-link">Contact</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 If Then Dev, LLC. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Vanilla IntersectionObserver for animate-on-scroll fade-in.
+        // Mirrors index.html exactly; reduced-motion users skip observation entirely.
+        (function() {
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelectorAll('.animate-on-scroll').forEach(function(el) { el.classList.add('visible'); });
+                return;
+            }
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.animate-on-scroll').forEach(function(el) { observer.observe(el); });
+        })();
+    </script>
+</body>
+</html>
