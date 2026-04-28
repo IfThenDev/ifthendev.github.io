@@ -906,6 +906,15 @@
             </details>
 
             <details class="faq-card">
+                <summary class="faq-question">I renamed a team mid-game and the Live Activity still shows the old name.</summary>
+                <div class="faq-answer">
+                    <p>This is an iOS limitation, not a bug. When PickleBoard starts a Live Activity (on the first awarded point of a game), the team names get baked into the activity&rsquo;s <em>attributes</em> &mdash; iOS treats those as fixed metadata and won&rsquo;t let an app update them while the activity is running. Score, server, side, and timeouts all keep updating live; team names are the one piece that&rsquo;s pinned at start time.</p>
+                    <p><strong>What still updates everywhere else:</strong> the iPhone scoreboard, Home Screen widget, Watch scoreboard, and Watch widget all pick up the new names instantly when you edit them on iPhone. Only the running Live Activity (Lock Screen + Dynamic Island) is stuck on the old names.</p>
+                    <p><strong>If you want the new names on the Live Activity:</strong> tap the trash icon and start a new game. Type the names you want, then award the first point &mdash; the Live Activity will start with the updated names.</p>
+                </div>
+            </details>
+
+            <details class="faq-card">
                 <summary class="faq-question">Can I undo a timeout?</summary>
                 <div class="faq-answer">
                     <p>No &mdash; timeouts are not undoable. Calling a timeout is treated like calling one in a real match: it counts. Score actions (add point, side-out) are fully undoable via the Undo button.</p>
