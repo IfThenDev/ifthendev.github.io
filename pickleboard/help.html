@@ -820,14 +820,29 @@
         <section id="match-stats" class="help-section">
             <span class="section-label">07 &middot; Match Stats, Weather &amp; Rematch</span>
             <h2>Match Stats, Weather &amp; Rematch</h2>
-            <p>When the game ends, PickleBoard captures match metadata &mdash; final score, mode, target, duration, and (with your permission) the location and weather conditions of your match. The richer game-over card shows these stats and a <strong>Rematch</strong> button.</p>
+            <p>Match Stats is an opt-in feature that records <strong>where you played</strong> and <strong>the weather during your match</strong>, then surfaces both alongside your final score on the game-over screen and your shared image.</p>
+            <h3>What gets captured</h3>
+            <p>At the moment a game ends, PickleBoard takes two readings (only if Match Stats is enabled in Settings):</p>
+            <ul>
+                <li><strong>Location</strong> &mdash; one CoreLocation fix, reverse-geocoded to a place name (e.g. &ldquo;Cape May, NJ&rdquo;).</li>
+                <li><strong>Weather</strong> &mdash; one Apple WeatherKit lookup at that location, returning the current temperature and conditions (e.g. &ldquo;72&deg;F &amp; sunny&rdquo;).</li>
+            </ul>
+            <h3>Where it appears</h3>
+            <p>When stats are <strong>on</strong>, three surfaces get richer:</p>
+            <ul>
+                <li><strong>Game-over card</strong> (iPhone &amp; Watch) &mdash; two extra chips appear next to the always-shown Mode and Target chips: a location chip and a weather chip.</li>
+                <li><strong>Share card</strong> (1080&times;1080 image) &mdash; the same chips embed in the exported image, plus an Apple WeatherKit attribution footer at the bottom (Apple&rsquo;s WeatherKit terms require this whenever weather is shown).</li>
+                <li><strong>Match history</strong> &mdash; your last 5 games persist their location and weather, so future history views and widgets can show them too.</li>
+            </ul>
+            <h3>When it&rsquo;s off</h3>
+            <p>The default is off. With Match Stats off, no Location prompt fires, no network request is made for weather, and the game-over card simply shows Mode and Target chips without place or weather. Nothing about the score, the engine, or your match history is degraded &mdash; you just lose the &ldquo;where and what weather&rdquo; layer.</p>
             <h3>Opt-in flow</h3>
-            <p>Match stats are off by default. Enable them from Settings; you&rsquo;ll see a one-time iOS prompt for Location access. Weather data is fetched once per game-end via Apple WeatherKit and is never stored off your device.</p>
+            <p>Toggle Match Stats on in Settings. The first time you do, iOS prompts for Location access (When-In-Use). If you grant it, weather flows automatically &mdash; PickleBoard already has WeatherKit entitlement built in. If you deny Location, the toggle reverts and Settings shows a recovery row pointing to iPhone&rsquo;s system Settings.</p>
             <h3>Rematch</h3>
             <p>Tap Rematch on the game-over card to start a new game with the same settings (mode, target, freeze-at-target, timeout count). The score resets to 0&ndash;0 and team names carry over on iPhone.</p>
             <h3>Share card</h3>
-            <p>Tap Share on the game-over card to generate a 1080&times;1080 image &mdash; team names, final score, mode, and the PickleBoard mark &mdash; ready to share via Messages, Photos, Mail, or any social app.</p>
-            <p class="tip-box"><strong>Privacy:</strong> Location is captured once per game-end (never continuously), and weather data is requested only when stats are enabled. Both are explained in the <a href="privacypolicy.html">Privacy Policy</a>.</p>
+            <p>Tap Share on the game-over card to generate the 1080&times;1080 image &mdash; team names, final score, mode, target, location and weather chips (when stats are on), and the WeatherKit attribution footer &mdash; ready to share via Messages, Photos, Mail, or any social app.</p>
+            <p class="tip-box"><strong>Privacy:</strong> Location is captured once per game-end (never continuously), weather is fetched once per game-end, and both stay on your device only &mdash; nothing is sent to PickleBoard servers. Both are explained in the <a href="privacypolicy.html">Privacy Policy</a>.</p>
         </section>
 
         <section id="timeouts" class="help-section">
