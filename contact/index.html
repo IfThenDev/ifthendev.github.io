@@ -66,7 +66,7 @@
   <section class="form-section" aria-labelledby="form-title">
     <h2 id="form-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;">Send a message</h2>
 
-    <form class="form" action="mailto:help@ifthendev.com?subject=Question or Comment About App" method="post" enctype="text/plain">
+    <form class="form" id="contact-form">
 
       <div class="form-row">
         <label for="name">Name</label>
@@ -129,6 +129,26 @@
     window.addEventListener('scroll', sync, { passive: true });
   })();
   document.querySelectorAll('.copyright-year').forEach(function(e){e.textContent=new Date().getFullYear();});
+
+  (function () {
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('name').value.trim();
+      var app  = document.getElementById('app').value.trim();
+      var body = document.getElementById('body').value.trim();
+      var subject = app ? 'Question about ' + app : 'Question or Comment About App';
+      var lines = [];
+      if (name) lines.push('From: ' + name);
+      if (app)  lines.push('App: ' + app);
+      if (body) lines.push('', body);
+      var href = 'mailto:help@ifthendev.com'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body='    + encodeURIComponent(lines.join('\n'));
+      window.location.href = href;
+    });
+  })();
 </script>
 
 </body>
