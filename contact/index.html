@@ -196,6 +196,7 @@ img.emoji {
       <option value="---">Choose App Name</option>
       <option value="BookScanner">BookScanner</option>
       <option value="Bookshelf Scanner">Bookshelf Scanner</option>
+	  <option value="Franciscan Pilgrimage">Franciscan Pilgrimage</option>
 	  <option value="HeliumTrack">HeliumTrack</option>
   	  <option value="HeliumTrack">Inside the Matrix Machine</option>
   	  <option value="miSales">miSales</option>
@@ -239,7 +240,7 @@ img.emoji {
 		data-section="footer_copyright"
 		data-item-id="footer_copyright">
 	<div class="component-wrap">
-	<p>Copyright If Then Dev, LLC 2024</p></div>
+	<p>Copyright If Then Dev, LLC <span class="copyright-year">2024</span></p></div>
 
 	</div>
 
@@ -274,6 +275,7 @@ var wpforms_settings = {"val_required":"This field is required.","val_email":"Pl
 /* ]]> */
 </script>
 
+<script>document.querySelectorAll('.copyright-year').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
 </body>
 
 

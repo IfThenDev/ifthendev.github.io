@@ -777,7 +777,7 @@
                     <p class="contact-subtitle">
                         We're here to help. Send us an email and we'll get back to you.
                     </p>
-                    <a href="mailto:help@ifthendev.com?subject=Bookshelf%20Scanner%20Help" class="contact-button">
+                    <a href="https://ifthendev.com/contact/index.html?app=Bookshelf%20Scanner" class="contact-button">
                         Contact Support
                     </a>
                 </div>
@@ -792,10 +792,10 @@
                 <div class="footer-links">
                     <a href="index.html" class="footer-link">Home</a>
                     <a href="privacypolicy.html" class="footer-link">Privacy Policy</a>
-                    <a href="mailto:help@ifthendev.com" class="footer-link">Contact</a>
+                    <a href="https://ifthendev.com/contact/index.html?app=Bookshelf%20Scanner" class="footer-link">Contact</a>
                 </div>
                 <div class="footer-copy">
-                    &copy; 2026 If Then Dev, LLC. All rights reserved.
+                    &copy; <span class="copyright-year">2026</span> If Then Dev, LLC. All rights reserved.
                 </div>
             </div>
         </div>
@@ -819,5 +819,6 @@
             }
         }
     </script>
+    <script>document.querySelectorAll('.copyright-year').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
 </body>
 </html>

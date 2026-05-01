@@ -237,8 +237,9 @@
     </div>
     
     <footer>
-        <p>&copy; 2025 <a href="https://ifthendev.com">IfThenDev</a>. All rights reserved.</p>
+        <p>&copy; <span class="copyright-year">2025</span> <a href="https://ifthendev.com">IfThenDev</a>. All rights reserved.</p>
         <p><a href="https://ifthendev.com/contact/index.html?app=miSales">Contact Support</a> | <a href="https://ifthendev.com/privacy-policy/">Privacy Policy</a></p>
     </footer>
+    <script>document.querySelectorAll('.copyright-year').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
 </body>
 </html>

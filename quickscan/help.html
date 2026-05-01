@@ -984,7 +984,7 @@
                     <a href="https://ifthendev.com/contact/index.html?app=QuickScan%20Book%20Leveler" class="footer-link">Contact</a>
                 </div>
                 <div class="footer-copy">
-                    &copy; 2026 If Then Dev, LLC. All rights reserved.
+                    &copy; <span class="copyright-year">2026</span> If Then Dev, LLC. All rights reserved.
                 </div>
             </div>
         </div>
@@ -1009,5 +1009,6 @@
 
         document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
     </script>
+    <script>document.querySelectorAll('.copyright-year').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
 </body>
 </html>

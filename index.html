@@ -404,7 +404,7 @@ Over 10,000 reviews with average of 4.8 ⭐️⭐️⭐️⭐️⭐️ <br>and c
 		data-section="footer_copyright"
 		data-item-id="footer_copyright">
 	<div class="component-wrap">
-	<p>Copyright If Then Dev, LLC 2025</p></div>
+	<p>Copyright If Then Dev, LLC <span class="copyright-year">2025</span></p></div>
 
 	</div>
 
@@ -417,5 +417,6 @@ Over 10,000 reviews with average of 4.8 ⭐️⭐️⭐️⭐️⭐️ <br>and c
 </footer>
 
 </div><!--/.wrapper-->
+<script>document.querySelectorAll('.copyright-year').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
 </body>
 </html>
