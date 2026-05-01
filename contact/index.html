@@ -99,6 +99,10 @@
 
       <button type="submit" class="form-submit">Send</button>
 
+      <p class="form-notice" id="form-notice" role="status" aria-live="polite" hidden>
+        Your mail app should now be open with the message ready &mdash; <strong>tap Send there</strong> to finish.
+      </p>
+
     </form>
   </section>
 
@@ -147,6 +151,8 @@
         + '?subject=' + encodeURIComponent(subject)
         + '&body='    + encodeURIComponent(lines.join('\n'));
       window.location.href = href;
+      var notice = document.getElementById('form-notice');
+      if (notice) notice.hidden = false;
     });
   })();
 </script>
