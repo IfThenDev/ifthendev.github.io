@@ -690,8 +690,8 @@
                 </a>
                 <a href="#widget" class="toc-card">
                     <span class="toc-num">05</span>
-                    <h3>Home Screen Widget</h3>
-                    <p>Small and medium widgets on iPhone.</p>
+                    <h3>iPhone Widgets</h3>
+                    <p>Home Screen and Lock Screen — live score and last-match.</p>
                 </a>
                 <a href="#watch-extras" class="toc-card">
                     <span class="toc-num">06</span>
@@ -785,19 +785,32 @@
         </section>
 
         <section id="widget" class="help-section">
-            <span class="section-label">05 &middot; Home Screen Widget</span>
-            <h2>Home Screen Widget</h2>
-            <p>Add a PickleBoard widget to your iPhone Home Screen for at-a-glance access to the scoreboard.</p>
-            <h3>Sizes</h3>
+            <span class="section-label">05 &middot; iPhone Widgets</span>
+            <h2>iPhone Widgets</h2>
+            <p>PickleBoard ships widgets for both your Home Screen and your Lock Screen. Every variant follows the same three-state design: live score while a game is in progress, the last final score after a game ends, and a friendly &ldquo;Tap to score&rdquo; prompt before your first match.</p>
+            <h3>Home Screen sizes</h3>
             <ul>
-                <li><strong>Small:</strong> A quick-launch tile that opens straight into the scoreboard.</li>
-                <li><strong>Medium:</strong> A last-game summary with the final score and mode.</li>
+                <li><strong>Small:</strong> Compact scoreboard with both team scores, mode, and the serving indicator. Falls back to the last final score (with a FINAL eyebrow) between games.</li>
+                <li><strong>Medium:</strong> Full team-name + score layout with the serving team highlighted. Same FINAL fallback between games, plus the relative timestamp (&ldquo;5m ago&rdquo;).</li>
             </ul>
-            <h3>How to add</h3>
+            <h3>Lock Screen widgets</h3>
+            <p>PickleBoard supports the three Lock Screen accessory families on iPhone:</p>
+            <ul>
+                <li><strong>Circular:</strong> A glanceable score chip — &ldquo;4-2&rdquo; live, or the last final score between games.</li>
+                <li><strong>Rectangular:</strong> Wordmark, score, and the server number (doubles only). Shows a FINAL row with the last match score when no game is active.</li>
+                <li><strong>Inline:</strong> A single line of score text that lives in the Lock Screen status row above the clock.</li>
+            </ul>
+            <h3>How to add a Home Screen widget</h3>
             <ol class="steps-list">
-                <li>Long-press the Home Screen until icons jiggle.</li>
+                <li>Long-press an empty area of the Home Screen until icons jiggle.</li>
                 <li>Tap the <strong>+</strong> button at the top-left.</li>
                 <li>Search &ldquo;PickleBoard&rdquo; and pick the size you want.</li>
+            </ol>
+            <h3>How to add a Lock Screen widget</h3>
+            <ol class="steps-list">
+                <li>Long-press your Lock Screen and tap <strong>Customize</strong> &rarr; <strong>Lock Screen</strong>.</li>
+                <li>Tap a widget slot below the clock (rectangular / circular) or above the clock (inline).</li>
+                <li>Pick PickleBoard from the widget gallery.</li>
             </ol>
         </section>
 
@@ -805,7 +818,7 @@
             <span class="section-label">06 &middot; Watch Complication &amp; AOD</span>
             <h2>Watch Complication &amp; Always-On Display</h2>
             <h3>Complication</h3>
-            <p>Add the PickleBoard complication to a configurable Apple Watch face for one-tap launch. Supported families include Modular Compact, Corner, and the Lock Screen accessory variants.</p>
+            <p>Add the PickleBoard complication to a configurable Apple Watch face for one-tap launch. Supported families: <strong>Circular</strong>, <strong>Corner</strong>, <strong>Rectangular</strong>, and <strong>Inline</strong>.</p>
             <ol class="steps-list">
                 <li>Long-press the Watch face.</li>
                 <li>Tap <strong>Edit</strong> and swipe to <strong>Complications</strong>.</li>
@@ -832,7 +845,7 @@
             <ul>
                 <li><strong>Game-over card</strong> (iPhone &amp; Watch) &mdash; two extra chips appear next to the always-shown Mode and Target chips: a location chip and a weather chip.</li>
                 <li><strong>Share card</strong> (1080&times;1080 image) &mdash; the same chips embed in the exported image, plus an Apple WeatherKit attribution footer at the bottom (Apple&rsquo;s WeatherKit terms require this whenever weather is shown).</li>
-                <li><strong>Match history</strong> &mdash; your last 5 games persist their location and weather, so future history views and widgets can show them too.</li>
+                <li><strong>Match history</strong> &mdash; your last 5 games persist their location and weather, so history views and the Home Screen widget&rsquo;s FINAL state pick them up too.</li>
             </ul>
             <h3>When it&rsquo;s off</h3>
             <p>The default is off. With Match Stats off, no Location prompt fires, no network request is made for weather, and the game-over card simply shows Mode and Target chips without place or weather. Nothing about the score, the engine, or your match history is degraded &mdash; you just lose the &ldquo;where and what weather&rdquo; layer.</p>
@@ -856,7 +869,7 @@
             </ol>
             <h3>What happens</h3>
             <ul>
-                <li>The dot indicator below the team&rsquo;s score decrements (3 dots &rarr; 2 &rarr; 1 &rarr; 0).</li>
+                <li>The dot indicator below the team&rsquo;s score decrements one notch per timeout (e.g. 2 &rarr; 1 &rarr; 0 with the default of 2 timeouts per game).</li>
                 <li>If voice announcements are on, the Watch speaks &ldquo;Time-out, team one&rdquo; or &ldquo;Time-out, team two&rdquo;.</li>
                 <li>Timeouts are <strong>not</strong> undoable (per pickleball rules &mdash; calling one is final). Score actions remain fully undoable via the Undo button.</li>
             </ul>
