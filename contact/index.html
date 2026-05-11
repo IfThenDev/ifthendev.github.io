@@ -135,6 +135,28 @@
   document.querySelectorAll('.copyright-year').forEach(function(e){e.textContent=new Date().getFullYear();});
 
   (function () {
+    var select = document.getElementById('app');
+    if (!select) return;
+    var params = new URLSearchParams(window.location.search);
+    var raw = (params.get('app') || '').trim();
+    if (!raw) return;
+    var norm = function (s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, ''); };
+    var target = norm(raw);
+    var match = null;
+    for (var i = 0; i < select.options.length; i++) {
+      var opt = select.options[i];
+      var text = (opt.textContent || '').replace(/—/g, '-');
+      if (!text || !opt.value && i === 0) continue;
+      var n = norm(text);
+      if (n === target) { match = opt; break; }
+      if (!match && (n.indexOf(target) !== -1 || target.indexOf(n) !== -1)) {
+        match = opt;
+      }
+    }
+    if (match) select.value = match.value || match.textContent;
+  })();
+
+  (function () {
     var form = document.getElementById('contact-form');
     if (!form) return;
     form.addEventListener('submit', function (e) {
