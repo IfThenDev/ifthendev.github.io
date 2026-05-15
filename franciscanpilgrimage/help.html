@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & FAQ - Franciscan Pilgrimage</title>
+    <meta name="description" content="Help and frequently asked questions for Franciscan Pilgrimage — the iOS app guiding you through the life of St. Francis of Assisi, 37 sacred sites, and the Jubilee Year 2026-27 plenary indulgence.">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Franciscan theme palette — light mode */
+            --franciscan-brown: #7A4A2A;
+            --sacred-gold: #8D5606;
+            --assisi-stone: #F5ECE2;
+            --nature-green: #496741;
+            --contemplative-blue: #2D5090;
+
+            --color-text: #2C241F;
+            --color-text-secondary: #5A4A3F;
+            --color-text-muted: #8A7A6E;
+            --color-background: #FBF7F2;
+            --color-surface: #FFFFFF;
+            --color-surface-warm: #F5ECE2;
+            --color-border: #E6D8C7;
+
+            --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+            --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+            --max-width: 860px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --franciscan-brown: #9C663A;
+                --sacred-gold: #C99248;
+                --assisi-stone: #2C241F;
+                --nature-green: #4F7C47;
+                --contemplative-blue: #4A6EAE;
+
+                --color-text: #F5ECE2;
+                --color-text-secondary: #C9B8A9;
+                --color-text-muted: #9C8B7C;
+                --color-background: #1B1612;
+                --color-surface: #2C241F;
+                --color-surface-warm: #34291F;
+                --color-border: #4A3D33;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header.site-header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--color-border);
+            background: var(--color-surface);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--color-text);
+        }
+
+        .logo-mark {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--franciscan-brown) 0%, var(--sacred-gold) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+
+        .logo-text {
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 1.15rem;
+            letter-spacing: -0.01em;
+            color: var(--color-text);
+        }
+
+        .nav-link {
+            font-family: var(--sans);
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--franciscan-brown);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 72px 0 40px;
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--sacred-gold);
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-family: var(--serif);
+            font-size: clamp(2.2rem, 5vw, 3.25rem);
+            font-weight: 600;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            color: var(--color-text);
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--franciscan-brown);
+        }
+
+        .hero-subtitle {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            color: var(--color-text-secondary);
+            max-width: 560px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        /* Table of Contents */
+        .toc {
+            padding: 32px 0 48px;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 16px 18px;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .toc-link:hover {
+            transform: translateY(-2px);
+            border-color: var(--franciscan-brown);
+            background: var(--color-surface-warm);
+        }
+
+        .toc-icon {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            border-radius: 9px;
+            background: var(--color-surface-warm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--franciscan-brown);
+        }
+
+        .toc-label {
+            font-family: var(--sans);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Section */
+        .faq-section {
+            padding: 56px 0;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .section-label {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--sacred-gold);
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(1.7rem, 3.2vw, 2.15rem);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.015em;
+            margin-bottom: 32px;
+            color: var(--color-text);
+        }
+
+        /* FAQ Card */
+        .faq-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 24px 26px;
+            margin-bottom: 14px;
+        }
+
+        .faq-card.highlight {
+            background: linear-gradient(135deg, var(--color-surface-warm) 0%, var(--color-surface) 100%);
+            border-color: var(--sacred-gold);
+            border-left-width: 3px;
+        }
+
+        .faq-question {
+            font-family: var(--serif);
+            font-size: 1.18rem;
+            font-weight: 600;
+            line-height: 1.35;
+            color: var(--color-text);
+            margin-bottom: 12px;
+        }
+
+        .faq-answer {
+            font-family: var(--sans);
+            color: var(--color-text-secondary);
+            font-size: 0.97rem;
+            line-height: 1.7;
+        }
+
+        .faq-answer p {
+            margin-bottom: 12px;
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-answer ul, .faq-answer ol {
+            margin: 12px 0 12px 0;
+            padding-left: 22px;
+        }
+
+        .faq-answer li {
+            margin-bottom: 6px;
+        }
+
+        .faq-answer strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .faq-answer em {
+            color: var(--franciscan-brown);
+        }
+
+        .faq-answer a {
+            color: var(--contemplative-blue);
+            text-decoration: none;
+            border-bottom: 1px solid color-mix(in srgb, var(--contemplative-blue) 30%, transparent);
+            transition: border-color 0.2s;
+        }
+
+        .faq-answer a:hover {
+            border-bottom-color: var(--contemplative-blue);
+        }
+
+        /* Tip box — gold accent for "wisdom" call-outs */
+        .tip-box {
+            background: color-mix(in srgb, var(--sacred-gold) 8%, transparent);
+            border-left: 3px solid var(--sacred-gold);
+            padding: 14px 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 14px 0;
+        }
+
+        .tip-box-title {
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--sacred-gold);
+            margin-bottom: 6px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            font-size: 0.93rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Steps list with brown numeric badges */
+        .steps-list {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+            margin: 14px 0;
+        }
+
+        .steps-list li {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 14px;
+        }
+
+        .steps-list li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--franciscan-brown) 0%, var(--sacred-gold) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--sans);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #FFF;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 56px 0 80px;
+        }
+
+        .cta-card {
+            /* Brand-locked gradient — does not invert in dark mode */
+            background: linear-gradient(135deg, #7A4A2A 0%, #5C3A22 100%);
+            border-radius: 20px;
+            padding: 48px 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: #FFF;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 70% 30%, color-mix(in srgb, var(--sacred-gold) 28%, transparent) 0%, transparent 55%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 1.25;
+            margin-bottom: 10px;
+            color: #FFF;
+        }
+
+        .cta-subtitle {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            font-style: italic;
+            opacity: 0.92;
+            margin-bottom: 24px;
+            max-width: 460px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--sacred-gold);
+            color: #FFF;
+            padding: 13px 30px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 0.97rem;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background: color-mix(in srgb, var(--sacred-gold) 85%, #000);
+        }
+
+        .cta-tagline {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 22px;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.02em;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--color-border);
+            background: var(--color-surface);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+        }
+
+        .footer-link {
+            font-family: var(--sans);
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--franciscan-brown);
+        }
+
+        .footer-copy {
+            font-family: var(--sans);
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 48px 0 28px;
+            }
+
+            .toc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .faq-section {
+                padding: 40px 0;
+            }
+
+            .cta-card {
+                padding: 36px 22px;
+                border-radius: 16px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-content .nav-link {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll-in animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-on-scroll {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="https://ifthendev.com/franciscanpilgrimage/" class="logo">
+                    <div class="logo-mark">✠</div>
+                    <span class="logo-text">Franciscan Pilgrimage</span>
+                </a>
+                <a href="https://ifthendev.com/contact/?app=FranciscanPilgrimage" class="nav-link">Contact Support</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span class="hero-eyebrow">Help & FAQ</span>
+            <h1 class="hero-title">Questions along <em>the way</em>.</h1>
+            <p class="hero-subtitle">
+                Everything you need to know about walking with St. Francis — the journey, the sites, the Jubilee, and the road.
+            </p>
+        </div>
+    </section>
+
+    <section class="toc">
+        <div class="container">
+            <div class="toc-grid">
+                <a href="#getting-started" class="toc-link">
+                    <span class="toc-icon" aria-hidden="true">✦︎</span>
+                    <span class="toc-label">Getting Started</span>
+                </a>
+                <a href="#journey" class="toc-link">
+                    <span class="toc-icon" aria-hidden="true">❦︎</span>
+                    <span class="toc-label">The Journey</span>
+                </a>
+                <a href="#sites" class="toc-link">
+                    <span class="toc-icon" aria-hidden="true">❖︎</span>
+                    <span class="toc-label">Sites & Map</span>
+                </a>
+                <a href="#jubilee" class="toc-link">
+                    <span class="toc-icon" aria-hidden="true">✝︎</span>
+                    <span class="toc-label">Jubilee & Indulgence</span>
+                </a>
+                <a href="#prayers" class="toc-link">
+                    <span class="toc-icon" aria-hidden="true">☩︎</span>
+                    <span class="toc-label">Prayers & Saints</span>
+                </a>
+                <a href="#progress" class="toc-link">
+                    <span class="toc-icon" aria-hidden="true">◈︎</span>
+                    <span class="toc-label">Progress & Sync</span>
+                </a>
+                <a href="#donations" class="toc-link">
+                    <span class="toc-icon" aria-hidden="true">❀︎</span>
+                    <span class="toc-label">Privacy & Tip Jar</span>
+                </a>
+                <a href="#troubleshooting" class="toc-link">
+                    <span class="toc-icon" aria-hidden="true">⚙︎</span>
+                    <span class="toc-label">Troubleshooting</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started -->
+    <section id="getting-started" class="faq-section">
+        <div class="container">
+            <span class="section-label">Getting Started</span>
+            <h2 class="section-title">First steps on the road</h2>
+
+            <div class="faq-card highlight animate-on-scroll">
+                <h3 class="faq-question">What is Franciscan Pilgrimage?</h3>
+                <div class="faq-answer">
+                    <p>Franciscan Pilgrimage is a free iOS app that guides you through the life and legacy of <em>St. Francis of Assisi</em>. It pairs a 24-chapter chronological journey through Francis's life with an interactive map of 37 sacred Franciscan sites worldwide, and helps Catholics find Franciscan churches during the Franciscan Jubilee Year (2026–2027) for the plenary indulgence marking 800 years since the Canticle of Brother Sun.</p>
+                    <p>The app is designed for pilgrims walking the road in Assisi, Umbria, Rome, and the Holy Land — and for anyone making the journey virtually from home.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Which devices does the app support?</h3>
+                <div class="faq-answer">
+                    <p>Franciscan Pilgrimage runs on iPhone and iPad with iOS 26 or later. iCloud sync keeps your pilgrimage progress consistent across your devices when you're signed into the same Apple Account.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What languages does the app support?</h3>
+                <div class="faq-answer">
+                    <p>The app and its content are available in five languages from launch:</p>
+                    <ul>
+                        <li><strong>English</strong> — the editorial source language</li>
+                        <li><strong>Italian</strong></li>
+                        <li><strong>Spanish</strong></li>
+                        <li><strong>Portuguese</strong></li>
+                        <li><strong>French</strong></li>
+                    </ul>
+                    <p>The app follows your iPhone or iPad's language setting automatically. Prayers in each language are sourced from the corresponding national liturgical text (CEI for Italian, AELF for French, CNBB for Portuguese) wherever an official version exists.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Does the app work offline?</h3>
+                <div class="faq-answer">
+                    <p><strong>Yes — fully.</strong> The journey chapters, all 37 site descriptions, the prayer collection, and the indulgence guide are bundled with the app and available without a network connection from the first launch.</p>
+                    <p>The only features that require an internet connection are:</p>
+                    <ul>
+                        <li>The nearby-church finder for the Jubilee indulgence (uses your location and Apple Maps)</li>
+                        <li>Periodic content updates delivered through Apple's CloudKit</li>
+                        <li>Streamed media that hasn't yet been downloaded for offline use</li>
+                    </ul>
+                    <div class="tip-box">
+                        <div class="tip-box-title">For pilgrims on the road</div>
+                        <p>Plan ahead: download any media you want before your pilgrimage. The roads through Umbria, the Rieti Valley, and into the Holy Land have inconsistent signal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How is the app organized?</h3>
+                <div class="faq-answer">
+                    <p>The app has four tabs:</p>
+                    <ul>
+                        <li><strong>Home</strong> — your starting point, with the Saint of the Day, Jubilee countdown, and quick access to recent activity</li>
+                        <li><strong>Journey</strong> — the 24-chapter biography of Francis, from Assisi to the Porziuncola</li>
+                        <li><strong>Explore</strong> — the interactive map of 37 sacred sites, filterable by what happened there and what kind of place it is</li>
+                        <li><strong>Jubilee</strong> — the indulgence guide, the prayer collection, the church finder, and homebound provisions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey -->
+    <section id="journey" class="faq-section">
+        <div class="container">
+            <span class="section-label">The Journey</span>
+            <h2 class="section-title">Walking with Francis, chapter by chapter</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What is the Journey?</h3>
+                <div class="faq-answer">
+                    <p>The Journey is a 24-chapter chronological narrative of St. Francis's life, from his birth in Assisi to his death at the Porziuncola in 1226. Each chapter is structured for prayer rather than lecture, with three components:</p>
+                    <ol>
+                        <li>A short narrative passage on the period in Francis's life</li>
+                        <li>A reflection drawn from Franciscan primary sources and modern scholarship</li>
+                        <li>Links to the sacred sites associated with the chapter — so you can pivot from the story to the place</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Which sources is the content based on?</h3>
+                <div class="faq-answer">
+                    <p>The journey is informed by the principal Franciscan sources and by contemporary scholarship, including:</p>
+                    <ul>
+                        <li><strong>Thomas of Celano</strong> — <em>First Life</em> and <em>Second Life</em> of St. Francis</li>
+                        <li><strong>St. Bonaventure</strong> — <em>Legenda Maior</em></li>
+                        <li><strong>The Fioretti</strong> — <em>Little Flowers of St. Francis</em></li>
+                        <li>Modern critical biographies of St. Francis</li>
+                    </ul>
+                    <p>Every chapter passed an editorial review and a fact-check against the primary sources. Where pious tradition and historical record diverge, we say so plainly.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Do I have to read the chapters in order?</h3>
+                <div class="faq-answer">
+                    <p>No. The journey is built to be read in order if you wish, but each chapter stands on its own. You can read in any sequence, return to earlier chapters at any time, and skip ahead. Your pilgrimage progress tracks which chapters you have completed regardless of the order you read them in.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How is a chapter marked read?</h3>
+                <div class="faq-answer">
+                    <p>Chapters are tracked automatically. Opening a chapter marks it as read, and your overall journey percentage updates accordingly. There's nothing extra to tap — the goal is to keep your time with Francis prayerful, not procedural.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sites & Map -->
+    <section id="sites" class="faq-section">
+        <div class="container">
+            <span class="section-label">Sites & Map</span>
+            <h2 class="section-title">37 sacred sites, mapped</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Which sites are included?</h3>
+                <div class="faq-answer">
+                    <p>The Explore tab contains 37 sacred Franciscan sites across Italy, the Holy Land, and beyond, including:</p>
+                    <ul>
+                        <li><strong>San Damiano</strong>, where the crucifix spoke to Francis</li>
+                        <li><strong>The Porziuncola</strong>, cradle of the Order and place of Francis's death</li>
+                        <li><strong>La Verna</strong>, the mountain of the stigmata</li>
+                        <li><strong>Greccio</strong>, birthplace of the Christmas nativity scene</li>
+                        <li><strong>Fonte Colombo</strong>, the "Franciscan Sinai" where the Rule was written</li>
+                        <li><strong>The Basilica of San Francesco</strong> in Assisi — Francis's tomb</li>
+                        <li>Holy Land sites of the Franciscan Custody — Damietta, Acre, Bethlehem, and the Holy Sepulchre</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How do the filters work?</h3>
+                <div class="faq-answer">
+                    <p>Each site is tagged on three independent axes so you can filter the map down to what you came for:</p>
+                    <ul>
+                        <li><strong>What happened there</strong> — birthplace, conversion, vision, stigmata, foundation, death, prayer, hermitage, and so on. Many sites carry more than one tag.</li>
+                        <li><strong>What kind of place it is</strong> — basilica, hermitage, sanctuary, friary, and similar.</li>
+                        <li><strong>Which Franciscan charism it embodies</strong> — creation, peace, mission, poverty.</li>
+                    </ul>
+                    <p>Combine filters to surface, for example, only places of <em>prayer</em> in the <em>Rieti Valley</em>, or every site connected to <em>the stigmata</em>.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Why does a single site have multiple tags?</h3>
+                <div class="faq-answer">
+                    <p>Many Franciscan sites bear more than one historical role. The Porziuncola, for example, is both the <strong>foundation</strong> of the Order and the place of Francis's <strong>death</strong> — and it remains a primary <strong>prayer</strong> destination today. The multi-tag schema reflects that layered history rather than forcing a single label.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How do I get to a site listed on the map?</h3>
+                <div class="faq-answer">
+                    <p>Tap any site on the Explore map or in the list to see its full description, photo gallery, and related chapters in the journey. From a journey chapter, each linked site has a <strong>View on Map</strong> button that jumps to the Explore tab and zooms to the exact location. From there you can hand off to Apple Maps for directions.</p>
+                    <div class="tip-box">
+                        <div class="tip-box-title">A word of caution</div>
+                        <p>Hours and access conditions at sacred sites change — especially during the Jubilee Year. Confirm with the local parish or sanctuary before you travel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jubilee -->
+    <section id="jubilee" class="faq-section">
+        <div class="container">
+            <span class="section-label">Jubilee Year</span>
+            <h2 class="section-title">The plenary indulgence</h2>
+
+            <div class="faq-card highlight animate-on-scroll">
+                <h3 class="faq-question">What is the Franciscan Jubilee Year?</h3>
+                <div class="faq-answer">
+                    <p>The Franciscan Jubilee Year (January 10, 2026 – January 10, 2027) marks <em>800 years since the Canticle of Brother Sun</em>, the great prayer of praise composed by St. Francis near the end of his life. During this year, a special Franciscan plenary indulgence is offered to the faithful who visit a Franciscan conventual church or a church named after or connected to St. Francis, anywhere in the world.</p>
+                    <p>This Franciscan Jubilee is distinct from the universal Catholic Jubilee Year of Hope. Both may be observed; this app focuses on the Franciscan one.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What are the conditions for the indulgence?</h3>
+                <div class="faq-answer">
+                    <p>The Indulgence Guide in the Jubilee tab walks you through each step with the relevant prayers and a checklist you can mark off:</p>
+                    <ol class="steps-list">
+                        <li><strong>Pilgrimage Visit</strong> — Visit any Franciscan conventual church, or place of worship named after St. Francis or connected to him, anywhere in the world.</li>
+                        <li><strong>Meditation and Prayer</strong> — Spend time reflecting on St. Francis's example, his universal love, and his commitment to peace.</li>
+                        <li><strong>Required Prayers</strong> — Pray the Our Father, recite the Nicene Creed, and offer invocations to the Blessed Virgin Mary, St. Francis of Assisi, St. Clare, and the saints of the Franciscan family, for the intentions of <em>Pope Leo XIV</em>.</li>
+                        <li><strong>Detachment from Sin</strong> — Be free from all attachment to sin, even venial.</li>
+                        <li><strong>Sacramental Confession</strong> — Receive the Sacrament of Reconciliation within a reasonable period before or after the pilgrimage.</li>
+                        <li><strong>Holy Communion</strong> — Receive the Eucharist, ideally on the day of the pilgrimage.</li>
+                    </ol>
+                    <div class="tip-box">
+                        <div class="tip-box-title">A note on authority</div>
+                        <p>The granting of indulgences is the act of the Catholic Church, not of this app. The guide is provided for information and devotion; the indulgence itself depends on the dispositions of the faithful and the authority of the Church.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How does the nearby-church finder work?</h3>
+                <div class="faq-answer">
+                    <p>The church finder shows designated Franciscan jubilee churches on a map and in a list, sorted by distance from your current location. Tap any church to see its address, hours where available, and a phone number you can tap to call.</p>
+                    <p>The finder asks for permission to use your location the first time you open it. Your location is used only on your device to calculate distances — it is never sent to If Then Dev or any third party.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">I can't travel. Can I still receive the indulgence?</h3>
+                <div class="faq-answer">
+                    <p>Yes. The Apostolic Penitentiary specifically provides for those who cannot make a pilgrimage in person — the elderly, the sick, the homebound, prisoners, those caring for the infirm, and cloistered religious. These provisions are explained in the <strong>Homebound Provisions</strong> section of the Jubilee tab, with the prayers and conditions appropriate to each category.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prayers -->
+    <section id="prayers" class="faq-section">
+        <div class="container">
+            <span class="section-label">Prayers & Saints</span>
+            <h2 class="section-title">Prayers, feasts, and the saint of the day</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What's in the prayer collection?</h3>
+                <div class="faq-answer">
+                    <p>The prayer collection in the Jubilee tab includes the prayers associated with the Jubilee indulgence and central Franciscan devotional texts, such as:</p>
+                    <ul>
+                        <li><strong>The Canticle of Brother Sun</strong> — Francis's poem to creation, presented in the original Umbrian Italian alongside an English rendering</li>
+                        <li><strong>The Prayer of St. Francis</strong> ("Lord, make me an instrument of your peace")</li>
+                        <li><strong>The Our Father</strong> and the <strong>Nicene Creed</strong></li>
+                        <li><strong>Invocation to St. Francis and St. Clare</strong></li>
+                        <li><strong>Invocation to the Blessed Virgin Mary</strong></li>
+                        <li><strong>The Franciscan Crown Rosary</strong></li>
+                    </ul>
+                    <p>Each prayer is available in all five supported languages. Where an official liturgical text exists in a given language (CEI for Italian, AELF for French, CNBB for Portuguese), it is used verbatim.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What is the Saint of the Day?</h3>
+                <div class="faq-answer">
+                    <p>The Home tab shows a Franciscan saint or blessed for every day of the year, drawn from the Franciscan martyrology. The collection includes 366 entries (one for each day, including February 29 for leap years) covering the saints, blesseds, and beati of the Franciscan family — friars, Poor Clares, lay tertiaries, and martyrs.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What is the feast day banner?</h3>
+                <div class="faq-answer">
+                    <p>On principal Franciscan feast days — including the Stigmata (September 17), the Transitus (October 3), the Feast of St. Francis (October 4), the Feast of St. Clare of Assisi (August 11), and Our Lady of the Angels at the Porziuncola (August 2) — a banner appears on the Home tab inviting you to the corresponding chapter, site, or prayer. You can dismiss the banner for the current feast; it reappears for the next feast.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress & Sync -->
+    <section id="progress" class="faq-section">
+        <div class="container">
+            <span class="section-label">Progress & Sync</span>
+            <h2 class="section-title">Tracking your pilgrimage</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How is my progress counted?</h3>
+                <div class="faq-answer">
+                    <p>Your pilgrimage progress reflects two things:</p>
+                    <ul>
+                        <li><strong>Journey progress</strong> — the percentage of the 24 chapters you have marked complete</li>
+                        <li><strong>Sites visited</strong> — the number of unique sacred sites you have marked as visited</li>
+                    </ul>
+                    <p>The "Your Pilgrimage" denominator counts unique sites, not link rows, so a site connected to multiple chapters still counts once.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Does my progress sync across my devices?</h3>
+                <div class="faq-answer">
+                    <p><strong>Yes.</strong> Visited sites, chapter completions, journey progress, and indulgence step completions sync via your private iCloud account when iCloud is enabled. Make sure you're signed into the same Apple Account on every device.</p>
+                    <p>Sync uses Apple's CloudKit <em>private</em> database. Your progress data is stored in your personal iCloud container and is never accessible to If Then Dev or any third party.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Can I share my journey?</h3>
+                <div class="faq-answer">
+                    <p>Yes. Site detail pages and journey progress include a share button that produces a rendered card you can post to social media, send by message, or save to Files. Sharing is initiated by you on your device; nothing is sent automatically.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Is there a Home Screen widget?</h3>
+                <div class="faq-answer">
+                    <p>Yes. Franciscan Pilgrimage offers Home Screen widgets that surface the Saint of the Day, a daily prayer, and a Franciscan Jubilee Year countdown.</p>
+                    <p><strong>To add a widget:</strong></p>
+                    <ol class="steps-list">
+                        <li>Long-press an empty area on your Home Screen until the icons jiggle.</li>
+                        <li>Tap the <strong>+</strong> button.</li>
+                        <li>Search for "Franciscan Pilgrimage".</li>
+                        <li>Choose your preferred size and tap <strong>Add Widget</strong>.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy & Donations -->
+    <section id="donations" class="faq-section">
+        <div class="container">
+            <span class="section-label">Privacy & Tip Jar</span>
+            <h2 class="section-title">Free, private, supported by gifts</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Is the app really free?</h3>
+                <div class="faq-answer">
+                    <p><strong>Yes — fully and forever.</strong> Every chapter, every site, every prayer, and the Jubilee features are free to use. No subscription is required. There are no ads, no tracking, and no third-party analytics.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What does the app collect about me?</h3>
+                <div class="faq-answer">
+                    <p>Nothing is sent to If Then Dev. Your progress data is stored on your device and optionally in your private iCloud account. Location, when granted, is used on your device only to find nearby churches and is not transmitted off the device. The full details are in our <a href="https://ifthendev.com/franciscanpilgrimage/privacypolicy.html">Privacy Policy</a>.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How does the tip jar work?</h3>
+                <div class="faq-answer">
+                    <p>The tip jar is an optional way to support the continued development of the app. Open <strong>Settings</strong> in the app and tap <strong>Support This Ministry</strong> to see the available tip amounts. Payments are handled by Apple through the App Store; If Then Dev never sees your payment information.</p>
+                    <p>Tips are one-time, consumable in-app purchases. They are non-refundable except as required by applicable law or Apple's refund policy.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Can I change the app icon?</h3>
+                <div class="faq-answer">
+                    <p>Yes. The app includes alternate icons reflecting Franciscan imagery. To switch, open <strong>Settings</strong> in the app, tap <strong>App Icon</strong>, and pick the one that suits you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section id="troubleshooting" class="faq-section">
+        <div class="container">
+            <span class="section-label">Troubleshooting</span>
+            <h2 class="section-title">If something goes wrong</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">The church finder says my location is unavailable</h3>
+                <div class="faq-answer">
+                    <p>Location access requires your permission. To grant it:</p>
+                    <ol class="steps-list">
+                        <li>Open the iOS <strong>Settings</strong> app.</li>
+                        <li>Scroll to and tap <strong>Franciscan Pilgrimage</strong>.</li>
+                        <li>Tap <strong>Location</strong> and choose <strong>While Using the App</strong>.</li>
+                    </ol>
+                    <p>You can also use the church finder without location: an empty-state prompt lets you grant access or continue without it (the list won't be sorted by distance).</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">My progress isn't syncing between devices</h3>
+                <div class="faq-answer">
+                    <ul>
+                        <li>Confirm that both devices are signed into the <strong>same Apple Account</strong>.</li>
+                        <li>Open iOS <strong>Settings → [Your Name] → iCloud</strong> and ensure iCloud is enabled for Franciscan Pilgrimage.</li>
+                        <li>Make sure both devices have an internet connection.</li>
+                        <li>Force-quit and reopen the app on the device that's behind.</li>
+                    </ul>
+                    <p>iCloud sync is asynchronous and may take a few minutes to propagate after a change.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">A photo or audio file failed to download</h3>
+                <div class="faq-answer">
+                    <p>Pull down on the affected screen to refresh, or tap the retry button shown alongside the failed item. Downloads continue in the background and resume automatically when your connection improves. If a specific file repeatedly fails, please <a href="https://ifthendev.com/contact/?app=FranciscanPilgrimage">contact us</a> with the site or chapter name.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">I noticed an error in the content</h3>
+                <div class="faq-answer">
+                    <p>We take theological and historical accuracy seriously. If you spot a mistake — in a date, a name, a translation, an attribution, a prayer — please <a href="https://ifthendev.com/contact/?app=FranciscanPilgrimage">tell us</a>. We read every message and correct verified errors in the next content release.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How do I delete the app and my data?</h3>
+                <div class="faq-answer">
+                    <p>Delete the app from your Home Screen as you would any other iOS app. Local data is removed with the app. iCloud-synced progress can be removed from iOS <strong>Settings → [Your Name] → iCloud → Manage Account Storage → Franciscan Pilgrimage</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h2 class="cta-title">Still have a question?</h2>
+                    <p class="cta-subtitle">
+                        Write to us. We read every message — about the road, the content, or a correction we should make.
+                    </p>
+                    <a href="https://ifthendev.com/contact/?app=FranciscanPilgrimage" class="cta-button">Contact Support</a>
+                    <p class="cta-tagline">— Pax et bonum.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://ifthendev.com/franciscanpilgrimage/" class="footer-link">Franciscan Pilgrimage</a>
+                    <a href="https://ifthendev.com/franciscanpilgrimage/privacypolicy.html" class="footer-link">Privacy Policy</a>
+                    <a href="https://ifthendev.com/contact/?app=FranciscanPilgrimage" class="footer-link">Contact</a>
+                </div>
+                <div class="footer-copy">
+                    &copy; <span class="copyright-year">2026</span> If Then Dev, LLC. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), index * 40);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('.copyright-year').forEach(e => e.textContent = new Date().getFullYear());
+    </script>
+</body>
+</html>
