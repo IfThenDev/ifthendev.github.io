@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Press Kit — Franciscan Pilgrimage</title>
+    <meta name="description" content="Press kit for Franciscan Pilgrimage — a free, offline iPhone & iPad guide to the life and sacred sites of St. Francis of Assisi for the Jubilee Year 2026–2027. Boilerplate, fact sheet, features, developer story, screenshots, and brand assets.">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <meta name="robots" content="index,follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Press Kit — Franciscan Pilgrimage">
+    <meta property="og:description" content="Boilerplate, fact sheet, features, developer story, screenshots, and brand assets for Franciscan Pilgrimage.">
+    <meta property="og:image" content="https://ifthendev.com/franciscanpilgrimage/images/app-icon.png">
+    <meta property="og:url" content="https://ifthendev.com/franciscanpilgrimage/presskit.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,ital,wght@8..60,0,400;8..60,0,500;8..60,0,600;8..60,1,400;8..60,1,500;8..60,1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --franciscan-brown: #7A4A2A;
+            --sacred-gold: #8D5606;
+            --assisi-stone: #F5ECE2;
+            --nature-green: #496741;
+            --contemplative-blue: #2D5090;
+            --color-text: #2C241F;
+            --color-text-secondary: #5A4A3F;
+            --color-text-muted: #8A7A6E;
+            --color-background: #FBF7F2;
+            --color-surface: #FFFFFF;
+            --color-surface-warm: #F5ECE2;
+            --color-border: #E6D8C7;
+            --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+            --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --max-width: 920px;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --franciscan-brown: #9C663A; --sacred-gold: #C99248; --assisi-stone: #2C241F;
+                --nature-green: #4F7C47; --contemplative-blue: #4A6EAE;
+                --color-text: #F5ECE2; --color-text-secondary: #C9B8A9; --color-text-muted: #9C8B7C;
+                --color-background: #1B1612; --color-surface: #2C241F; --color-surface-warm: #34291F; --color-border: #4A3D33;
+            }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--sans); background: var(--color-background); color: var(--color-text); line-height: 1.65; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+        /* Header */
+        header.site-header { padding: 20px 0; border-bottom: 1px solid var(--color-border); background: color-mix(in srgb, var(--color-surface) 80%, transparent); backdrop-filter: saturate(160%) blur(10px); -webkit-backdrop-filter: saturate(160%) blur(10px); position: sticky; top: 0; z-index: 50; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--color-text); }
+        .logo-mark { width: 44px; height: 44px; border-radius: 11px; overflow: hidden; box-shadow: 0 4px 14px -6px rgba(122,74,42,0.6); flex-shrink: 0; }
+        .logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .logo-text { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; letter-spacing: -0.01em; }
+        .nav-links { display: flex; align-items: center; gap: 26px; }
+        .nav-link { font-family: var(--sans); color: var(--color-text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+        .nav-link:hover { color: var(--franciscan-brown); }
+
+        /* Hero */
+        .pk-hero { padding: 60px 0 8px; text-align: center; }
+        .pk-eyebrow { display: inline-block; font-family: var(--sans); font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: var(--sacred-gold); margin-bottom: 14px; }
+        .pk-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 14px; }
+        .pk-title em { font-style: italic; color: var(--franciscan-brown); }
+        .pk-status { font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: var(--color-text-secondary); max-width: 560px; margin: 0 auto 22px; }
+        .pk-contact-pill { display: inline-flex; align-items: center; gap: 9px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 999px; padding: 9px 18px; font-family: var(--sans); font-size: 0.9rem; font-weight: 500; }
+        .pk-contact-pill a { color: var(--franciscan-brown); text-decoration: none; font-weight: 600; }
+
+        /* Tau rule */
+        .tau-rule { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 28px auto; max-width: 280px; }
+        .tau-rule .line { height: 1px; flex: 1; background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--sacred-gold) 70%, transparent), transparent); }
+        .tau-rule svg { width: 20px; height: 20px; color: var(--sacred-gold); flex: 0 0 auto; }
+
+        /* Sections */
+        .pk-section { padding: 40px 0; border-top: 1px solid var(--color-border); }
+        .pk-section:first-of-type { border-top: none; }
+        .pk-section-label { display: inline-block; font-family: var(--sans); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.13em; color: var(--sacred-gold); margin-bottom: 10px; }
+        .pk-h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 600; line-height: 1.2; letter-spacing: -0.015em; margin-bottom: 18px; }
+        .pk-h3 { font-family: var(--serif); font-size: 1.12rem; font-weight: 600; margin: 22px 0 8px; color: var(--franciscan-brown); }
+        .pk-body { font-family: var(--serif); font-size: 1.08rem; line-height: 1.78; color: var(--color-text-secondary); }
+        .pk-body p { margin-bottom: 16px; }
+        .pk-body strong { color: var(--color-text); font-weight: 600; }
+        .pk-body em { color: var(--franciscan-brown); font-style: italic; }
+        .copy-line { background: var(--color-surface); border: 1px solid var(--color-border); border-left: 3px solid var(--sacred-gold); border-radius: 0 12px 12px 0; padding: 18px 22px; font-family: var(--serif); font-size: 1.06rem; line-height: 1.7; color: var(--color-text); }
+
+        /* Fact table */
+        .fact-table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 0.95rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; overflow: hidden; }
+        .fact-table tr { border-bottom: 1px solid var(--color-border); }
+        .fact-table tr:last-child { border-bottom: none; }
+        .fact-table th { text-align: left; vertical-align: top; padding: 13px 18px; width: 38%; color: var(--color-text); font-weight: 600; background: var(--color-surface-warm); }
+        .fact-table td { padding: 13px 18px; color: var(--color-text-secondary); }
+        .fact-table td a { color: var(--contemplative-blue); text-decoration: none; }
+        .fact-table code { font-size: 0.86em; background: var(--color-surface-warm); padding: 1px 6px; border-radius: 5px; }
+
+        /* Features list */
+        .feat-list { list-style: none; }
+        .feat-list li { font-family: var(--sans); position: relative; padding-left: 28px; margin-bottom: 14px; color: var(--color-text-secondary); line-height: 1.6; }
+        .feat-list li::before { content: ''; position: absolute; left: 4px; top: 9px; width: 9px; height: 9px; border-radius: 2px; background: linear-gradient(135deg, var(--franciscan-brown), var(--sacred-gold)); transform: rotate(45deg); }
+        .feat-list li strong { color: var(--color-text); font-weight: 600; }
+
+        /* Calendar pegs */
+        .pegs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 8px; }
+        .peg { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; padding: 18px 20px; }
+        .peg-date { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; color: var(--franciscan-brown); margin-bottom: 4px; }
+        .peg-desc { font-family: var(--sans); font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; }
+        .peg.peak { border-color: var(--sacred-gold); background: linear-gradient(135deg, var(--color-surface-warm), var(--color-surface)); }
+
+        /* Pull quotes */
+        .pullquote { font-family: var(--serif); font-style: italic; font-size: 1.18rem; line-height: 1.55; color: var(--color-text); border-left: 3px solid var(--sacred-gold); padding: 6px 0 6px 22px; margin: 20px 0; }
+        .pullquote cite { display: block; font-style: normal; font-family: var(--sans); font-size: 0.85rem; color: var(--color-text-muted); margin-top: 8px; }
+        .quote-note { font-family: var(--sans); font-size: 0.85rem; color: var(--color-text-muted); font-style: italic; margin-bottom: 18px; }
+
+        /* Asset gallery */
+        .asset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+        .asset { display: block; border-radius: 16px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-surface); text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .asset:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -26px rgba(60,36,16,0.6); }
+        .asset img { width: 100%; height: auto; display: block; }
+        .asset-cap { font-family: var(--sans); font-size: 0.78rem; color: var(--color-text-muted); padding: 9px 12px; text-align: center; }
+        .asset-note { font-family: var(--sans); font-size: 0.9rem; color: var(--color-text-muted); margin-top: 16px; }
+
+        /* Icon + swatches */
+        .icon-row { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+        .icon-row img { width: 110px; height: 110px; border-radius: 24px; box-shadow: 0 16px 34px -20px rgba(60,36,16,0.6); }
+        .icon-row .pk-body { flex: 1 1 320px; font-size: 1rem; }
+        .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 18px; }
+        .swatch { border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; background: var(--color-surface); }
+        .swatch-chip { height: 56px; }
+        .swatch-meta { padding: 10px 12px; }
+        .swatch-name { font-family: var(--sans); font-size: 0.84rem; font-weight: 600; color: var(--color-text); }
+        .swatch-hex { font-family: var(--sans); font-size: 0.78rem; color: var(--color-text-muted); }
+
+        /* Download all */
+        .dl-bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; background: var(--color-surface-warm); border: 1px solid var(--color-border); border-radius: 14px; padding: 16px 20px; margin-bottom: 22px; }
+        .dl-bar .label { font-family: var(--sans); font-weight: 600; font-size: 0.95rem; }
+        .dl-bar .sub { font-family: var(--sans); font-size: 0.86rem; color: var(--color-text-muted); }
+
+        /* Footer */
+        footer { padding: 40px 0; border-top: 1px solid var(--color-border); background: var(--color-surface); margin-top: 24px; }
+        .footer-content { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 22px; }
+        .footer-link { font-family: var(--sans); color: var(--color-text-secondary); text-decoration: none; font-size: 0.92rem; transition: color 0.2s; }
+        .footer-link:hover { color: var(--franciscan-brown); }
+        .footer-copy { font-family: var(--sans); color: var(--color-text-muted); font-size: 0.85rem; }
+
+        .end-mark { text-align: center; font-family: var(--serif); font-style: italic; color: var(--color-text-muted); padding: 30px 0 6px; }
+
+        @media (max-width: 640px) {
+            .fact-table th { width: 44%; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="https://ifthendev.com/franciscanpilgrimage/" class="logo">
+                    <div class="logo-mark"><img src="images/app-icon.png" alt="Franciscan Pilgrimage app icon"></div>
+                    <span class="logo-text">Franciscan Pilgrimage</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="https://ifthendev.com/contact/?app=FranciscanPilgrimage" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="pk-hero">
+        <div class="container">
+            <span class="pk-eyebrow">Press Kit</span>
+            <h1 class="pk-title">Franciscan <em>Pilgrimage</em></h1>
+            <p class="pk-status">A dedicated companion for the Special Franciscan Jubilee Year. Currently in App Store review — this kit is ready for use the moment the app goes live.</p>
+            <span class="pk-contact-pill">Press inquiries: <a href="https://ifthendev.com/contact/?app=FranciscanPilgrimage">help@ifthendev.com</a></span>
+            <div class="tau-rule" aria-hidden="true">
+                <span class="line"></span>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 2.6 L21.5 2.6 L21.5 7.4 L14 6 L14 21.6 L15.4 22.6 L8.6 22.6 L10 21.6 L10 6 L2.5 7.4 Z"/></svg>
+                <span class="line"></span>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <!-- About -->
+        <section class="pk-section">
+            <span class="pk-section-label">About</span>
+            <h2 class="pk-h2">Boilerplate</h2>
+            <h3 class="pk-h3">Short (one line)</h3>
+            <div class="copy-line">Franciscan Pilgrimage is a free iPhone and iPad app that walks you through the life of St. Francis of Assisi — 24 chapters, 37 sacred sites, and a Jubilee-church finder for the indulgence pilgrimage — offline and in five languages.</div>
+            <h3 class="pk-h3">Long (one paragraph)</h3>
+            <div class="pk-body">
+                <p>Franciscan Pilgrimage is a free, offline-first app for iPhone and iPad that guides pilgrims through the life and legacy of St. Francis of Assisi. It pairs a 24-chapter chronological journey through Francis's life with an interactive map of 37 sacred Franciscan sites worldwide — from the Porziuncola and San Damiano to La Verna, Greccio, Fonte Colombo, the Basilica of San Francesco, and the Holy Land sites of the Franciscan Custody. For the Special Franciscan Jubilee Year (2026–2027), a nearby-church finder helps Catholics locate designated Franciscan churches where the plenary indulgence may be received under the usual conditions. Every chapter and site description is theologically vetted and fact-checked against primary sources (Thomas of Celano, Bonaventure's <em>Legenda Maior</em>, the <em>Fioretti</em>) and modern scholarship (Vauchez, Thompson) — and where tradition and history part ways, the app says so. There are no ads, no tracking, and no subscription. Built by If Then Dev LLC, an independent Catholic developer, it is offered freely in the spirit of Franciscan simplicity, with an optional tip jar for those who wish to support the work.</p>
+            </div>
+        </section>
+
+        <!-- Elevator pitch -->
+        <section class="pk-section">
+            <span class="pk-section-label">In brief</span>
+            <h2 class="pk-h2">Elevator pitch</h2>
+            <div class="pk-body">
+                <p>The Special Franciscan Jubilee Year marks 800 years since the death of St. Francis of Assisi, and the Jubilee designates Franciscan churches worldwide for the plenary indulgence. Franciscan Pilgrimage was built for this moment: it tells Francis's story in 24 prayerful chapters, maps 37 of the holiest places he walked, and helps any pilgrim — in Umbria or at home — find a designated Jubilee church nearby, where the indulgence may be received under the usual conditions. Free, fully offline, reverently made, and honest about its history.</p>
+            </div>
+            <div class="pullquote" style="margin-top:6px;">A dedicated companion for the Special Franciscan Jubilee Year.<cite>— Tagline</cite></div>
+        </section>
+
+        <!-- Fact sheet -->
+        <section class="pk-section">
+            <span class="pk-section-label">At a glance</span>
+            <h2 class="pk-h2">Fact sheet</h2>
+            <table class="fact-table">
+                <tr><th>App name</th><td>Franciscan Pilgrimage</td></tr>
+                <tr><th>Subtitle</th><td>Jubilee Year Pilgrimage Guide</td></tr>
+                <tr><th>Developer</th><td>If Then Dev LLC (Mike Milinazzo)</td></tr>
+                <tr><th>Platform</th><td>iOS 26 or later — iPhone and iPad</td></tr>
+                <tr><th>Price</th><td>Free. No ads, no tracking, no subscription. Optional tip jar.</td></tr>
+                <tr><th>Languages</th><td>English, Italian, Spanish, Portuguese, French</td></tr>
+                <tr><th>Category</th><td>Reference (primary), Travel (secondary)</td></tr>
+                <tr><th>Release window</th><td>During the Special Franciscan Jubilee Year (closes January 10, 2027)</td></tr>
+                <tr><th>App Store</th><td>Coming soon (App Store ID 6760918231)</td></tr>
+                <tr><th>Bundle ID</th><td><code>com.ifthendev.franciscanpilgrimage</code></td></tr>
+                <tr><th>Press / support</th><td><a href="https://ifthendev.com/contact/?app=FranciscanPilgrimage">help@ifthendev.com</a></td></tr>
+                <tr><th>Website</th><td><a href="https://ifthendev.com/franciscanpilgrimage/">ifthendev.com/franciscanpilgrimage</a></td></tr>
+                <tr><th>Privacy policy</th><td><a href="https://ifthendev.com/franciscanpilgrimage/privacypolicy.html">privacypolicy.html</a></td></tr>
+            </table>
+        </section>
+
+        <!-- Key features -->
+        <section class="pk-section">
+            <span class="pk-section-label">What it does</span>
+            <h2 class="pk-h2">Key features</h2>
+            <ul class="feat-list">
+                <li><strong>A 24-chapter journey through Francis's life</strong> — from his birth in Assisi to his Transitus at the Porziuncola, each chapter pairs a short narrative with a Scripture reading and a reflection written for prayer, not lecture.</li>
+                <li><strong>37 sacred sites, mapped and filterable</strong> — the Porziuncola, San Damiano, La Verna, Greccio, Fonte Colombo, the Basilica of San Francesco, and the Holy Land sites of the Franciscan Custody. Filter by what happened there, what kind of place it is, and which Franciscan charism it embodies.</li>
+                <li><strong>Jubilee church finder</strong> — locate designated Franciscan churches near you during the 2026–2027 Jubilee Year, with addresses and directions. At a designated church the plenary indulgence may be received under the usual conditions — sacramental confession, Eucharistic communion, prayer for the Holy Father's intentions, and detachment from all sin.</li>
+                <li><strong>Franciscan prayers</strong> — the Canticle of Brother Sun, the Prayer of St. Francis, the Franciscan Crown Rosary, and site-specific devotions.</li>
+                <li><strong>Saint of the Day and a daily prayer</strong> — a quiet daily touchpoint on the Home screen.</li>
+                <li><strong>Home and Lock Screen widgets</strong> — keep the day's saint and prayer at hand.</li>
+                <li><strong>Fully offline</strong> — every chapter, site, and prayer works without a connection after first launch. Built for back roads to La Verna and the Holy Land alike.</li>
+                <li><strong>Five languages from day one</strong> — English, Italian, Spanish, Portuguese, French.</li>
+                <li><strong>Free, with dignity</strong> — no ads, no tracking, no paywall. An optional tip jar ("A Prayer / A Candle / A Meal / A Pilgrimage") supports continued development.</li>
+            </ul>
+        </section>
+
+        <!-- Why now -->
+        <section class="pk-section">
+            <span class="pk-section-label">The news hook</span>
+            <h2 class="pk-h2">Why now</h2>
+            <div class="pk-body">
+                <p>2026 marks the <strong>800th anniversary of the death of St. Francis of Assisi</strong>, who died on the evening of October 3, 1226 — the <em>Transitus</em>, his "passage to Sister Death." Pope Leo XIV proclaimed a <strong>Special Franciscan Jubilee Year running January 10, 2026 to January 10, 2027</strong>. A decree of the Apostolic Penitentiary dated January 10, 2026 designates <strong>every Franciscan church worldwide</strong> for the Jubilee plenary indulgence — an unusually broad provision that puts the indulgence within reach of pilgrims everywhere, not only those who travel to Assisi.</p>
+                <p>For reporters and editors, the calendar offers natural pegs through the second half of 2026:</p>
+            </div>
+            <div class="pegs">
+                <div class="peg"><div class="peg-date">August 2</div><div class="peg-desc">Feast of the Porziuncola / Pardon of Assisi — the indulgence Francis himself sought; an ideal "what is this Jubilee" explainer.</div></div>
+                <div class="peg"><div class="peg-date">September 17</div><div class="peg-desc">Feast of the Stigmata — the marks of Christ received on Mount La Verna in 1224.</div></div>
+                <div class="peg peak"><div class="peg-date">October 3 · 800th</div><div class="peg-desc">The Transitus — eight centuries to the night of Francis's death. The peak moment.</div></div>
+                <div class="peg peak"><div class="peg-date">October 4</div><div class="peg-desc">Feast of St. Francis — the most widely observed Franciscan feast and strongest general-interest hook.</div></div>
+            </div>
+            <div class="pk-body" style="margin-top:18px;"><p>The Jubilee closes <strong>January 10, 2027</strong> — a hard deadline that gives the indulgence story built-in urgency.</p></div>
+        </section>
+
+        <!-- Developer story -->
+        <section class="pk-section">
+            <span class="pk-section-label">Behind the app</span>
+            <h2 class="pk-h2">The developer story</h2>
+            <div class="pk-body">
+                <p>Franciscan Pilgrimage is the work of <strong>If Then Dev LLC</strong>, the studio of independent developer <strong>Mike Milinazzo</strong>, built by hand for iPhone and iPad. It grew out of a conviction that the 800th anniversary of Francis's death deserved a tool worthy of the occasion — one that could put the story of <em>il Poverello</em> and the holy places of his life into a pilgrim's pocket, online or off, in the languages Catholics actually pray in.</p>
+                <p>What sets the project apart is its commitment to content integrity. Drafts were written through a Franciscan theological lens and then audited against the primary sources — Thomas of Celano, Bonaventure's <em>Legenda Maior</em>, the <em>Fioretti</em> — and weighed against the best modern scholarship, including the biographies of André Vauchez and Augustine Thompson. Where pious legend and the historical record diverge, the app names the difference rather than smoothing it over. The aim was straightforward: a pilgrimage app a Franciscan tertiary, a parish priest, and a seminary professor could all use without wincing.</p>
+            </div>
+        </section>
+
+        <!-- Pull quotes -->
+        <section class="pk-section">
+            <span class="pk-section-label">Quotable</span>
+            <h2 class="pk-h2">Pull-quotes</h2>
+            <p class="quote-note">These are statements the developer is available to make and may be quoted or paraphrased. They are first-party statements, not third-party endorsements.</p>
+            <div class="pullquote">"Eight hundred years after Francis's death, every Franciscan church in the world has been opened for this Jubilee. I wanted to build something that could meet a pilgrim wherever they are — in Assisi or in their parish at home."<cite>— Mike Milinazzo, If Then Dev LLC</cite></div>
+            <div class="pullquote">"I held one rule the whole way through: where tradition and history part ways, we say so. Reverence and honesty aren't in tension. Francis would have wanted both."</div>
+            <div class="pullquote">"It's free, and it stays free — no ads, no tracking, no paywall. Francis begged for alms and gave everything away. The least I can do is offer the work in the same spirit."</div>
+            <div class="pullquote">"I wanted content a Franciscan tertiary, a parish priest, and a seminary professor could all use without wincing. That was the bar."</div>
+        </section>
+
+        <!-- Assets -->
+        <section class="pk-section">
+            <span class="pk-section-label">Download</span>
+            <h2 class="pk-h2">Screenshots</h2>
+            <div class="dl-bar">
+                <div>
+                    <div class="label">App Store screenshots</div>
+                    <div class="sub">Click any image to open full size. iPhone shown · iPad versions and print-resolution originals available on request.</div>
+                </div>
+            </div>
+            <div class="asset-grid">
+                <a class="asset" href="images/screens/01.png" target="_blank"><img src="images/screens/01.png" alt="Special Franciscan Jubilee Year" loading="lazy"><div class="asset-cap">Jubilee Year</div></a>
+                <a class="asset" href="images/screens/02.png" target="_blank"><img src="images/screens/02.png" alt="The Pilgrimage of St. Francis" loading="lazy"><div class="asset-cap">The Journey</div></a>
+                <a class="asset" href="images/screens/03.png" target="_blank"><img src="images/screens/03.png" alt="Canticle of Creation" loading="lazy"><div class="asset-cap">Canticle of Creation</div></a>
+                <a class="asset" href="images/screens/04.png" target="_blank"><img src="images/screens/04.png" alt="37 sacred sites mapped" loading="lazy"><div class="asset-cap">Sacred Sites Map</div></a>
+                <a class="asset" href="images/screens/05.png" target="_blank"><img src="images/screens/05.png" alt="La Verna" loading="lazy"><div class="asset-cap">La Verna</div></a>
+                <a class="asset" href="images/screens/06.png" target="_blank"><img src="images/screens/06.png" alt="Find Jubilee churches near you" loading="lazy"><div class="asset-cap">Church Finder</div></a>
+                <a class="asset" href="images/screens/07.png" target="_blank"><img src="images/screens/07.png" alt="Walk where Francis walked" loading="lazy"><div class="asset-cap">Walk Where Francis Walked</div></a>
+                <a class="asset" href="images/screens/08.png" target="_blank"><img src="images/screens/08.png" alt="Five languages" loading="lazy"><div class="asset-cap">Five Languages</div></a>
+            </div>
+            <p class="asset-note">High-resolution originals (iPhone 1290 × 2796, iPad 2048 × 2732) and additional assets are available on request — <a href="https://ifthendev.com/contact/?app=FranciscanPilgrimage" style="color:var(--contemplative-blue);text-decoration:none;">contact us</a>.</p>
+
+            <h2 class="pk-h2" style="margin-top:40px;">App icon &amp; brand</h2>
+            <div class="icon-row">
+                <a href="images/app-icon.png" target="_blank"><img src="images/app-icon.png" alt="Franciscan Pilgrimage app icon — a Tau cross over the pilgrim road"></a>
+                <div class="pk-body">
+                    <p>A <strong>Tau cross</strong> — the T-shaped cross Francis used to sign his letters and bless his brothers — rising over the pilgrim road to Assisi, beneath a dove and the rising sun, marked with the <em>800</em> of the anniversary. One glyph, two meanings: "Franciscan" and "pilgrimage." Adapts to iOS 26 light, dark, and tinted appearance modes.</p>
+                </div>
+            </div>
+            <div class="swatches">
+                <div class="swatch"><div class="swatch-chip" style="background:#7A4A2A;"></div><div class="swatch-meta"><div class="swatch-name">FranciscanBrown</div><div class="swatch-hex">#7A4A2A · primary</div></div></div>
+                <div class="swatch"><div class="swatch-chip" style="background:#8D5606;"></div><div class="swatch-meta"><div class="swatch-name">SacredGold</div><div class="swatch-hex">#8D5606 · accent</div></div></div>
+                <div class="swatch"><div class="swatch-chip" style="background:#F5ECE2;"></div><div class="swatch-meta"><div class="swatch-name">AssisiStone</div><div class="swatch-hex">#F5ECE2 · surface</div></div></div>
+                <div class="swatch"><div class="swatch-chip" style="background:#496741;"></div><div class="swatch-meta"><div class="swatch-name">NatureGreen</div><div class="swatch-hex">#496741 · progress</div></div></div>
+                <div class="swatch"><div class="swatch-chip" style="background:#2D5090;"></div><div class="swatch-meta"><div class="swatch-name">ContemplativeBlue</div><div class="swatch-hex">#2D5090 · info</div></div></div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="pk-section">
+            <span class="pk-section-label">Get in touch</span>
+            <h2 class="pk-h2">Press contact</h2>
+            <div class="pk-body">
+                <p><strong>If Then Dev LLC</strong><br>
+                Mike Milinazzo, Developer<br>
+                Press &amp; support: <a href="https://ifthendev.com/contact/?app=FranciscanPilgrimage" style="color:var(--contemplative-blue);text-decoration:none;">help@ifthendev.com</a><br>
+                Website: <a href="https://ifthendev.com/franciscanpilgrimage/" style="color:var(--contemplative-blue);text-decoration:none;">ifthendev.com/franciscanpilgrimage</a></p>
+                <p>Interviews, additional assets, and review access (TestFlight) available on request.</p>
+            </div>
+        </section>
+
+        <div class="end-mark">Pax et Bonum.</div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="help.html" class="footer-link">Help &amp; FAQ</a>
+                    <a href="https://ifthendev.com/franciscanpilgrimage/privacypolicy.html" class="footer-link">Privacy Policy</a>
+                    <a href="https://ifthendev.com/contact/?app=FranciscanPilgrimage" class="footer-link">Contact</a>
+                </div>
+                <div class="footer-copy">&copy; <span class="copyright-year">2026</span> If Then Dev, LLC. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+    <script>document.querySelectorAll('.copyright-year').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
+</body>
+</html>
