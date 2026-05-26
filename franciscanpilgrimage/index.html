@@ -10,7 +10,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Franciscan Pilgrimage — Walk the Way of St. Francis">
-    <meta property="og:description" content="A free, offline guide to the life and sacred sites of St. Francis of Assisi for the Jubilee Year 2026–2027. Coming soon to the App Store.">
+    <meta property="og:description" content="A free, offline guide to the life and sacred sites of St. Francis of Assisi for the Jubilee Year 2026–2027. Now available on the App Store for iPhone and iPad.">
     <meta property="og:image" content="https://ifthendev.com/franciscanpilgrimage/images/app-icon.png">
     <meta property="og:url" content="https://ifthendev.com/franciscanpilgrimage/">
     <meta name="twitter:card" content="summary">
@@ -199,7 +199,7 @@
             font-style: italic;
         }
 
-        .coming-soon {
+        .store-pill {
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -212,8 +212,15 @@
             font-weight: 600;
             color: var(--color-text);
             box-shadow: 0 8px 24px -16px rgba(122,74,42,0.5);
+            text-decoration: none;
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
         }
-        .coming-soon .dot {
+        .store-pill:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 28px -16px rgba(122,74,42,0.6);
+            border-color: var(--sacred-gold);
+        }
+        .store-pill .dot {
             width: 9px; height: 9px; border-radius: 50%;
             background: var(--sacred-gold);
             box-shadow: 0 0 0 0 color-mix(in srgb, var(--sacred-gold) 70%, transparent);
@@ -223,7 +230,7 @@
             0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--sacred-gold) 55%, transparent); }
             50% { box-shadow: 0 0 0 7px transparent; }
         }
-        .coming-soon .muted { color: var(--color-text-muted); font-weight: 500; }
+        .store-pill .muted { color: var(--color-text-muted); font-weight: 500; }
 
         /* ---- Phone mockup ---- */
         .hero-visual {
@@ -484,7 +491,7 @@
         @media (prefers-reduced-motion: reduce) {
             .animate-on-scroll { opacity: 1; transform: none; transition: none; }
             html { scroll-behavior: auto; }
-            .coming-soon .dot { animation: none; }
+            .store-pill .dot { animation: none; }
         }
     </style>
 </head>
@@ -519,11 +526,11 @@
                 <span class="line"></span>
             </div>
 
-            <div class="coming-soon">
+            <a class="store-pill" href="https://apps.apple.com/app/id6760918231" aria-label="Download Franciscan Pilgrimage on the App Store">
                 <span class="dot"></span>
-                Coming soon to the App Store
+                Now available on the App Store
                 <span class="muted">· iPhone &amp; iPad</span>
-            </div>
+            </a>
 
             <div class="hero-visual animate-on-scroll">
                 <div class="phone-frame">
@@ -653,9 +660,9 @@
             <div class="cta-card animate-on-scroll">
                 <div class="cta-content">
                     <h2 class="cta-title">Begin the journey this Jubilee Year</h2>
-                    <p class="cta-sub">Franciscan Pilgrimage is in final review and arriving soon on the App Store, in time for the 800th anniversary of the Transitus.</p>
+                    <p class="cta-sub">Franciscan Pilgrimage is now available — free on the App Store for iPhone and iPad — in time for the 800th anniversary of the Transitus.</p>
                     <div class="cta-btn-row">
-                        <span class="btn btn-gold" style="cursor:default;">Coming soon to the App Store</span>
+                        <a href="https://apps.apple.com/app/id6760918231" class="btn btn-gold">Download on the App Store</a>
                         <a href="presskit.html" class="btn btn-ghost">View the press kit →</a>
                     </div>
                     <p class="cta-tagline">Pax et Bonum.</p>
