@@ -301,6 +301,18 @@
             font-size: 0.9em;
         }
 
+        .faq-answer pre {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.85em;
+            line-height: 1.5;
+            overflow-x: auto;
+            margin: 12px 0;
+            white-space: pre;
+        }
+
         /* Tips Box */
         .tip-box {
             background: rgba(240, 213, 71, 0.1);
@@ -547,7 +559,7 @@
                 </a>
                 <a href="#export" class="toc-link">
                     <span class="icon">📤</span>
-                    <span class="label">Export Data</span>
+                    <span class="label">Export &amp; Import</span>
                 </a>
                 <a href="#mac" class="toc-link">
                     <span class="icon">💻</span>
@@ -787,8 +799,8 @@
     <!-- Export Section -->
     <section id="export" class="faq-section">
         <div class="container">
-            <span class="section-label">Export</span>
-            <h2 class="section-title">Exporting Your Data</h2>
+            <span class="section-label">Export &amp; Import</span>
+            <h2 class="section-title">Exporting &amp; Importing Your Data</h2>
 
             <div class="faq-card animate-on-scroll">
                 <h3 class="faq-question">How do I export my book list?</h3>
@@ -813,6 +825,46 @@
                         <li>Date scanned</li>
                     </ul>
                     <p><strong>CSV exports</strong> open in Excel, Google Sheets, or any spreadsheet app. <strong>PDF exports</strong> are formatted for printing with the app name and date.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Can I import a list of books?</h3>
+                <div class="faq-answer">
+                    <p>Yes. You can import a <strong>CSV file</strong> to add many books at once — ideal for moving a library between devices, restoring from a backup, or bulk-loading a classroom or school collection without scanning each book.</p>
+                    <ol class="steps-list">
+                        <li>Go to the <strong>Export</strong> screen (History tab → share/export)</li>
+                        <li>Tap <strong>Import from CSV</strong></li>
+                        <li>Pick a <strong>.csv</strong> file from Files, iCloud Drive, or your device</li>
+                        <li>QuickScan reads the file and shows a summary: <strong>Imported · Skipped · Failed</strong></li>
+                    </ol>
+                    <p>The importer only accepts <strong>comma-separated <code>.csv</code> files</strong>. Spreadsheets such as <code>.xlsx</code> or <code>.numbers</code> must be saved or exported as CSV first.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What should the import file look like?</h3>
+                <div class="faq-answer">
+                    <p>The easiest way to get a correctly formatted file is to <strong>export from QuickScan first</strong> — an exported CSV re-imports perfectly. The import file must have this exact header row, with columns in this order:</p>
+                    <pre>Title,Author,ISBN,ATOS Level,Lexile,DRA,GRL,Grade,Interest Level,AR Points,Word Count,AR Quiz #,Scanned Date</pre>
+                    <p>Example rows:</p>
+                    <pre>Title,Author,ISBN,ATOS Level,Lexile,DRA,GRL,Grade,Interest Level,AR Points,Word Count,AR Quiz #,Scanned Date
+Charlotte's Web,E. B. White,9780064410939,4.4,680L,40,R,3,LG,5.0,31938,17,06/17/2026
+The Giver,Lois Lowry,9780544336261,5.7,760L,44,Y,6,MG,11.0,43617,401,06/17/2026</pre>
+                    <ul>
+                        <li><strong>Title</strong>, <strong>Author</strong>, and <strong>ISBN</strong> are required — a row missing any of these is counted as <em>Failed</em>.</li>
+                        <li>Every other column is optional. Leave a cell <strong>blank</strong> (or write <code>Unknown</code>) if you don't have that value.</li>
+                        <li><strong>ATOS Level</strong> and <strong>AR Points</strong> are numbers (e.g. <code>4.4</code>); <strong>Word Count</strong> and <strong>AR Quiz #</strong> are whole numbers; <strong>Lexile</strong>, <strong>DRA</strong>, <strong>GRL</strong>, <strong>Grade</strong>, and <strong>Interest Level</strong> are text.</li>
+                        <li><strong>Scanned Date</strong> is optional; if it's blank or unrecognized, today's date is used.</li>
+                        <li>If a title or author contains a comma, wrap that cell in double quotes — e.g. <code>"Lowry, Lois"</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What happens to duplicate books when importing?</h3>
+                <div class="faq-answer">
+                    <p>Imports never overwrite or create duplicates. Any row whose <strong>ISBN already exists</strong> in your library — or appears more than once in the same file — is counted as <strong>Skipped</strong> and left unchanged. Only new ISBNs are added. The summary after each import tells you exactly how many books were <strong>Imported</strong>, <strong>Skipped</strong> (already present), and <strong>Failed</strong> (couldn't be read).</p>
                 </div>
             </div>
         </div>
