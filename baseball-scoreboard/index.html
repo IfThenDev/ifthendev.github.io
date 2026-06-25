@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baseball &amp; Softball Scoreboard — Glanceable, Sunlight-Readable Scorekeeper</title>
+    <meta name="description" content="A dead-simple baseball &amp; softball scoreboard. Big, glanceable numerals; Stadium mode for daylight; never lose a saved game. Live Activities, Dynamic Island, and widgets for iPhone.">
+    <meta name="theme-color" content="#0C1A12">
+    <link rel="icon" href="images/app-icon.png">
+    <meta property="og:title" content="Baseball &amp; Softball Scoreboard">
+    <meta property="og:description" content="Read the score one-handed — even in bright sunlight. A dead-simple baseball &amp; softball scoreboard.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ifthendev.com/baseball-scoreboard/">
+    <meta property="og:image" content="images/app-icon.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <style>
+        :root {
+            /* === Brand (BallparkGreen / Stadium — derived from Assets.xcassets) === */
+            --ballpark-green:       #27A24C;
+            --ballpark-green-light: #1B8A3E;
+            --ballpark-green-soft:  rgba(39, 162, 76, 0.15);
+            --bg-stadium:           #0C1A12;
+            --panel:                #13261B;
+
+            /* === Neutrals === */
+            --white:          #ffffff;
+            --text-light:     rgba(242, 255, 246, 0.92);
+            --text-muted:     rgba(242, 255, 246, 0.65);
+            --border-subtle:  rgba(255, 255, 255, 0.08);
+            --border-strong:  rgba(255, 255, 255, 0.18);
+
+            /* === Spacing scale (multiples of 4 — copied verbatim from pickleboard) === */
+            --s-1: 4px;
+            --s-2: 8px;
+            --s-3: 12px;
+            --s-4: 16px;
+            --s-5: 24px;
+            --s-6: 32px;
+            --s-7: 48px;
+            --s-8: 64px;
+            --s-9: 96px;
+            --s-10: 128px;
+
+            /* === Layout === */
+            --container-max: 1100px;
+
+            /* === Radius (verbatim from pickleboard) === */
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 32px;
+            --radius-pill: 50px;
+
+            /* === Type scale — EXACTLY 4 sizes, 2 weights (400/700) === */
+            --fs-sm:   0.875rem;
+            --fs-body: 1.0625rem;
+            --fs-h2:   clamp(1.75rem, 4vw, 2.5rem);
+            --fs-h1:   clamp(2.25rem, 6vw, 3.75rem);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-stadium);
+            color: var(--text-light);
+            font-size: var(--fs-body);
+            line-height: 1.6;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* === Skip Link === */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: var(--s-2);
+            background: var(--ballpark-green);
+            color: var(--bg-stadium);
+            padding: var(--s-2) var(--s-4);
+            border-radius: var(--s-1);
+            text-decoration: none;
+            font-weight: 700;
+            z-index: 100;
+            transition: top 0.2s;
+        }
+
+        .skip-link:focus {
+            top: var(--s-2);
+        }
+
+        /* === Background atmosphere === */
+        .bg-atmosphere {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .bg-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--ballpark-green-light);
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .bg-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--panel);
+            bottom: 20%;
+            left: -100px;
+            animation-delay: -7s;
+        }
+
+        .bg-orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--ballpark-green);
+            top: 50%;
+            right: 10%;
+            opacity: 0.18;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33%      { transform: translate(30px, -30px) scale(1.05); }
+            66%      { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* === Header === */
+        header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-5);
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: var(--s-3);
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: var(--fs-body);
+            letter-spacing: -0.02em;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: var(--fs-sm);
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--white);
+        }
+
+        /* === Main + Hero === */
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        section.hero {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-7) var(--s-5) var(--s-9);
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--s-2);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-pill);
+            padding: var(--s-2) var(--s-4);
+            font-size: var(--fs-sm);
+            margin-bottom: var(--s-6);
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--ballpark-green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%      { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        .hero-title {
+            font-size: var(--fs-h1);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--s-5);
+            color: var(--white);
+        }
+
+        .hero-title .highlight {
+            color: var(--ballpark-green);
+        }
+
+        .hero-subtitle {
+            font-size: var(--fs-body);
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto var(--s-7);
+            line-height: 1.5;
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--s-7);
+        }
+
+        .hero-visual {
+            margin-top: var(--s-7);
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-visual img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* === App Store Badge (official black art — fixed 54px, not recolored) === */
+        .app-store-badge {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            border-radius: var(--s-3);
+        }
+
+        .app-store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .app-store-badge img {
+            height: 54px;
+            width: auto;
+            display: block;
+        }
+
+        .app-store-badge:focus-visible {
+            outline: 3px solid var(--ballpark-green);
+            outline-offset: 4px;
+            border-radius: var(--s-3);
+        }
+
+        /* === Section Header (eyebrow + title) === */
+        .section-label {
+            display: inline-block;
+            background: var(--ballpark-green-soft);
+            color: var(--ballpark-green);
+            padding: var(--s-1) var(--s-3);
+            border-radius: var(--radius-pill);
+            font-size: var(--fs-sm);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--s-4);
+        }
+
+        .section-title {
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            color: var(--white);
+            margin-bottom: var(--s-4);
+        }
+
+        .section-subtitle {
+            font-size: var(--fs-body);
+            color: var(--text-muted);
+            max-width: 540px;
+            line-height: 1.5;
+            margin-bottom: var(--s-5);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto var(--s-7);
+            padding: 0 var(--s-5);
+        }
+
+        .section-header .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* === Feature Marquee === */
+        .feature-marquee {
+            display: grid;
+            grid-template-columns: 5fr 6fr;
+            gap: var(--s-7);
+            align-items: center;
+            padding: var(--s-9) var(--s-5);
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+
+        .feature-marquee.alt > .feature-visual { order: 1; }
+        .feature-marquee.alt > .feature-marquee-content { order: 2; }
+
+        .feature-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .feature-visual img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* === Scoring Modes === */
+        .scoring-modes {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-9) var(--s-5);
+        }
+
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: var(--s-5);
+        }
+
+        .mode-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: var(--s-6);
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .mode-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--border-strong);
+            transform: translateY(-4px);
+        }
+
+        .mode-card h3 {
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--s-2);
+        }
+
+        .mode-card p {
+            font-size: var(--fs-sm);
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* === Platform Grid === */
+        .platform-grid {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-9) var(--s-5);
+        }
+
+        .platform-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--s-7);
+        }
+
+        .platform-col {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: var(--s-6);
+        }
+
+        .platform-col h3 {
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--s-4);
+        }
+
+        .platform-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .platform-list li {
+            font-size: var(--fs-body);
+            color: var(--text-light);
+            padding: var(--s-2) 0;
+            border-bottom: 1px solid var(--border-subtle);
+            position: relative;
+            padding-left: var(--s-5);
+        }
+
+        .platform-list li:last-child {
+            border-bottom: none;
+        }
+
+        .platform-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--ballpark-green);
+        }
+
+        /* === CTA Section === */
+        section.cta {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-9) var(--s-5);
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, var(--ballpark-green-light) 0%, var(--panel) 100%);
+            border-radius: var(--radius-xl);
+            padding: var(--s-8) var(--s-7);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, var(--ballpark-green-soft) 0%, transparent 50%);
+            animation: shimmer 15s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0%   { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-card h2 {
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--s-4);
+        }
+
+        .cta-subtitle {
+            font-size: var(--fs-body);
+            color: var(--text-light);
+            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto var(--s-6);
+        }
+
+        /* === Footer === */
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: var(--s-7) var(--s-5);
+            max-width: var(--container-max);
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--s-5);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--s-5);
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: var(--fs-sm);
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--white);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: var(--fs-sm);
+        }
+
+        /* === Focus indicators === */
+        a:focus-visible,
+        button:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid var(--ballpark-green);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        /* === Scroll-reveal === */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === Responsive === */
+        @media (max-width: 768px) {
+            section.hero {
+                padding: var(--s-5) var(--s-5) var(--s-7);
+            }
+
+            .feature-marquee,
+            .feature-marquee.alt {
+                grid-template-columns: 1fr;
+                padding: var(--s-7) var(--s-5);
+                gap: var(--s-5);
+            }
+
+            .feature-marquee.alt > .feature-visual { order: 0; }
+            .feature-marquee.alt > .feature-marquee-content { order: 0; }
+
+            .scoring-modes,
+            .platform-grid {
+                padding: var(--s-7) var(--s-5);
+            }
+
+            .platform-cols {
+                grid-template-columns: 1fr;
+                gap: var(--s-5);
+            }
+
+            .cta-card {
+                padding: var(--s-7) var(--s-5);
+                border-radius: var(--radius-lg);
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+        }
+
+        /* === Reduced motion gate === */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .bg-orb { animation: none; }
+            .hero-badge-dot { animation: none; }
+            .cta-card::before { animation: none; }
+            .animate-on-scroll {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="bg-atmosphere" aria-hidden="true">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+    </div>
+
+    <header>
+        <a href="https://ifthendev.com/baseball-scoreboard/" class="logo-link" aria-label="Baseball &amp; Softball Scoreboard home">
+            <img src="images/app-icon.png" alt="Baseball &amp; Softball Scoreboard app icon" class="logo">
+            <span class="logo-text">Baseball &amp; Softball Scoreboard</span>
+        </a>
+        <nav>
+            <a href="https://ifthendev.com" class="nav-link">If Then Dev</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-badge animate-on-scroll">
+                <span class="hero-badge-dot" aria-hidden="true"></span>
+                Baseball &amp; Softball Scoreboard
+            </div>
+            <h1 class="hero-title animate-on-scroll">
+                Read the score one-handed — even in <span class="highlight">bright sunlight</span>.
+            </h1>
+            <p class="hero-subtitle animate-on-scroll">
+                A dead-simple baseball &amp; softball scoreboard. Big, glanceable numerals; Stadium mode for daylight; never lose a saved game.
+            </p>
+            <div class="hero-cta animate-on-scroll">
+                <a href="https://apps.apple.com/app/id1466325456" class="app-store-badge"
+                   aria-label="Download Baseball &amp; Softball Scoreboard on the App Store">
+                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
+                         alt="Download Baseball &amp; Softball Scoreboard on the App Store">
+                </a>
+            </div>
+        </section>
+
+        <section class="feature-marquee" id="stadium-mode">
+            <div class="feature-marquee-content animate-on-scroll">
+                <span class="section-label">STADIUM MODE</span>
+                <h2 class="section-title">Glance down, read the score, look back up.</h2>
+                <p class="section-subtitle">Stadium mode pushes the numerals huge and high-contrast so the score reads from across the bleachers — and stays legible in direct, bright sunlight. One-handed scorekeeping for the coach in the dugout.</p>
+            </div>
+            <div class="feature-visual animate-on-scroll">
+                <img src="images/app-icon.png" alt="Baseball &amp; Softball Scoreboard in Stadium mode showing large, high-contrast score numerals readable in daylight" loading="lazy">
+            </div>
+        </section>
+
+        <section class="feature-marquee alt" id="live-activity">
+            <div class="feature-visual animate-on-scroll">
+                <img src="images/app-icon.png" alt="Live Activity on an iPhone Lock Screen showing the running score, with the Dynamic Island scoreboard expanded" loading="lazy">
+            </div>
+            <div class="feature-marquee-content animate-on-scroll">
+                <span class="section-label">LIVE ACTIVITY + DYNAMIC ISLAND</span>
+                <h2 class="section-title">Keep the score on your Lock Screen and notch.</h2>
+                <p class="section-subtitle">Pin the live score to your Lock Screen and Dynamic Island so you can follow the game without opening the app — score, inning, count, and runners, right where you can see them.</p>
+            </div>
+        </section>
+
+        <section class="feature-marquee" id="widgets">
+            <div class="feature-marquee-content animate-on-scroll">
+                <span class="section-label">HOME &amp; LOCK SCREEN WIDGETS</span>
+                <h2 class="section-title">The score, one glance away.</h2>
+                <p class="section-subtitle">Home Screen and Lock Screen widgets show the current score while a game is live and the final once it ends — so the last result is always a glance away.</p>
+            </div>
+            <div class="feature-visual animate-on-scroll">
+                <img src="images/app-icon.png" alt="Home Screen and Lock Screen widgets displaying the baseball score and final result" loading="lazy">
+            </div>
+        </section>
+
+        <section class="scoring-modes">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">BUILT FOR THE BALLPARK</span>
+                <h2 class="section-title">Everything you need to keep score — nothing you don't.</h2>
+            </div>
+            <div class="modes-grid">
+                <article class="mode-card animate-on-scroll">
+                    <h3>Score, count &amp; innings</h3>
+                    <p>Track runs, balls, strikes, and outs with top/bottom innings. R-H-E is right there when you want it.</p>
+                </article>
+                <article class="mode-card animate-on-scroll">
+                    <h3>Undo &amp; edit</h3>
+                    <p>Tapped the wrong button? Undo any action or correct the count instantly — no menu-diving.</p>
+                </article>
+                <article class="mode-card animate-on-scroll">
+                    <h3>Never lose a game</h3>
+                    <p>Games are saved on-device automatically, so an interrupted inning is always right where you left it.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="platform-grid">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">BASEBALL &amp; SOFTBALL, IPHONE &amp; IPAD</span>
+                <h2 class="section-title">From the dugout to the bleachers.</h2>
+            </div>
+            <div class="platform-cols">
+                <article class="platform-col animate-on-scroll">
+                    <h3>Free to score</h3>
+                    <ul class="platform-list">
+                        <li>Big, glanceable score numerals</li>
+                        <li>Balls, strikes, outs &amp; innings</li>
+                        <li>Top/bottom half tracking</li>
+                        <li>Runs, hits &amp; errors (R-H-E)</li>
+                        <li>Undo and edit the count</li>
+                        <li>Games saved automatically on-device</li>
+                    </ul>
+                </article>
+                <article class="platform-col animate-on-scroll">
+                    <h3>Unlock Pro</h3>
+                    <ul class="platform-list">
+                        <li>Stadium mode for bright daylight</li>
+                        <li>Live Activity on the Lock Screen</li>
+                        <li>Dynamic Island compact &amp; expanded</li>
+                        <li>Home &amp; Lock Screen widgets</li>
+                        <li>Start a new game with Siri</li>
+                        <li>Remove ads</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="cta-card animate-on-scroll">
+                <h2>Ready for the next game?</h2>
+                <p class="cta-subtitle">Free download. Remove ads and unlock Pro with a one-time Lifetime or annual Season Pass.</p>
+                <a href="https://apps.apple.com/app/id1466325456" class="app-store-badge"
+                   aria-label="Download Baseball &amp; Softball Scoreboard on the App Store">
+                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
+                         alt="Download Baseball &amp; Softball Scoreboard on the App Store">
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://ifthendev.com" class="footer-link">If Then Dev</a>
+            <a href="privacypolicy.html" class="footer-link">Privacy Policy</a>
+            <a href="help.html" class="footer-link">Help</a>
+            <a href="https://ifthendev.com/contact/index.html?app=Baseball%20%26%20Softball%20Scoreboard" class="footer-link">Contact</a>
+        </div>
+        <p class="footer-copy">&copy; <span class="copyright-year">2026</span> If Then Dev, LLC. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Vanilla IntersectionObserver for animate-on-scroll fade-in.
+        (function() {
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelectorAll('.animate-on-scroll').forEach(function(el) { el.classList.add('visible'); });
+                return;
+            }
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.animate-on-scroll').forEach(function(el) { observer.observe(el); });
+        })();
+    </script>
+    <script>document.querySelectorAll('.copyright-year').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
+</body>
+</html>
