@@ -7,4 +7,7 @@
   <url><loc>https://ifthendev.com/bookshelfscanner/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ifthendev.com/pickleboard/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ifthendev.com/misales/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ifthendev.com/baseball-scoreboard/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ifthendev.com/baseball-scoreboard/privacypolicy.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://ifthendev.com/baseball-scoreboard/help.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
 </urlset>
