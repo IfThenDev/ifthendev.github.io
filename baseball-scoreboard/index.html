@@ -259,8 +259,15 @@
 
         .hero-cta {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--s-3);
             margin-bottom: var(--s-7);
+        }
+
+        .hero-reassure {
+            font-size: var(--fs-sm);
+            color: var(--text-muted);
         }
 
         .hero-visual {
@@ -270,10 +277,12 @@
         }
 
         .hero-visual img {
-            max-width: 100%;
+            max-width: 280px;
+            width: 100%;
             height: auto;
+            border: 1px solid var(--border-strong);
             border-radius: var(--radius-lg);
-            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
         }
 
         /* === App Store Badge (official black art — fixed 54px, not recolored) === */
@@ -362,10 +371,12 @@
         }
 
         .feature-visual img {
-            max-width: 100%;
+            max-width: 300px;
+            width: 100%;
             height: auto;
+            border: 1px solid var(--border-strong);
             border-radius: var(--radius-lg);
-            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
         }
 
         /* === Scoring Modes === */
@@ -671,6 +682,11 @@
                     <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
                          alt="Download Baseball &amp; Softball Scoreboard on the App Store">
                 </a>
+                <p class="hero-reassure">Free to download — score every game.</p>
+            </div>
+
+            <div class="hero-visual animate-on-scroll">
+                <img src="images/board.png" alt="Baseball &amp; Softball Scoreboard showing Hawks 4, Bears 3, bottom of the 7th, with the ball-strike-out count and the R-H-E line" loading="lazy">
             </div>
         </section>
 
@@ -681,13 +697,13 @@
                 <p class="section-subtitle">Pin the live score to your Lock Screen and Dynamic Island so you can follow the game without opening the app — score, inning, and count, right where you can see them.</p>
             </div>
             <div class="feature-visual animate-on-scroll">
-                <img src="images/app-icon.png" alt="Live Activity on an iPhone Lock Screen showing the running score, with the Dynamic Island scoreboard expanded" loading="lazy">
+                <img src="images/lock-screen.jpg" alt="iPhone Lock Screen showing the Baseball &amp; Softball Scoreboard Live Activity — Hawks 4, Bears 3, bottom of the 7th, with the ball-strike-out count" loading="lazy">
             </div>
         </section>
 
         <section class="feature-marquee alt" id="stadium-mode">
             <div class="feature-visual animate-on-scroll">
-                <img src="images/app-icon.png" alt="Baseball &amp; Softball Scoreboard in Stadium mode showing large, high-contrast score numerals readable in daylight" loading="lazy">
+                <img src="images/stadium.png" alt="Baseball &amp; Softball Scoreboard board in a bright, high-contrast mode with large score numerals readable in daylight" loading="lazy">
             </div>
             <div class="feature-marquee-content animate-on-scroll">
                 <span class="section-label">STADIUM MODE</span>
@@ -703,7 +719,7 @@
                 <p class="section-subtitle">Home Screen and Lock Screen widgets show the current score while a game is live and the final once it ends — so the last result is always a glance away.</p>
             </div>
             <div class="feature-visual animate-on-scroll">
-                <img src="images/app-icon.png" alt="Home Screen and Lock Screen widgets displaying the baseball score and final result" loading="lazy">
+                <img src="images/widget.jpg" alt="iPhone Home Screen with the Baseball &amp; Softball Scoreboard widget showing Hawks 4, Bears 3, bottom of the 7th" loading="lazy">
             </div>
         </section>
 
