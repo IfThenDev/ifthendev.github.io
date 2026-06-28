@@ -181,6 +181,25 @@
             color: var(--text-muted);
         }
 
+        .edition-notice {
+            background: rgba(64, 143, 219, 0.08);
+            border: 1px solid rgba(64, 143, 219, 0.35);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .edition-notice strong {
+            color: var(--white);
+        }
+
+        .edition-notice a {
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
         footer {
             border-top: 1px solid var(--border);
             padding: var(--spacing-lg) 0;
@@ -228,6 +247,11 @@
             <p>QuickScan for Schools</p>
         </header>
 
+        <div class="edition-notice">
+            You're reading the privacy policy for <strong>QuickScan for Schools</strong> — the paid, fully-unlocked edition licensed through Apple School Manager or Volume Purchase, with no in-app purchases and no third-party analytics or advertising.
+            Looking for the free consumer app? Read the <a href="privacypolicy.html">QuickScan Book Leveler privacy policy&nbsp;→</a>
+        </div>
+
         <main>
             <section id="privacy-policy">
                 <div class="highlight-box">
@@ -235,10 +259,21 @@
                 </div>
 
                 <h3>A Fully Unlocked Edition</h3>
-                <p>QuickScan for Schools is a paid, fully unlocked edition with every feature included. It contains no in-app purchases or subscriptions, and it does not use any third-party purchase, subscription, advertising, or analytics services.</p>
+                <p>QuickScan for Schools is a paid, fully unlocked edition with every feature included. It has no in-app purchases or subscriptions. In this edition the app never initializes, configures, or contacts any third-party purchase, subscription, advertising, or analytics service — no such service is set up, called, or sent any data when you use it. There are no advertising or analytics SDKs of any kind active in the app.</p>
+
+                <h3>For Schools and Districts (FERPA / COPPA)</h3>
+                <p>QuickScan for Schools is a teacher tool for looking up book reading levels. It is not a student information system and is not designed to collect student data:</p>
+                <ul>
+                    <li>The app does not ask for, collect, or store student names, photos, grades, contacts, accounts, or any other personally identifiable student information.</li>
+                    <li>It creates no user accounts and requires no login. There is no analytics, advertising, or behavioral-tracking service in this edition, and no usage data is sent to If Then Dev or any third party.</li>
+                    <li>The only information sent off the device is a book's ISBN, title, and author, transmitted to book-information services solely to return reading levels and cover art. No student or staff information is attached to these lookups.</li>
+                    <li>Scan history stays on the device and, if iCloud is enabled, in the private CloudKit database of the account the device uses — including a Managed Apple ID administered by your district. If Then Dev cannot access it.</li>
+                </ul>
+                <p>Because the app collects no student records, it does not create FERPA "education records" on If Then Dev's part, and it is not directed to children for the purposes of COPPA. Districts remain responsible for their own Apple School Manager configuration and Managed Apple ID data governance. If your district requires a signed data privacy agreement, please <a href="https://ifthendev.com/contact/index.html?app=QuickScan%20for%20Schools">contact us</a>.</p>
 
                 <h3>Information We Don't Collect</h3>
                 <p>QuickScan does not collect, store, or transmit any personal information to If Then Dev servers. We don't track your usage, build profiles, or share data with advertisers.</p>
+                <p>To keep the app working, QuickScan periodically checks its own service-status page and a configuration file on our servers. These checks send no personal information, device identifiers, or usage data — they only read whether services are available and which book-data sources to use.</p>
 
                 <h3>Camera Access</h3>
                 <p>QuickScan uses your device's camera solely to scan book barcodes. Camera access is requested only when you use the scanning feature. No images or video are stored, transmitted, or recorded. The camera is used exclusively for real-time barcode detection on your device.</p>
@@ -262,7 +297,7 @@
                 <p>This data remains on your device and under your control. You can delete individual books or your entire scan history at any time from within the app.</p>
 
                 <h3>iCloud Sync</h3>
-                <p>If you have iCloud enabled, your scan history may sync across your Apple devices using your personal iCloud account. This sync uses Apple's CloudKit service and is governed by Apple's privacy policy. Your data is stored in your private iCloud container and is not accessible to If Then Dev.</p>
+                <p>If iCloud is enabled, your scan history may sync across your Apple devices using whichever iCloud account the device is signed into — a personal Apple Account or a Managed Apple ID issued through Apple School Manager. This sync uses Apple's CloudKit service and is governed by Apple's privacy policy. Your data is stored in that account's private CloudKit database — never in a shared or public database — and is administered by whoever controls that Apple Account or Managed Apple ID. It is not accessible to If Then Dev.</p>
 
                 <h3>Home Screen Widgets</h3>
                 <p>QuickScan's Home Screen widgets display your recently scanned books. This data is shared between the main app and widget extension using a secure App Group container on your device. Widget data never leaves your device except through iCloud sync (if enabled).</p>
@@ -303,7 +338,7 @@
         </main>
 
         <footer>
-            <p>Last Updated: June 17, 2026</p>
+            <p>Last Updated: June 28, 2026</p>
             <p>&copy; <span class="copyright-year">2026</span> If Then Dev, LLC. All rights reserved.</p>
             <p><a href="https://ifthendev.com/contact/index.html?app=QuickScan%20for%20Schools">Contact Support</a> · <a href="index.html">QuickScan Home</a></p>
         </footer>

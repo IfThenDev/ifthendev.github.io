@@ -181,6 +181,25 @@
             color: var(--text-muted);
         }
 
+        .edition-notice {
+            background: rgba(64, 143, 219, 0.08);
+            border: 1px solid rgba(64, 143, 219, 0.35);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .edition-notice strong {
+            color: var(--white);
+        }
+
+        .edition-notice a {
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
         footer {
             border-top: 1px solid var(--border);
             padding: var(--spacing-lg) 0;
@@ -228,6 +247,12 @@
             <p>QuickScan Book Leveler</p>
         </header>
 
+        <div class="edition-notice">
+            You're reading the privacy policy for the <strong>free QuickScan Book Leveler</strong>.
+            Using the paid <strong>School edition</strong>, licensed through Apple School Manager or Volume Purchase?
+            Its data practices differ — read the <a href="schools-privacypolicy.html">QuickScan for Schools privacy policy&nbsp;→</a>
+        </div>
+
         <main>
             <section id="privacy-policy">
                 <div class="highlight-box">
@@ -259,7 +284,7 @@
                 <p>This data remains on your device and under your control. You can delete individual books or your entire scan history at any time from within the app.</p>
 
                 <h3>iCloud Sync</h3>
-                <p>If you have iCloud enabled, your scan history may sync across your Apple devices using your personal iCloud account. This sync uses Apple's CloudKit service and is governed by Apple's privacy policy. Your data is stored in your private iCloud container and is not accessible to If Then Dev.</p>
+                <p>If you have iCloud enabled, your scan history may sync across your Apple devices using whichever iCloud account the device is signed into. This sync uses Apple's CloudKit service and is governed by Apple's privacy policy. Your data is stored in that account's private CloudKit database — never in a shared or public database — and is not accessible to If Then Dev.</p>
 
                 <h3>Home Screen Widgets</h3>
                 <p>QuickScan's Home Screen widgets display your recently scanned books. This data is shared between the main app and widget extension using a secure App Group container on your device. Widget data never leaves your device except through iCloud sync (if enabled).</p>
@@ -268,13 +293,13 @@
                 <p>QuickScan indexes your scanned books for iOS Spotlight search, allowing you to quickly find books from your Home Screen. This index is stored locally on your device and is managed by iOS.</p>
 
                 <h3>Subscriptions</h3>
-                <p>QuickScan offers optional in-app subscriptions managed through the App Store. We use RevenueCat to manage subscription status. RevenueCat may collect anonymous purchase data and device identifiers to facilitate subscription management. See <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">RevenueCat's privacy policy</a> for details. Your payment information is handled entirely by Apple and is never shared with If Then Dev.</p>
+                <p>QuickScan offers optional in-app subscriptions managed through the App Store. We use RevenueCat to manage subscription status. To do this, RevenueCat may collect anonymous purchase data and device identifiers. QuickScan also sends RevenueCat a small amount of non-personal usage information about book lookups — the most recent scanned ISBN, which lookup source answered it, and whether the lookup succeeded — to help us understand which book data sources are working. This information identifies books, not people: no name, contact, or account information is attached. See <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">RevenueCat's privacy policy</a> for details. Your payment information is handled entirely by Apple and is never shared with If Then Dev.</p>
 
                 <h3>Data Export</h3>
                 <p>You can export your scan history as CSV or PDF files using the built-in export feature. Exported data is shared only through methods you explicitly choose (email, AirDrop, Files, etc.).</p>
 
                 <h3>Children's Privacy</h3>
-                <p>QuickScan is designed for use by teachers and parents to help children find appropriately leveled books. The app does not collect any personal information from users of any age. Children should use QuickScan under adult supervision.</p>
+                <p>QuickScan is designed for use by teachers and parents to help children find appropriately leveled books. It is intended for adults; it is not directed to children, and we do not knowingly collect personal information from children. The app collects no names, contacts, accounts, or profile information from anyone. The limited technical data it does handle — anonymous purchase and device identifiers, and the book-lookup information described under "Subscriptions" above — is processed to operate subscriptions and is never used to build a profile or identify a child. Children should use QuickScan under adult supervision.</p>
 
                 <h3>Changes to This Policy</h3>
                 <p>We may update this privacy policy from time to time. Any changes will be reflected on this page with an updated revision date.</p>
@@ -306,7 +331,7 @@
         </main>
 
         <footer>
-            <p>Last Updated: February 13, 2026</p>
+            <p>Last Updated: June 28, 2026</p>
             <p>&copy; <span class="copyright-year">2026</span> If Then Dev, LLC. All rights reserved.</p>
             <p><a href="https://ifthendev.com/contact/index.html?app=QuickScan%20Book%20Leveler">Contact Support</a> · <a href="index.html">QuickScan Home</a></p>
         </footer>
