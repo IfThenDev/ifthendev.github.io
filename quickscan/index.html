@@ -545,6 +545,20 @@
             justify-content: center;
         }
 
+        .cta-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-option-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            color: var(--text-muted);
+        }
+
         /* Footer */
         footer {
             padding: 40px 0;
@@ -661,9 +675,18 @@
             </p>
 
             <div class="hero-cta">
-                <a href="https://apps.apple.com/us/app/quickscan-book-leveler/id1567675801" class="app-store-badge">
-                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1619740800" alt="Download on the App Store">
-                </a>
+                <div class="cta-option">
+                    <a href="https://apps.apple.com/us/app/quickscan-book-leveler/id1567675801" class="app-store-badge">
+                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1619740800" alt="Download QuickScan on the App Store">
+                    </a>
+                    <span class="cta-option-label">Standard · Free</span>
+                </div>
+                <div class="cta-option">
+                    <a href="https://apps.apple.com/us/app/quickscan-for-schools/id6781372971" class="app-store-badge">
+                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1619740800" alt="Download QuickScan for Schools on the App Store">
+                    </a>
+                    <span class="cta-option-label">For Schools · All features included</span>
+                </div>
             </div>
 
             <div class="hero-rating">
@@ -851,13 +874,22 @@
                 <div class="cta-content">
                     <h2 class="cta-title">Start leveling books today</h2>
                     <p class="cta-subtitle">
-                        Free to download.<br>
+                        Free to download, or get the fully-unlocked Schools edition through Apple School Manager.<br>
                         Available on iPhone, iPad, and Mac.
                     </p>
                     <div class="cta-buttons">
-                        <a href="https://apps.apple.com/us/app/quickscan-book-leveler/id1567675801" class="app-store-badge">
-                            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1619740800" alt="Download on the App Store">
-                        </a>
+                        <div class="cta-option">
+                            <a href="https://apps.apple.com/us/app/quickscan-book-leveler/id1567675801" class="app-store-badge">
+                                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1619740800" alt="Download QuickScan on the App Store">
+                            </a>
+                            <span class="cta-option-label">Standard · Free</span>
+                        </div>
+                        <div class="cta-option">
+                            <a href="https://apps.apple.com/us/app/quickscan-for-schools/id6781372971" class="app-store-badge">
+                                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1619740800" alt="Download QuickScan for Schools on the App Store">
+                            </a>
+                            <span class="cta-option-label">For Schools · All features included</span>
+                        </div>
                     </div>
                 </div>
             </div>

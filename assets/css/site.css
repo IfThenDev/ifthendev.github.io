@@ -322,6 +322,21 @@ a { color: inherit; text-decoration: none; }
   .card-platforms { font-size: 11px; line-height: 14px; }
 }
 
+.card-badge {
+  align-self: flex-start;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--accent, var(--ink));
+  background: color-mix(in oklab, var(--accent, var(--ink)) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--accent, var(--ink)) 30%, transparent);
+  padding: 4px 8px;
+  border-radius: 50px;
+}
+
 .card-strip {
   position: absolute;
   left: 0; right: 0; bottom: 0;
