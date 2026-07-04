@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baseball &amp; Softball Scoreboard — Glanceable, Sunlight-Readable Scorekeeper</title>
-    <meta name="description" content="A dead-simple baseball &amp; softball scoreboard with Live Activities, Dynamic Island, and Home &amp; Lock Screen widgets — follow the game at a glance. Big, glanceable numerals; never lose a saved game.">
+    <meta name="description" content="A dead-simple baseball &amp; softball scoreboard with Live Activities, Dynamic Island, and Home &amp; Lock Screen widgets — follow the game at a glance. Big, glanceable numerals; never lose a saved game. Now on Apple Watch and Apple TV.">
     <meta name="theme-color" content="#0C1A12">
     <link rel="icon" href="images/app-icon.png">
     <meta property="og:title" content="Baseball &amp; Softball Scoreboard">
-    <meta property="og:description" content="Keep the live score on your Lock Screen. A dead-simple baseball &amp; softball scoreboard with Live Activities, Dynamic Island, and widgets — follow the game without opening the app.">
+    <meta property="og:description" content="Keep the live score on your Lock Screen. A dead-simple baseball &amp; softball scoreboard with Live Activities, Dynamic Island, and widgets — follow the game without opening the app. Now on Apple Watch and Apple TV.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ifthendev.com/baseball-scoreboard/">
     <meta property="og:image" content="images/app-icon.png">
@@ -379,6 +379,9 @@
             box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
         }
 
+        /* Landscape 16:9 Apple TV board needs more width than the portrait phone shots to read as a big screen. */
+        #apple-tv .feature-visual img { max-width: 480px; }
+
         /* === Scoring Modes === */
         .scoring-modes {
             max-width: var(--container-max);
@@ -672,7 +675,7 @@
         <section class="hero">
             <div class="hero-badge animate-on-scroll">
                 <span class="hero-badge-dot" aria-hidden="true"></span>
-                Baseball &amp; Softball Scoreboard
+                New — now on Apple Watch &amp; Apple TV
             </div>
             <h1 class="hero-title animate-on-scroll">
                 Keep the score on your <span class="highlight">Lock Screen</span>.
@@ -727,6 +730,28 @@
             </div>
         </section>
 
+        <section class="feature-marquee alt" id="apple-watch">
+            <div class="feature-visual animate-on-scroll">
+                <img src="images/apple-watch.png" alt="Apple Watch showing the Baseball &amp; Softball Scoreboard app — Hawks 4, Bears 3, bottom of the 7th, with the ball-strike-out count" loading="lazy">
+            </div>
+            <div class="feature-marquee-content animate-on-scroll">
+                <span class="section-label">APPLE WATCH — FREE</span>
+                <h2 class="section-title">Score right from your wrist.</h2>
+                <p class="section-subtitle">Tap out runs, balls, strikes, and outs on your Apple Watch — no phone in hand. Score on the Watch or the iPhone and both stay in step. Add the watch-face complication and the live score sits on your wrist, a glance away. Free for everyone, no Pro required.</p>
+            </div>
+        </section>
+
+        <section class="feature-marquee" id="apple-tv">
+            <div class="feature-marquee-content animate-on-scroll">
+                <span class="section-label">APPLE TV</span>
+                <h2 class="section-title">Put the whole board on the big screen.</h2>
+                <p class="section-subtitle">Cast the live scoreboard to your Apple TV and let the whole room follow along — score, inning, count, team names, and R-H-E, big enough to read from the couch. Your iPhone stays the remote. Your first 2 games are on us; go Pro to cast every game after that.</p>
+            </div>
+            <div class="feature-visual animate-on-scroll">
+                <img src="images/apple-tv.png" alt="The Baseball &amp; Softball Scoreboard board on an Apple TV — Hawks 4, Bears 3, bottom of the 7th, with the ball-strike-out count and the R-H-E line" loading="lazy">
+            </div>
+        </section>
+
         <section class="scoring-modes">
             <div class="section-header animate-on-scroll">
                 <span class="section-label">BUILT FOR THE BALLPARK</span>
@@ -754,7 +779,7 @@
 
         <section class="platform-grid">
             <div class="section-header animate-on-scroll">
-                <span class="section-label">BASEBALL &amp; SOFTBALL, IPHONE &amp; IPAD</span>
+                <span class="section-label">BASEBALL &amp; SOFTBALL &mdash; IPHONE, APPLE WATCH &amp; APPLE TV</span>
                 <h2 class="section-title">From the dugout to the bleachers.</h2>
             </div>
             <div class="platform-cols">
@@ -770,6 +795,9 @@
                         <li>Mark a game Final &amp; per-game notes</li>
                         <li>Share a branded scorecard image</li>
                         <li>Start or check a game with Siri</li>
+                        <li>Apple Watch app — score right from your wrist</li>
+                        <li>Live score on your Apple Watch face</li>
+                        <li>Cast the board to Apple TV — first 2 games free</li>
                         <li>Games saved on-device — sort &amp; delete</li>
                     </ul>
                 </article>
@@ -779,6 +807,7 @@
                         <li>Live Activity on the Lock Screen</li>
                         <li>Dynamic Island compact &amp; expanded</li>
                         <li>Home &amp; Lock Screen widgets</li>
+                        <li>Unlimited casting to Apple TV</li>
                         <li>Remove ads</li>
                     </ul>
                 </article>
