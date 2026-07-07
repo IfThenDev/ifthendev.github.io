@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soccer Scoreboard — A Match Timer &amp; Clock You Can Trust</title>
+    <meta name="description" content="A soccer clock that won't drift or run backwards when backgrounded. Keep score free on iPhone and iPad — then glance at it on Apple Watch, your Lock Screen, and widgets. Offline, no account, no ads.">
+    <meta name="theme-color" content="#0C1A12">
+    <!-- TODO: app-icon.png is the legacy v1 1024² stopgap (D-11) — swap for the modernized v2 PitchGreen icon once AppIcon.appiconset is populated. -->
+    <link rel="icon" href="images/app-icon.png">
+    <meta property="og:title" content="Soccer Scoreboard">
+    <meta property="og:description" content="A soccer scoreboard whose clock you can trust — offline, no account, no ads, with the score on your wrist and Lock Screen. Keep score free on iPhone and iPad.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ifthendev.com/soccerscoreboard/">
+    <meta property="og:image" content="images/app-icon.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <style>
+        :root {
+            /* === Brand (PitchGreen / Stadium — values equal baseball's; kept as --ballpark-* for diff-minimal cloning, D-10) === */
+            --ballpark-green:       #27A24C;
+            --ballpark-green-light: #1B8A3E;
+            --ballpark-green-soft:  rgba(39, 162, 76, 0.15);
+            --bg-stadium:           #0C1A12;
+            --panel:                #13261B;
+
+            /* === Neutrals === */
+            --white:          #ffffff;
+            --text-light:     rgba(242, 255, 246, 0.92);
+            --text-muted:     rgba(242, 255, 246, 0.65);
+            --border-subtle:  rgba(255, 255, 255, 0.08);
+            --border-strong:  rgba(255, 255, 255, 0.18);
+
+            /* === Spacing scale (multiples of 4 — verbatim from the sibling scoreboard sites) === */
+            --s-1: 4px;
+            --s-2: 8px;
+            --s-3: 12px;
+            --s-4: 16px;
+            --s-5: 24px;
+            --s-6: 32px;
+            --s-7: 48px;
+            --s-8: 64px;
+            --s-9: 96px;
+            --s-10: 128px;
+
+            /* === Layout === */
+            --container-max: 1100px;
+
+            /* === Radius === */
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 32px;
+            --radius-pill: 50px;
+
+            /* === Type scale — EXACTLY 4 sizes, 2 weights (400/700) === */
+            --fs-sm:   0.875rem;
+            --fs-body: 1.0625rem;
+            --fs-h2:   clamp(1.75rem, 4vw, 2.5rem);
+            --fs-h1:   clamp(2.25rem, 6vw, 3.75rem);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-stadium);
+            color: var(--text-light);
+            font-size: var(--fs-body);
+            line-height: 1.6;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* === Skip Link === */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: var(--s-2);
+            background: var(--ballpark-green);
+            color: var(--bg-stadium);
+            padding: var(--s-2) var(--s-4);
+            border-radius: var(--s-1);
+            text-decoration: none;
+            font-weight: 700;
+            z-index: 100;
+            transition: top 0.2s;
+        }
+
+        .skip-link:focus {
+            top: var(--s-2);
+        }
+
+        /* === Background atmosphere === */
+        .bg-atmosphere {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .bg-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--ballpark-green-light);
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .bg-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--panel);
+            bottom: 20%;
+            left: -100px;
+            animation-delay: -7s;
+        }
+
+        .bg-orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--ballpark-green);
+            top: 50%;
+            right: 10%;
+            opacity: 0.18;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33%      { transform: translate(30px, -30px) scale(1.05); }
+            66%      { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* === Header === */
+        header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-5);
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: var(--s-3);
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: var(--fs-body);
+            letter-spacing: -0.02em;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: var(--fs-sm);
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--white);
+        }
+
+        /* === Main + Hero === */
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        section.hero {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-7) var(--s-5) var(--s-9);
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--s-2);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-pill);
+            padding: var(--s-2) var(--s-4);
+            font-size: var(--fs-sm);
+            margin-bottom: var(--s-6);
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--ballpark-green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%      { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        .hero-title {
+            font-size: var(--fs-h1);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--s-5);
+            color: var(--white);
+        }
+
+        .hero-title .highlight {
+            color: var(--ballpark-green);
+        }
+
+        .hero-subtitle {
+            font-size: var(--fs-body);
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto var(--s-7);
+            line-height: 1.5;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--s-3);
+            margin-bottom: var(--s-7);
+        }
+
+        .hero-reassure {
+            font-size: var(--fs-sm);
+            color: var(--text-muted);
+        }
+
+        .hero-visual {
+            margin-top: var(--s-7);
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-visual img {
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+        }
+
+        /* === App Store Badge (official black art — fixed 54px, not recolored) === */
+        .app-store-badge {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            border-radius: var(--s-3);
+        }
+
+        .app-store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .app-store-badge img {
+            height: 54px;
+            width: auto;
+            display: block;
+        }
+
+        .app-store-badge:focus-visible {
+            outline: 3px solid var(--ballpark-green);
+            outline-offset: 4px;
+            border-radius: var(--s-3);
+        }
+
+        /* === Section Header (eyebrow + title) === */
+        .section-label {
+            display: inline-block;
+            background: var(--ballpark-green-soft);
+            color: var(--ballpark-green);
+            padding: var(--s-1) var(--s-3);
+            border-radius: var(--radius-pill);
+            font-size: var(--fs-sm);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--s-4);
+        }
+
+        .section-title {
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            color: var(--white);
+            margin-bottom: var(--s-4);
+        }
+
+        .section-subtitle {
+            font-size: var(--fs-body);
+            color: var(--text-muted);
+            max-width: 540px;
+            line-height: 1.5;
+            margin-bottom: var(--s-5);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto var(--s-7);
+            padding: 0 var(--s-5);
+        }
+
+        .section-header .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* === Feature Marquee === */
+        .feature-marquee {
+            display: grid;
+            grid-template-columns: 5fr 6fr;
+            gap: var(--s-7);
+            align-items: center;
+            padding: var(--s-9) var(--s-5);
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+
+        .feature-marquee.alt > .feature-visual { order: 1; }
+        .feature-marquee.alt > .feature-marquee-content { order: 2; }
+
+        .feature-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .feature-visual img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+        }
+
+        /* The Apple Watch shot is narrower than the portrait phone frames — cap it tighter so it reads as a watch. */
+        #apple-watch .feature-visual img { max-width: 220px; }
+
+        /* === Scoring Modes === */
+        .scoring-modes {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-9) var(--s-5);
+        }
+
+        .modes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--s-5);
+        }
+
+        .mode-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: var(--s-6);
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .mode-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--border-strong);
+            transform: translateY(-4px);
+        }
+
+        .mode-card h3 {
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--s-2);
+        }
+
+        .mode-card p {
+            font-size: var(--fs-sm);
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* === Platform Grid === */
+        .platform-grid {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-9) var(--s-5);
+        }
+
+        .platform-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--s-7);
+        }
+
+        .platform-col {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: var(--s-6);
+        }
+
+        .platform-col h3 {
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--s-4);
+        }
+
+        .platform-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .platform-list li {
+            font-size: var(--fs-body);
+            color: var(--text-light);
+            padding: var(--s-2) 0;
+            border-bottom: 1px solid var(--border-subtle);
+            position: relative;
+            padding-left: var(--s-5);
+        }
+
+        .platform-list li:last-child {
+            border-bottom: none;
+        }
+
+        .platform-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--ballpark-green);
+        }
+
+        /* === CTA Section === */
+        section.cta {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-9) var(--s-5);
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, var(--ballpark-green-light) 0%, var(--panel) 100%);
+            border-radius: var(--radius-xl);
+            padding: var(--s-8) var(--s-7);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, var(--ballpark-green-soft) 0%, transparent 50%);
+            animation: shimmer 15s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0%   { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-card h2 {
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--s-4);
+        }
+
+        .cta-subtitle {
+            font-size: var(--fs-body);
+            color: var(--text-light);
+            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto var(--s-6);
+        }
+
+        /* === Footer === */
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: var(--s-7) var(--s-5);
+            max-width: var(--container-max);
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--s-5);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--s-5);
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: var(--fs-sm);
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--white);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: var(--fs-sm);
+        }
+
+        /* === Focus indicators === */
+        a:focus-visible,
+        button:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid var(--ballpark-green);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        /* === Scroll-reveal === */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === Responsive === */
+        @media (max-width: 768px) {
+            section.hero {
+                padding: var(--s-5) var(--s-5) var(--s-7);
+            }
+
+            .feature-marquee,
+            .feature-marquee.alt {
+                grid-template-columns: 1fr;
+                padding: var(--s-7) var(--s-5);
+                gap: var(--s-5);
+            }
+
+            .feature-marquee.alt > .feature-visual { order: 0; }
+            .feature-marquee.alt > .feature-marquee-content { order: 0; }
+
+            .scoring-modes,
+            .platform-grid {
+                padding: var(--s-7) var(--s-5);
+            }
+
+            .modes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-cols {
+                grid-template-columns: 1fr;
+                gap: var(--s-5);
+            }
+
+            .cta-card {
+                padding: var(--s-7) var(--s-5);
+                border-radius: var(--radius-lg);
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+        }
+
+        /* === Reduced motion gate === */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .bg-orb { animation: none; }
+            .hero-badge-dot { animation: none; }
+            .cta-card::before { animation: none; }
+            .animate-on-scroll {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="bg-atmosphere" aria-hidden="true">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+    </div>
+
+    <header>
+        <a href="https://ifthendev.com/soccerscoreboard/" class="logo-link" aria-label="Soccer Scoreboard home">
+            <img src="images/app-icon.png" alt="Soccer Scoreboard app icon" class="logo">
+            <span class="logo-text">Soccer Scoreboard</span>
+        </a>
+        <nav>
+            <a href="https://ifthendev.com" class="nav-link">If Then Dev</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-badge animate-on-scroll">
+                <span class="hero-badge-dot" aria-hidden="true"></span>
+                New — score on your wrist, Lock Screen &amp; widgets
+            </div>
+            <h1 class="hero-title animate-on-scroll">
+                A soccer scoreboard whose <span class="highlight">clock you can trust</span>.
+            </h1>
+            <p class="hero-subtitle animate-on-scroll">
+                Offline, no account, no ads — with the score on your wrist and Lock Screen.
+            </p>
+            <div class="hero-cta animate-on-scroll">
+                <a href="https://apps.apple.com/app/id1437729339" class="app-store-badge"
+                   aria-label="Download Soccer Scoreboard on the App Store">
+                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
+                         alt="Download Soccer Scoreboard on the App Store">
+                </a>
+                <p class="hero-reassure">Free on iPhone &amp; iPad — keep score every match.</p>
+            </div>
+
+            <div class="hero-visual animate-on-scroll">
+                <img src="images/board.png" alt="Soccer Scoreboard showing Hawks 2, Rovers 1 at 63 minutes, with the running match clock" loading="lazy">
+            </div>
+        </section>
+
+        <section class="feature-marquee" id="clock">
+            <div class="feature-marquee-content animate-on-scroll">
+                <span class="section-label">A Clock That Just Works</span>
+                <h2 class="section-title">Glance down, read the clock, look back up.</h2>
+                <p class="section-subtitle">Halves, added and stoppage time, and a clock you can edit to start the second half right. It keeps running correctly in the background — it won't drift or jump backwards when your phone locks.</p>
+            </div>
+            <div class="feature-visual animate-on-scroll">
+                <img src="images/board.png" alt="Soccer Scoreboard showing Hawks 2, Rovers 1 at 63 minutes, with the running match clock" loading="lazy">
+            </div>
+        </section>
+
+        <section class="feature-marquee alt" id="apple-watch">
+            <div class="feature-visual animate-on-scroll">
+                <img src="images/apple-watch.png" alt="Apple Watch showing the Soccer Scoreboard app — Hawks 2, Rovers 1, 63 minutes, with the live match clock" loading="lazy">
+            </div>
+            <div class="feature-marquee-content animate-on-scroll">
+                <span class="section-label">Score On Your Wrist · Pro</span>
+                <h2 class="section-title">Score right from your wrist.</h2>
+                <p class="section-subtitle">See the live score and the running match clock on your Apple Watch — a glance down at your wrist, no phone in hand.</p>
+            </div>
+        </section>
+
+        <section class="feature-marquee" id="live-activity">
+            <div class="feature-marquee-content animate-on-scroll">
+                <span class="section-label">Live Activity + Dynamic Island · Pro</span>
+                <h2 class="section-title">Keep the match on your Lock Screen and notch.</h2>
+                <p class="section-subtitle">Pin the live score and clock to your Lock Screen and Dynamic Island, so you can follow the match without opening the app.</p>
+            </div>
+            <div class="feature-visual animate-on-scroll">
+                <img src="images/lock-screen.jpg" alt="iPhone Lock Screen showing the Soccer Scoreboard Live Activity — Hawks 2, Rovers 1, 63 minutes" loading="lazy">
+            </div>
+        </section>
+
+        <section class="feature-marquee alt" id="widgets">
+            <div class="feature-visual animate-on-scroll">
+                <img src="images/widget.jpg" alt="iPhone Home Screen with the Soccer Scoreboard widget showing Hawks 2, Rovers 1, 63 minutes" loading="lazy">
+            </div>
+            <div class="feature-marquee-content animate-on-scroll">
+                <span class="section-label">Home &amp; Lock Screen Widgets · Pro</span>
+                <h2 class="section-title">The score, one glance away.</h2>
+                <p class="section-subtitle">Home Screen and Lock Screen widgets show the current score while a match is live and the final once it ends — so the last result is always a glance away.</p>
+            </div>
+        </section>
+
+        <section class="feature-marquee" id="timeline">
+            <div class="feature-marquee-content animate-on-scroll">
+                <span class="section-label">Every Goal, With The Minute</span>
+                <h2 class="section-title">Read the whole match back.</h2>
+                <p class="section-subtitle">Log every goal with its scorer and the match minute, and review a merged event timeline — goals, cards, and substitutions in order — long after full time.</p>
+            </div>
+            <div class="feature-visual animate-on-scroll">
+                <img src="images/timeline.png" alt="Soccer Scoreboard goal timeline listing each goal by scorer and minute for Hawks versus Rovers" loading="lazy">
+            </div>
+        </section>
+
+        <section class="scoring-modes" id="private">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Private By Design</span>
+                <h2 class="section-title">No account. No ads. Works offline.</h2>
+                <p class="section-subtitle">Everything stays on your device — nothing to collect, nothing leaves your phone, and no sign-in to keep score. Keep the match on the touchline, not in the cloud.</p>
+            </div>
+        </section>
+
+        <section class="scoring-modes">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Built For The Touchline</span>
+                <h2 class="section-title">Everything you need to keep score — nothing you don't.</h2>
+            </div>
+            <div class="modes-grid">
+                <article class="mode-card animate-on-scroll">
+                    <h3>Score, clock &amp; halves</h3>
+                    <p>Track goals against a background-safe match clock — halves, added time, and an editable clock to start the second half right.</p>
+                </article>
+                <article class="mode-card animate-on-scroll">
+                    <h3>Undo &amp; the goal log</h3>
+                    <p>Mis-tapped at a live match? Undo any action. Log each goal with its minute, and record cards and substitutions on a merged timeline.</p>
+                </article>
+                <article class="mode-card animate-on-scroll">
+                    <h3>Never lose a match</h3>
+                    <p>Matches autosave on-device, so an interrupted half is always right where you left it — even if the app is backgrounded or the phone restarts.</p>
+                </article>
+                <article class="mode-card animate-on-scroll">
+                    <h3>Share the match</h3>
+                    <p>Send a clean, branded match card — final score and goal timeline — straight to Messages, AirDrop, or social, as an image or PDF.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="platform-grid">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Soccer &mdash; iPhone, iPad &amp; Apple Watch</span>
+                <h2 class="section-title">From the touchline to your wrist.</h2>
+            </div>
+            <div class="platform-cols">
+                <article class="platform-col animate-on-scroll">
+                    <h3>Free to score</h3>
+                    <ul class="platform-list">
+                        <li>A background-safe match clock you can trust</li>
+                        <li>Halves, added &amp; stoppage time, and extra time</li>
+                        <li>Count-up + added time, or count-down + stop-clock</li>
+                        <li>Editable age-group &amp; competition presets</li>
+                        <li>Two-team score with quick undo</li>
+                        <li>Per-goal log with the minute + merged event timeline</li>
+                        <li>Yellow/red cards &amp; substitutions</li>
+                        <li>Penalty shootout resolution</li>
+                        <li>Reusable teams &amp; team colors</li>
+                        <li>Large, sunlight-legible touchline mode</li>
+                        <li>Native iPad layout</li>
+                        <li>Match history — save, review, share (image/PDF)</li>
+                        <li>Works fully offline — no account</li>
+                    </ul>
+                </article>
+                <article class="platform-col animate-on-scroll">
+                    <h3>Unlock Pro — $4.99 once</h3>
+                    <ul class="platform-list">
+                        <li>Live Activity on the Lock Screen</li>
+                        <li>Dynamic Island compact &amp; expanded</li>
+                        <li>Home &amp; Lock Screen widgets</li>
+                        <li>Apple Watch app — live score &amp; clock on your wrist</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="cta-card animate-on-scroll">
+                <h2>Ready for kickoff?</h2>
+                <p class="cta-subtitle">Free download. Unlock the glanceable surface — Apple Watch, Live Activity, and widgets — once with a one-time $4.99 Pro purchase. No subscription, ever.</p>
+                <a href="https://apps.apple.com/app/id1437729339" class="app-store-badge"
+                   aria-label="Download Soccer Scoreboard on the App Store">
+                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
+                         alt="Download Soccer Scoreboard on the App Store">
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://ifthendev.com" class="footer-link">If Then Dev</a>
+            <a href="privacypolicy.html" class="footer-link">Privacy Policy</a>
+            <a href="help.html" class="footer-link">Help</a>
+            <a href="https://ifthendev.com/contact/index.html?app=Soccer%20Scoreboard" class="footer-link">Contact Support</a>
+        </div>
+        <p class="footer-copy">&copy; <span class="copyright-year">2026</span> If Then Dev, LLC. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Vanilla IntersectionObserver for animate-on-scroll fade-in.
+        (function() {
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelectorAll('.animate-on-scroll').forEach(function(el) { el.classList.add('visible'); });
+                return;
+            }
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            document.querySelectorAll('.animate-on-scroll').forEach(function(el) { observer.observe(el); });
+        })();
+    </script>
+    <script>document.querySelectorAll('.copyright-year').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
+</body>
+</html>
