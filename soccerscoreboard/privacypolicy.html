@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Soccer Scoreboard</title>
+    <meta name="description" content="Soccer Scoreboard privacy policy: Data Not Collected. No account, no analytics, no tracking, no advertising — everything stays on your device.">
+    <meta name="theme-color" content="#0C1A12">
+    <!-- TODO: app-icon.png is the v1 1024x1024 stopgap art (D-11) — swap for the v2 PitchGreen icon when available. -->
+    <link rel="icon" href="images/app-icon.png">
+    <meta property="og:title" content="Privacy Policy — Soccer Scoreboard">
+    <meta property="og:description" content="Data Not Collected. No account, no analytics, no tracking, no advertising — everything stays on your device.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ifthendev.com/soccerscoreboard/privacypolicy.html">
+    <meta property="og:image" content="images/app-icon.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <style>
+        :root {
+            /* === Brand (PitchGreen / Stadium — values equal baseball's; kept as --ballpark-* for diff-minimal cloning, D-10) === */
+            --ballpark-green:       #27A24C;
+            --ballpark-green-light: #1B8A3E;
+            --ballpark-green-soft:  rgba(39, 162, 76, 0.15);
+            --bg-stadium:           #0C1A12;
+            --panel:                #13261B;
+
+            --white:          #ffffff;
+            --text-light:     rgba(242, 255, 246, 0.92);
+            --text-muted:     rgba(242, 255, 246, 0.65);
+            --border-subtle:  rgba(255, 255, 255, 0.08);
+            --border-strong:  rgba(255, 255, 255, 0.18);
+
+            --s-1: 4px;
+            --s-2: 8px;
+            --s-3: 12px;
+            --s-4: 16px;
+            --s-5: 24px;
+            --s-6: 32px;
+            --s-7: 48px;
+            --s-8: 64px;
+            --s-9: 96px;
+            --s-10: 128px;
+
+            --container-max: 1100px;
+            --legal-max: 760px;
+
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 32px;
+            --radius-pill: 50px;
+
+            --fs-sm:   0.875rem;
+            --fs-body: 1.0625rem;
+            --fs-h2:   clamp(1.75rem, 4vw, 2.5rem);
+            --fs-h1:   clamp(2.25rem, 6vw, 3.75rem);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-stadium);
+            color: var(--text-light);
+            font-size: var(--fs-body);
+            line-height: 1.65;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: var(--s-2);
+            background: var(--ballpark-green);
+            color: var(--bg-stadium);
+            padding: var(--s-2) var(--s-4);
+            border-radius: var(--s-1);
+            text-decoration: none;
+            font-weight: 700;
+            z-index: 100;
+            transition: top 0.2s;
+        }
+
+        .skip-link:focus { top: var(--s-2); }
+
+        .bg-atmosphere { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .bg-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; animation: float 20s ease-in-out infinite; }
+        .bg-orb-1 { width: 600px; height: 600px; background: var(--ballpark-green-light); top: -200px; right: -100px; }
+        .bg-orb-2 { width: 400px; height: 400px; background: var(--panel); bottom: 20%; left: -100px; animation-delay: -7s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33%      { transform: translate(30px, -30px) scale(1.05); }
+            66%      { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--s-5);
+        }
+
+        .logo-link { display: flex; align-items: center; gap: var(--s-3); text-decoration: none; color: var(--white); }
+        .logo { width: 44px; height: 44px; border-radius: var(--radius-sm); object-fit: cover; }
+        .logo-text { font-weight: 700; font-size: var(--fs-body); letter-spacing: -0.02em; }
+        nav { display: flex; align-items: center; }
+        .nav-link { color: var(--text-muted); text-decoration: none; font-size: var(--fs-sm); transition: color 0.2s; }
+        .nav-link:hover { color: var(--white); }
+
+        main { position: relative; z-index: 1; }
+
+        .legal {
+            max-width: var(--legal-max);
+            margin: 0 auto;
+            padding: var(--s-7) var(--s-5) var(--s-9);
+        }
+
+        .legal-header {
+            text-align: center;
+            padding-bottom: var(--s-6);
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: var(--s-7);
+        }
+
+        .legal-header h1 {
+            font-size: var(--fs-h1);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--white);
+            margin-bottom: var(--s-2);
+        }
+
+        .legal-header p { color: var(--text-muted); font-size: var(--fs-body); }
+
+        .legal section { margin-bottom: var(--s-8); }
+
+        .legal h2 {
+            font-size: var(--fs-h2);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: var(--white);
+            display: inline-block;
+            padding-bottom: var(--s-1);
+            border-bottom: 2px solid var(--ballpark-green);
+            margin-bottom: var(--s-5);
+        }
+
+        .legal h3 {
+            font-size: var(--fs-body);
+            font-weight: 700;
+            color: var(--white);
+            margin-top: var(--s-6);
+            margin-bottom: var(--s-3);
+        }
+
+        .legal p { color: var(--text-light); margin-bottom: var(--s-4); line-height: 1.65; }
+
+        .legal ul { margin: 0 0 var(--s-4) var(--s-5); color: var(--text-light); line-height: 1.65; }
+        .legal li { margin-bottom: var(--s-2); font-size: var(--fs-body); }
+
+        .legal a { color: var(--ballpark-green); text-decoration: underline; text-underline-offset: 2px; }
+        .legal a:hover { text-decoration: none; }
+
+        .highlight-box {
+            background: var(--ballpark-green-soft);
+            border: 1px solid var(--border-subtle);
+            border-left: 4px solid var(--ballpark-green);
+            padding: var(--s-4) var(--s-5);
+            margin: var(--s-5) 0;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        }
+
+        .highlight-box p { margin-bottom: 0; color: var(--text-light); }
+        .highlight-box strong { color: var(--ballpark-green); }
+
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: var(--s-7) var(--s-5);
+            max-width: var(--container-max);
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--s-5);
+        }
+
+        .footer-links { display: flex; flex-wrap: wrap; gap: var(--s-5); }
+        .footer-link { color: var(--text-muted); text-decoration: none; font-size: var(--fs-sm); transition: color 0.2s; }
+        .footer-link:hover { color: var(--white); }
+        .footer-copy { color: var(--text-muted); font-size: var(--fs-sm); }
+
+        a:focus-visible, button:focus-visible, summary:focus-visible {
+            outline: 3px solid var(--ballpark-green);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .legal { padding: var(--s-6) var(--s-5) var(--s-7); }
+            footer { flex-direction: column; text-align: center; }
+            .footer-links { justify-content: center; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            .bg-orb { animation: none; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="bg-atmosphere" aria-hidden="true">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+    </div>
+
+    <header>
+        <a href="index.html" class="logo-link" aria-label="Soccer Scoreboard home">
+            <img src="images/app-icon.png" alt="Soccer Scoreboard app icon" class="logo">
+            <span class="logo-text">Soccer Scoreboard</span>
+        </a>
+        <nav>
+            <a href="https://ifthendev.com" class="nav-link">If Then Dev</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <div class="legal">
+            <div class="legal-header">
+                <h1>Privacy Policy</h1>
+                <p>Soccer Scoreboard</p>
+            </div>
+
+            <section id="privacy-policy">
+                <div class="highlight-box">
+                    <p>Soccer Scoreboard is built to keep your data on your device. Its App Store privacy label is <strong>Data Not Collected</strong> — nothing you enter leaves your phone.</p>
+                </div>
+
+                <h3>Information We Don't Collect</h3>
+                <p>Soccer Scoreboard does not collect, store, or transmit any personal information to If Then Dev servers. There is no account and no login. We do not run analytics, we do not track you, and we show no advertising. We do not build profiles or share data with anyone.</p>
+
+                <h3>Where Your Matches Live</h3>
+                <p>Your matches — team names, scores, the match clock, and the goal-by-goal timeline — are stored on your device using SwiftData, in an App Group container shared with the app's widgets and Live Activity. This data stays on your device and under your control; you can delete individual matches or your entire history at any time from within the app. Nothing is uploaded to If Then Dev.</p>
+
+                <h3>Purchases</h3>
+                <p>Soccer Scoreboard offers a single one-time <strong>$4.99</strong> Pro unlock (Apple Watch, Live Activity, and widgets). Purchases are processed by Apple via StoreKit; If Then Dev never sees your payment information, and there is no third-party billing or analytics service involved. Restoring a purchase and confirming prior ownership are handled entirely by Apple through your Apple ID.</p>
+
+                <h3>Children's Privacy</h3>
+                <p>Soccer Scoreboard is rated 4+ and is safe for all ages. It collects no personal information from anyone — no names, contacts, accounts, or profiles — and nothing it stores ever leaves the device, so there is nothing to collect from a child. The app is intended to be used by coaches, parents, referees, and fans keeping score.</p>
+
+                <h3>Changes to This Policy</h3>
+                <p>We may update this privacy policy from time to time. Any changes will be reflected on this page with an updated revision date.</p>
+
+                <h3>Contact</h3>
+                <p>If you have questions about this privacy policy or Soccer Scoreboard's data practices, please <a href="https://ifthendev.com/contact/index.html?app=Soccer%20Scoreboard">contact us</a>.</p>
+            </section>
+
+            <section id="terms">
+                <h2>Terms of Use</h2>
+
+                <p>By using Soccer Scoreboard, you agree to the following terms:</p>
+
+                <h3>Intended Use</h3>
+                <p>Soccer Scoreboard is designed to help coaches, parents, referees, and fans keep a live soccer match score and its goal-by-goal record. It is a scorekeeping aid; it is not an official record of any match or competition.</p>
+
+                <h3>License</h3>
+                <p>Soccer Scoreboard is licensed under Apple's standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">End User License Agreement</a>. The license is limited, revocable, and non-transferable.</p>
+
+                <h3>Purchases &amp; Refunds</h3>
+                <p>The Pro unlock is a single one-time $4.99 purchase — there is no recurring charge of any kind. Payment is charged to your App Store account and handled entirely by Apple. To request a refund, use Apple's <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">Report a Problem</a> page.</p>
+
+                <h3>Governing Law</h3>
+                <p>These terms are governed by the laws of the State of Illinois, United States, without regard to its conflict-of-laws principles.</p>
+
+                <h3>Support</h3>
+                <p>For help, please <a href="https://ifthendev.com/contact/index.html?app=Soccer%20Scoreboard">contact support</a> or visit our <a href="help.html">Help &amp; FAQ</a> page.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html" class="footer-link">Soccer Scoreboard</a>
+            <a href="help.html" class="footer-link">Help</a>
+            <a href="https://ifthendev.com" class="footer-link">If Then Dev</a>
+            <a href="https://ifthendev.com/contact/index.html?app=Soccer%20Scoreboard" class="footer-link">Contact Support</a>
+        </div>
+        <p class="footer-copy">Last updated: <span id="last-updated">July 7, 2026</span> &middot; &copy; <span class="copyright-year">2026</span> If Then Dev, LLC. All rights reserved.</p>
+    </footer>
+
+    <script>document.querySelectorAll('.copyright-year').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
+</body>
+</html>
