@@ -553,6 +553,10 @@
                     <span class="icon">📊</span>
                     <span class="label">Reading Levels</span>
                 </a>
+                <a href="#level-library" class="toc-link">
+                    <span class="icon">🤝</span>
+                    <span class="label">Level My Library</span>
+                </a>
                 <a href="#history" class="toc-link">
                     <span class="icon">📋</span>
                     <span class="label">Scan History</span>
@@ -747,6 +751,44 @@
                 <h3 class="faq-question">Where does QuickScan get reading level data?</h3>
                 <div class="faq-answer">
                     <p>QuickScan aggregates reading level data from multiple trusted sources including AR BookFinder, Scholastic, and Lexile databases. We don't store a database of books - we query these sources in real-time to ensure you get the most current information available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Level My Library Section -->
+    <section id="level-library" class="faq-section">
+        <div class="container">
+            <span class="section-label">Level My Library</span>
+            <h2 class="section-title">Batch Leveling with Bookshelf Scanner</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What is "Level My Library"?</h3>
+                <div class="faq-answer">
+                    <p>QuickScan can level a whole library that's handed off from our companion app, Bookshelf Scanner. Instead of scanning each book one at a time, QuickScan receives the list of books, looks up each one's reading levels using its usual sources, and sends the levels back — so an entire classroom library can be leveled in a single pass.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">How does batch leveling work?</h3>
+                <div class="faq-answer">
+                    <ol class="steps-list">
+                        <li>Start "Level my library" in Bookshelf Scanner</li>
+                        <li>Bookshelf opens QuickScan and passes along the books it needs leveled</li>
+                        <li>QuickScan looks up each book's reading levels from AR BookFinder, Scholastic, and Lexile — the same sources it uses for a single scan</li>
+                        <li>The levels are sent back, and you return to Bookshelf to see them on your books</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Can I watch progress, and what happens if it's interrupted?</h3>
+                <div class="faq-answer">
+                    <p>Yes. QuickScan shows progress as it works through the list, so you always know how far along it is. If the process is interrupted — for example, you leave the app — it picks up where it left off. Books that were already leveled aren't looked up again.</p>
+                    <div class="tip-box">
+                        <div class="tip-box-title">Good to Know</div>
+                        <p>Batch leveling uses the same reading level sources as a normal scan, so some books may not have every level available. An active QuickScan subscription is required to look up reading levels.</p>
+                    </div>
                 </div>
             </div>
         </div>
