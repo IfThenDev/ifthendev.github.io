@@ -1,51 +1,4 @@
 <!DOCTYPE html>
-<!--
-    CANONICAL SOURCE — D-18, decided 2026-08-28.
-
-    THIS FILE IS THE SOURCE OF TRUTH for QuickScan's help content. The live page at
-    ~/LocalDev/GitHub/ifthendev.github.io/quickscan/help.html is PUBLISHED FROM IT and is
-    never the place to make a change. Help content stays versioned alongside the code whose
-    behaviour it describes, so a commit that changes what the app does can change what the
-    app claims in the same breath.
-
-    Why the rule exists: two copies of a claims document is the same defect as two copies of
-    a conversion table. They agree on the day they are written and drift the instant one of
-    them changes. That is exactly how the published page came to print a thirteen-column CSV
-    schema for an app that had exported sixteen since 6.4.
-
-    Scope that harm correctly, because an earlier note here overstated it: the defect is
-    UNDER-documentation, not corruption. CSVImporter matches columns BY NAME
-    (Model/CSVImporter.swift:344-350, columnIndexMap at :421), so a teacher's thirteen-column
-    file still imports whole and nothing shifts. 26-RESEARCH.md's "gets a shifted file" claim
-    is false and is corrected by 26-CLAIM-INVENTORY B-13.
-
-    One claim on this page is now held to the code automatically:
-    QuickScanBookLevelerTests/DocumentedClaimConsistencyTests reads the block marked
-    data-export-schema and the list marked data-export-columns, and fails if either drifts
-    from ExportService.csvHeader. It never restates the column list — the constant decides,
-    the document describes. When it fails, FIX THIS DOCUMENT, not the constant: the header is
-    the shipped contract that every existing export and every teacher's restore is written
-    against.
-
-    RECONCILED 2026-08-29 by Phase 26 plan 26-14. This file was previously SHORTER than the
-    published page; everything the live page had and this one lacked has been merged IN rather
-    than lost — the CSV import cards, the Multi-Scan Sessions and Gap Report sections, their
-    two table-of-contents entries, and the .faq-answer pre rule that styles the schema block
-    this file already carried. Canonical now means complete as well as authoritative. The
-    section-by-section reconciliation, and the enumerated site-chrome deltas that are the ONLY
-    sanctioned reason the published copy may differ from this one, are recorded in
-    .planning/phases/26-v6-4-release-readiness/26-SITE-PUBLISH.md.
-
-    Register: every claim on this page says what the app CLAIMS about a value's origin, never
-    how ACCURATE it is. No accuracy figure, percentage or error value may appear here — every
-    figure this milestone measured is in-sample by construction (D-03/D-09). The ceiling
-    paragraph under "When a GRL is missing" is 26-06's sentence verbatim, byte-identical to
-    levelsGuideCeilingBody in the shipping app; do not author a variant. No claim on this page
-    may imply a publisher source for the app's grade estimates (D-16): the Lexile table's grade
-    column has no identified source.
-
-    Placed after the DOCTYPE rather than before it so no browser is pushed into quirks mode.
--->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -767,41 +720,16 @@
             <div class="faq-card animate-on-scroll">
                 <h3 class="faq-question">What reading level systems does QuickScan show?</h3>
                 <div class="faq-answer">
-                    <p>QuickScan shows up to <strong>five reading levels</strong> for a book. Some come straight from the publisher. The ones QuickScan works out for itself are marked with <strong>&#8776;</strong>.</p>
+                    <p>QuickScan displays up to 6 different reading level systems when available:</p>
                     <ul>
-                        <li><strong>AR (ATOS)</strong> &mdash; Accelerated Reader book level (for example <code>4.4</code>). QuickScan looks this up. It is never estimated.</li>
-                        <li><strong>Lexile</strong> &mdash; Lexile measure (for example <code>680L</code>). QuickScan looks this up. It is never estimated.</li>
-                        <li><strong>F&P / GRL</strong> &mdash; Fountas &amp; Pinnell Guided Reading Level, a letter from A to Z+ (for example <code>R</code>). QuickScan looks it up from Scholastic when Scholastic has it. When Scholastic doesn't, QuickScan works the level out from ATOS or Lexile and marks it &#8776;.</li>
-                        <li><strong>DRA</strong> &mdash; Developmental Reading Assessment, a number from 1 to 80 used alongside GRL (for example <code>40</code>). QuickScan reads it from Scholastic's published GRL-to-DRA chart whenever it has a looked-up GRL. If the GRL was estimated, the DRA is too, and both are marked &#8776;.</li>
-                        <li><strong>Grade Level</strong> &mdash; approximate grade equivalent (for example <code>4</code>). Looked up when a book data source has one; otherwise worked out by QuickScan and marked &#8776;.</li>
+                        <li><strong>AR (ATOS)</strong> - Accelerated Reader level (e.g., 4.5)</li>
+                        <li><strong>Lexile</strong> - Lexile measure (e.g., 680L)</li>
+                        <li><strong>F&P / GRL</strong> - Fountas & Pinnell Guided Reading Level (e.g., Level R)</li>
+                        <li><strong>DRA</strong> - Developmental Reading Assessment (e.g., 40)</li>
+                        <li><strong>Grade Level</strong> - Approximate grade equivalent (e.g., Grade 4)</li>
+                        <li><strong>Interest Level</strong> - Target audience (LG, MG, MG+, UG)</li>
                     </ul>
-                    <p>Alongside those five, QuickScan also shows <strong>Interest Level</strong> &mdash; the publisher's target-audience band (<code>LG</code>, <code>MG</code>, <code>MG+</code>, <code>UG</code>) &mdash; and, when available, the <strong>AR quiz number</strong>, <strong>AR points</strong> and <strong>word count</strong>. Those are publisher data about the book rather than reading levels QuickScan works out, which is why they aren't counted among the five.</p>
-                </div>
-            </div>
-
-            <div class="faq-card animate-on-scroll">
-                <h3 class="faq-question">How can I tell whether QuickScan looked a level up or worked it out?</h3>
-                <div class="faq-answer">
-                    <p>Every level QuickScan worked out for itself is marked with <strong>&#8776;</strong> &mdash; so <code>&#8776;R</code> is a Guided Reading Level QuickScan worked out, and a plain <code>R</code> is one it looked up. The mark appears on the book detail screen, in your scan history, on the home screen widgets and in the PDF export, and it is only ever applied to a value the app worked out itself. A level a publisher or Scholastic assigned is never marked, however high the letter is.</p>
-                    <p>The mark is text rather than decoration, so it scales with Dynamic Type along with the value beside it. VoiceOver does not depend on the glyph: it speaks the qualifier aloud, reading an estimated level as &ldquo;Guided Reading Level, estimated, R&rdquo;.</p>
-                    <p>The <strong>CSV export</strong> does the same job differently. Instead of the &#8776; glyph, it carries a <strong>Source</strong> column beside each of DRA, GRL and Grade, naming in words where that value came from. See <a href="#export">What do the &ldquo;Source&rdquo; columns mean?</a> below.</p>
-                    <p><strong>ATOS and Lexile are never marked</strong>, because QuickScan never estimates them &mdash; they are the values it reads <em>from</em>, not values it works out.</p>
-                </div>
-            </div>
-
-            <div class="faq-card animate-on-scroll">
-                <h3 class="faq-question">Why does a worked-out Guided Reading Level show as a band rather than one letter?</h3>
-                <div class="faq-answer">
-                    <p>When QuickScan works a Guided Reading Level out for itself, it shows a <strong>three-letter band</strong> &mdash; <code>&#8776;G-I</code> rather than <code>&#8776;H</code> &mdash; and the DRA beneath it is read off that same band, so the letter and the number never disagree about the same book.</p>
-                    <p>The band is what QuickScan is willing to claim. A single letter would say the app had picked that letter out of the alphabet on purpose; the band says the book sits in this stretch of the alphabet, which is the honest shape of a converted value. A level QuickScan <em>looked up</em> is never banded &mdash; a publisher's letter is shown exactly as the publisher assigned it.</p>
-                </div>
-            </div>
-
-            <div class="faq-card animate-on-scroll">
-                <h3 class="faq-question">When a GRL is missing</h3>
-                <div class="faq-answer">
-                    <p>Above P, QuickScan doesn't work a Guided Reading Level out for itself: where Scholastic has no level for a longer chapter book, QuickScan shows none rather than a letter it can't stand behind.</p>
-                    <p>You may still see the other levels for that book &mdash; the ATOS level, the Lexile measure and the grade &mdash; with an em dash (&mdash;) where the Guided Reading Level would be.</p>
+                    <p>Additionally, AR data includes quiz number, points, and word count when available.</p>
                 </div>
             </div>
 
@@ -815,21 +743,14 @@
                         <li><strong>New releases</strong> - May not have been assessed yet</li>
                         <li><strong>Self-published</strong> - Rarely have official reading levels</li>
                     </ul>
-                    <p>When no source has a Guided Reading Level, DRA or grade for a book, QuickScan works one out from the ATOS level or Lexile measure it does have, and marks it <strong>&#8776;</strong>. Above the ceiling described above, it works no Guided Reading Level out at all and shows none.</p>
+                    <p>When exact data isn't available, QuickScan may show converted/estimated levels based on available data.</p>
                 </div>
             </div>
 
             <div class="faq-card animate-on-scroll">
                 <h3 class="faq-question">Where does QuickScan get reading level data?</h3>
                 <div class="faq-answer">
-                    <p>Two different things happen, and QuickScan tells you which one produced each level.</p>
-                    <p><strong>Looked up.</strong> The AR (ATOS) level, the Lexile measure and Scholastic's Guided Reading Level come from book data sources &mdash; AR BookFinder, Scholastic and Lexile among them &mdash; queried by ISBN when you scan. QuickScan does not keep its own database of books.</p>
-                    <p><strong>Worked out.</strong> Where Scholastic has no level, QuickScan uses Renaissance Learning's published ATOS-to-GRL chart. Renaissance describes that chart as giving &ldquo;reasonable approximations in most cases&rdquo;, and notes that a book's actual ATOS value &ldquo;might not correspond exactly to the chart&rdquo;. Fountas &amp; Pinnell do not publish a chart for converting ATOS or Lexile into a Guided Reading Level, and they consider one invalid: a letter describes more about a book than how hard the words are.</p>
-                    <p>An estimated level is a starting point for choosing a book, not a substitute for a level a publisher assigned. QuickScan never replaces a level it looked up with one it worked out, and every level it worked out is marked &#8776;.</p>
-                    <div class="tip-box">
-                        <div class="tip-box-title">If a level looks missing</div>
-                        <p>Because levels are queried when you scan rather than stored, a book data source that is temporarily unavailable shows up as a missing level rather than a wrong one. QuickScan's Settings screen has a <strong>Book Level Source Health</strong> section showing the current status of those sources.</p>
-                    </div>
+                    <p>QuickScan aggregates reading level data from multiple trusted sources including AR BookFinder, Scholastic, and Lexile databases. We don't store a database of books - we query these sources in real-time to ensure you get the most current information available.</p>
                 </div>
             </div>
         </div>
@@ -937,7 +858,7 @@
                     <p>Session mode keeps the camera open between books so you can clear a whole stack in one go. Turn it on with the stacked-squares button inside the scanner, then a running session-count badge tracks how many books you've leveled in the current session.</p>
                     <ol class="steps-list">
                         <li>Tap <strong>Scan</strong> to open the camera, then tap the <strong>stacked-squares</strong> button to turn session mode on</li>
-                        <li>Point at a book's ISBN barcode; when the result appears, tap <strong>Tap to scan next book</strong> to keep going &mdash; the session count ticks up</li>
+                        <li>Point at a book's ISBN barcode; when the result appears, tap <strong>Tap to scan next book</strong> to keep going — the session count ticks up</li>
                         <li>Every scanned book is saved to your History automatically</li>
                     </ol>
                 </div>
@@ -946,14 +867,14 @@
             <div class="faq-card animate-on-scroll">
                 <h3 class="faq-question">Is there a limit on how many books I can scan?</h3>
                 <div class="faq-answer">
-                    <p>QuickScan is free to use with a daily scan limit. When you reach it, an upgrade screen appears &mdash; upgrading in the app unlocks unlimited scanning. Your already-scanned books and the current session are preserved when you upgrade.</p>
+                    <p>New users get an intro offer to try QuickScan. Once you reach the free scan limit, you'll see an upgrade screen — a subscription unlocks unlimited scanning, PDF export, and iCloud sync. Your already-scanned books and current session are preserved when you upgrade.</p>
                     <div class="tip-box">
                         <div class="tip-box-title">Good to Know</div>
-                        <p>Upgrades are handled through your Apple Account. You can manage or cancel any time in <strong>Settings &rarr; your name &rarr; Subscriptions</strong>.</p>
+                        <p>Subscriptions are handled through your Apple Account. You can manage or cancel any time in <strong>Settings → your name → Subscriptions</strong>.</p>
                     </div>
                     <div class="tip-box">
                         <div class="tip-box-title">QuickScan for Schools</div>
-                        <p>The Schools edition is fully unlocked &mdash; there's no scan limit, no in-app purchases and no subscription. This section applies to the standard QuickScan edition on the App Store.</p>
+                        <p>The Schools edition is fully unlocked — there's no scan limit and no subscription. This section applies to the standard QuickScan edition on the App Store.</p>
                     </div>
                 </div>
             </div>
@@ -979,7 +900,7 @@
                     <ol class="steps-list">
                         <li>Go to the <strong>History</strong> tab and tap the <strong>bar-chart</strong> icon at the top to open <strong>Library Levels</strong></li>
                         <li>Choose to export the <strong>Gap Report</strong></li>
-                        <li>Share or save the one-page PDF &mdash; ready to hand a principal or attach to a DonorsChoose request</li>
+                        <li>Share or save the one-page PDF — ready to hand a principal or attach to a DonorsChoose request</li>
                     </ol>
                     <div class="tip-box">
                         <div class="tip-box-title">Good to Know</div>
@@ -987,14 +908,14 @@
                     </div>
                     <div class="tip-box">
                         <div class="tip-box-title">Viewing vs. exporting</div>
-                        <p>You can view your library's level distribution and gaps for free. Exporting the Gap Report <strong>PDF</strong> is an upgrade feature in the standard QuickScan edition; it's included in QuickScan for Schools.</p>
+                        <p>You can view your library's level distribution and gaps for free. Exporting the Gap Report <strong>PDF</strong> is a subscription feature in the standard QuickScan edition; it's included in QuickScan for Schools.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Export & Import Section -->
+    <!-- Export Section -->
     <section id="export" class="faq-section">
         <div class="container">
             <span class="section-label">Export &amp; Import</span>
@@ -1027,88 +948,34 @@
             </div>
 
             <div class="faq-card animate-on-scroll">
-                <h3 class="faq-question">What columns does the CSV have?</h3>
-                <div class="faq-answer">
-                    <p>Every CSV QuickScan writes begins with this header row, and the columns appear in this order:</p>
-                    <pre data-export-schema>Title,Author,ISBN,ATOS Level,Lexile,DRA,DRA Source,GRL,GRL Source,Grade,Grade Source,Interest Level,AR Points,Word Count,AR Quiz #,Scanned Date</pre>
-                    <p>An exported CSV re-imports exactly. An import file you build yourself does not have to match this row column-for-column &mdash; see <a href="#export">What should the import file look like?</a> below. What each column holds:</p>
-                    <ul data-export-columns>
-                        <li><strong>Title</strong> — the book's title.</li>
-                        <li><strong>Author</strong> — the author, as the book lookup returned it.</li>
-                        <li><strong>ISBN</strong> — the barcode number. This is the column QuickScan matches on, so it is how a re-import knows a book is already in your library.</li>
-                        <li><strong>ATOS Level</strong> — the Accelerated Reader book level, as a number (for example <code>4.4</code>).</li>
-                        <li><strong>Lexile</strong> — the Lexile measure, as text (for example <code>680L</code>).</li>
-                        <li><strong>DRA</strong> — the Developmental Reading Assessment level.</li>
-                        <li><strong>DRA Source</strong> — where the DRA value in the previous column came from.</li>
-                        <li><strong>GRL</strong> — the Guided Reading Level letter.</li>
-                        <li><strong>GRL Source</strong> — where the GRL letter in the previous column came from.</li>
-                        <li><strong>Grade</strong> — the grade level.</li>
-                        <li><strong>Grade Source</strong> — where the grade in the previous column came from.</li>
-                        <li><strong>Interest Level</strong> — the publisher's interest band (for example <code>LG</code>, <code>MG</code>, <code>UG</code>).</li>
-                        <li><strong>AR Points</strong> — the Accelerated Reader point value, as a number.</li>
-                        <li><strong>Word Count</strong> — the book's word count, as a whole number.</li>
-                        <li><strong>AR Quiz #</strong> — the Accelerated Reader quiz number, as a whole number.</li>
-                        <li><strong>Scanned Date</strong> — the date the book was added to your library.</li>
-                    </ul>
-                    <p>A blank cell means QuickScan has no value for that column. Title, author, and ISBN are required on import; every other column is optional.</p>
-                    <div class="tip-box">
-                        <div class="tip-box-title">If you have a spreadsheet built against the old export</div>
-                        <p>Before version 6.4 the export had thirteen columns, without the three <strong>Source</strong> columns. A file in that older shape still imports whole: QuickScan matches columns by <em>name</em>, never by position, so the three columns it doesn't find simply go unasked-for. Nothing shifts and nothing lands in the wrong field.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="faq-card animate-on-scroll">
-                <h3 class="faq-question">What do the "Source" columns mean?</h3>
-                <div class="faq-answer">
-                    <p>Three of the reading levels — DRA, GRL, and Grade — are each followed by a Source column that says <em>where that value came from</em>, using the same wording the app shows on screen:</p>
-                    <ul>
-                        <li><strong>Looked up</strong> — the value came from a book data source, not from QuickScan.</li>
-                        <li><strong>From Scholastic GRL</strong> — the value came from Scholastic's published Guided Reading Level.</li>
-                        <li><strong>Estimated from ATOS</strong> — QuickScan worked the value out from the book's ATOS level.</li>
-                        <li><strong>Estimated from Lexile</strong> — QuickScan worked the value out from the book's Lexile measure.</li>
-                        <li><strong>Imported</strong> — the value came from a CSV you imported, and QuickScan leaves it exactly as you provided it.</li>
-                        <li>A <strong>blank</strong> Source cell means the level beside it is blank too, so there is nothing to attribute.</li>
-                    </ul>
-                    <p>These columns are there so a level QuickScan estimated is never mistaken for one a publisher assigned. If you are sorting or filtering a class list, the Source column beside each level tells you which values to check against your own records first.</p>
-                    <p>The <strong>&#8776;</strong> mark you see on screen is not repeated in the CSV cells &mdash; the Source column carries that information in words instead, so the level itself stays a plain value your spreadsheet can sort and filter.</p>
-                </div>
-            </div>
-
-            <div class="faq-card animate-on-scroll">
                 <h3 class="faq-question">Can I import a list of books?</h3>
                 <div class="faq-answer">
-                    <p>Yes. You can import a <strong>CSV file</strong> to add many books at once &mdash; ideal for moving a library between devices, restoring from a backup, or bulk-loading a classroom or school collection without scanning each book.</p>
+                    <p>Yes. You can import a <strong>CSV file</strong> to add many books at once — ideal for moving a library between devices, restoring from a backup, or bulk-loading a classroom or school collection without scanning each book.</p>
                     <ol class="steps-list">
                         <li>Open the <strong>History</strong> tab</li>
-                        <li>Tap the <strong>Import</strong> button (the download icon in the top toolbar) &mdash; or, if your library is empty, tap <strong>Import from CSV</strong> right on the screen</li>
+                        <li>Tap the <strong>Import</strong> button (the download icon in the top toolbar) — or, if your library is empty, tap <strong>Import from CSV</strong> right on the screen</li>
                         <li>Pick a <strong>.csv</strong> file from Files, iCloud Drive, or your device</li>
-                        <li>QuickScan reads the file and shows a summary: <strong>Imported &middot; Skipped &middot; Failed</strong></li>
+                        <li>QuickScan reads the file and shows a summary: <strong>Imported · Skipped · Failed</strong></li>
                     </ol>
-                    <p>The Import button is always available &mdash; you don't need any books in your library first, so it's the quickest way to bring an existing collection into a new install. The importer only accepts <strong>comma-separated <code>.csv</code> files</strong>; spreadsheets such as <code>.xlsx</code> or <code>.numbers</code> must be saved or exported as CSV first.</p>
-                    <div class="tip-box">
-                        <div class="tip-box-title">After an import</div>
-                        <p>An imported row keeps the levels exactly as you supplied them, and their Source column reads <strong>Imported</strong>. To fill in the levels and cover art for books that came in without them, tap <strong>Find Missing Levels &amp; Covers</strong>.</p>
-                    </div>
+                    <p>The Import button is always available — you don't need any books in your library first, so it's the quickest way to bring an existing collection into a new install. The importer only accepts <strong>comma-separated <code>.csv</code> files</strong>; spreadsheets such as <code>.xlsx</code> or <code>.numbers</code> must be saved or exported as CSV first.</p>
                 </div>
             </div>
 
             <div class="faq-card animate-on-scroll">
                 <h3 class="faq-question">What should the import file look like?</h3>
                 <div class="faq-answer">
-                    <p>The easiest way to get a correctly formatted file is to <strong>export from QuickScan first</strong> &mdash; an exported CSV re-imports exactly.</p>
-                    <p>If you are building the file yourself, the rule is simpler than it looks: <strong>QuickScan matches columns by name, not by position.</strong> Your file needs a header row, and it needs <strong>Title</strong>, <strong>Author</strong> and <strong>ISBN</strong> somewhere in it. Everything else is optional, the order doesn't matter, and extra columns QuickScan doesn't recognise are ignored rather than treated as an error. So this is a valid import file:</p>
-                    <pre>Title,Author,ISBN
-Charlotte's Web,E. B. White,9780064410939
-The Giver,Lois Lowry,9780544336261</pre>
-                    <p>To bring reading levels in as well, add any of the columns listed under <a href="#export">What columns does the CSV have?</a> above, spelled exactly as they appear there. A few details worth knowing:</p>
+                    <p>The easiest way to get a correctly formatted file is to <strong>export from QuickScan first</strong> — an exported CSV re-imports perfectly. The import file must have this exact header row, with columns in this order:</p>
+                    <pre>Title,Author,ISBN,ATOS Level,Lexile,DRA,GRL,Grade,Interest Level,AR Points,Word Count,AR Quiz #,Scanned Date</pre>
+                    <p>Example rows:</p>
+                    <pre>Title,Author,ISBN,ATOS Level,Lexile,DRA,GRL,Grade,Interest Level,AR Points,Word Count,AR Quiz #,Scanned Date
+Charlotte's Web,E. B. White,9780064410939,4.4,680L,40,R,3,LG,5.0,31938,17,06/17/2026
+The Giver,Lois Lowry,9780544336261,5.7,760L,44,Y,6,MG,11.0,43617,401,06/17/2026</pre>
                     <ul>
-                        <li>A row missing <strong>Title</strong>, <strong>Author</strong> or <strong>ISBN</strong> is counted as <em>Failed</em>.</li>
-                        <li>Leave a cell <strong>blank</strong> (or write <code>Unknown</code>) for a value you don't have.</li>
-                        <li><strong>ATOS Level</strong> and <strong>AR Points</strong> are numbers (for example <code>4.4</code>); <strong>Word Count</strong> and <strong>AR Quiz #</strong> are whole numbers; <strong>Lexile</strong>, <strong>DRA</strong>, <strong>GRL</strong>, <strong>Grade</strong> and <strong>Interest Level</strong> are text.</li>
-                        <li><strong>Scanned Date</strong> is optional; if it's blank or unrecognised, today's date is used.</li>
-                        <li>The three <strong>Source</strong> columns are <em>not</em> read on import. QuickScan does not take your word for where a level came from &mdash; anything you import is recorded as <strong>Imported</strong>.</li>
-                        <li>If a title or author contains a comma, wrap that cell in double quotes &mdash; for example <code>"Lowry, Lois"</code>.</li>
+                        <li><strong>Title</strong>, <strong>Author</strong>, and <strong>ISBN</strong> are required — a row missing any of these is counted as <em>Failed</em>.</li>
+                        <li>Every other column is optional. Leave a cell <strong>blank</strong> (or write <code>Unknown</code>) if you don't have that value.</li>
+                        <li><strong>ATOS Level</strong> and <strong>AR Points</strong> are numbers (e.g. <code>4.4</code>); <strong>Word Count</strong> and <strong>AR Quiz #</strong> are whole numbers; <strong>Lexile</strong>, <strong>DRA</strong>, <strong>GRL</strong>, <strong>Grade</strong>, and <strong>Interest Level</strong> are text.</li>
+                        <li><strong>Scanned Date</strong> is optional; if it's blank or unrecognized, today's date is used.</li>
+                        <li>If a title or author contains a comma, wrap that cell in double quotes — e.g. <code>"Lowry, Lois"</code>.</li>
                     </ul>
                 </div>
             </div>
@@ -1116,11 +983,7 @@ The Giver,Lois Lowry,9780544336261</pre>
             <div class="faq-card animate-on-scroll">
                 <h3 class="faq-question">What happens to duplicate books when importing?</h3>
                 <div class="faq-answer">
-                    <p>Importing never overwrites and never creates duplicates. Any row whose <strong>ISBN already exists</strong> in your library &mdash; or appears more than once in the same file &mdash; is counted as <strong>Skipped</strong> and left unchanged. Only new ISBNs are added. The summary after each import tells you exactly how many books were <strong>Imported</strong>, <strong>Skipped</strong> (already present) and <strong>Failed</strong> (couldn't be read).</p>
-                    <div class="tip-box">
-                        <div class="tip-box-title">Restoring a backup is different</div>
-                        <p>The separate <strong>Restore from a backup</strong> control on the Import screen <em>updates</em> the books you already have from the file, rather than skipping them &mdash; that's how you put reading levels back onto a library you've already rebuilt. It never deletes a book.</p>
-                    </div>
+                    <p>Imports never overwrite or create duplicates. Any row whose <strong>ISBN already exists</strong> in your library — or appears more than once in the same file — is counted as <strong>Skipped</strong> and left unchanged. Only new ISBNs are added. The summary after each import tells you exactly how many books were <strong>Imported</strong>, <strong>Skipped</strong> (already present), and <strong>Failed</strong> (couldn't be read).</p>
                 </div>
             </div>
         </div>
