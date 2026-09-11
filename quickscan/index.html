@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuickScan Book Leveler - Level Your Classroom Library in Minutes</title>
-    <meta name="description" content="Scan any book's ISBN barcode to get AR, Lexile, F&P, GRL and DRA reading levels — with QuickScan marking the ones it worked out. Free to use with a daily scan limit.">
+    <meta name="description" content="Scan a book's ISBN barcode to get AR, Lexile, F&P, GRL and DRA reading levels — with QuickScan marking the ones it worked out. Free to use with a daily scan limit.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -338,6 +338,23 @@
             font-size: 1.1rem;
             max-width: 600px;
             margin-bottom: 50px;
+        }
+
+        /* A subtitle that introduces a list: the list carries the bottom margin instead. */
+        .section-subtitle-tight {
+            margin-bottom: 16px;
+        }
+
+        .section-points {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 0 50px;
+            padding-left: 1.25rem;
+        }
+
+        .section-points li {
+            margin-bottom: 10px;
         }
 
         .features-grid {
@@ -684,7 +701,7 @@
             </h1>
 
             <p class="hero-subtitle">
-                Scan any book's ISBN barcode to see AR, Lexile, F&P, GRL and DRA levels — and which of them QuickScan looked up.
+                Scan a book's ISBN barcode to see AR, Lexile, F&P, GRL and DRA levels — and which of them QuickScan looked up.
                 The fastest way to match students with the right books.
             </p>
 
@@ -761,9 +778,9 @@
 
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">📷</div>
-                    <h3 class="feature-title">Instant Barcode Scanning</h3>
+                    <h3 class="feature-title">Barcode Scanning</h3>
                     <p class="feature-desc">
-                        Point your camera at any book's ISBN barcode and get results in seconds.
+                        Point your camera at a book's ISBN barcode and get results.
                         No typing required—just scan and go.
                     </p>
                 </div>
@@ -824,7 +841,7 @@
                     </h3>
                     <p class="feature-desc">
                         See your recent scans right on your Home Screen.
-                        Quickly check reading levels without opening the app.
+                        Check reading levels without opening the app.
                     </p>
                 </div>
 
@@ -866,12 +883,14 @@
         <div class="container">
             <span class="section-label">BookScanner</span>
             <h2 class="section-title">Already have BookScanner?</h2>
-            <p class="section-subtitle">
+            <p class="section-subtitle section-subtitle-tight">
                 BookScanner 6.5 is the same app, rebuilt &mdash; it installs over the copy you already have, and on first launch it brings your earlier scan history across by itself, reading the old library file and leaving it exactly where it is.
-                Lexile measures, DRA, Guided Reading Levels and grade equivalents are now included for every owner, and there is nothing to buy inside the app.
-                There is a Mac app on the same purchase, and the US/UK ARBookFind switch is back in Settings.
-                BookScanner 6.5 needs iOS 18 or later &mdash; on an earlier iPhone or iPad, the BookScanner you already have keeps working and your books stay on the device.
             </p>
+            <ul class="section-points">
+                <li>Lexile measures, DRA, Guided Reading Levels and grade equivalents are now included for every owner, and there is nothing to buy inside the app.</li>
+                <li>There is a Mac app on the same purchase, and the US/UK ARBookFind switch is back in Settings.</li>
+                <li>BookScanner 6.5 needs iOS 18 or later &mdash; on an earlier iPhone or iPad, the BookScanner you already have keeps working and your books stay on the device.</li>
+            </ul>
             <a href="https://apps.apple.com/us/app/bookscanner-book-leveler-app/id583672052" class="app-store-badge">
                 <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1355173237" alt="Download BookScanner Book Leveler App on the App Store">
             </a>
