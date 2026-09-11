@@ -620,6 +620,10 @@
                     <span class="icon">📤</span>
                     <span class="label">Export &amp; Import</span>
                 </a>
+                <a href="#whats-different" class="toc-link">
+                    <span class="icon">✨</span>
+                    <span class="label">What's Different</span>
+                </a>
                 <a href="#mac" class="toc-link">
                     <span class="icon">💻</span>
                     <span class="label">Mac App</span>
@@ -767,32 +771,32 @@
             <div class="faq-card animate-on-scroll">
                 <h3 class="faq-question">What reading level systems does QuickScan show?</h3>
                 <div class="faq-answer">
-                    <p>QuickScan shows up to <strong>five reading levels</strong> for a book. Some come straight from the publisher. The ones QuickScan works out for itself are marked with <strong>&#8776;</strong>.</p>
+                    <p>QuickScan shows up to <strong>five reading levels</strong> for a book. Some come straight from the publisher. The ones QuickScan estimates are marked with <strong>&#8776;</strong>.</p>
                     <ul>
                         <li><strong>AR (ATOS)</strong> &mdash; Accelerated Reader book level (for example <code>4.4</code>). QuickScan looks this up. It is never estimated.</li>
                         <li><strong>Lexile</strong> &mdash; Lexile measure (for example <code>680L</code>). QuickScan looks this up. It is never estimated.</li>
-                        <li><strong>F&P / GRL</strong> &mdash; Fountas &amp; Pinnell Guided Reading Level, a letter from A to Z+ (for example <code>R</code>). QuickScan looks it up from Scholastic when Scholastic has it. When Scholastic doesn't, QuickScan works the level out from ATOS or Lexile and marks it &#8776;.</li>
-                        <li><strong>DRA</strong> &mdash; Developmental Reading Assessment, a number from 1 to 80 used alongside GRL (for example <code>40</code>). QuickScan reads it from Scholastic's published GRL-to-DRA chart whenever it has a looked-up GRL. If the GRL was estimated, the DRA is too, and both are marked &#8776;.</li>
-                        <li><strong>Grade Level</strong> &mdash; approximate grade equivalent (for example <code>4</code>). Looked up when a book data source has one; otherwise worked out by QuickScan and marked &#8776;.</li>
+                        <li><strong>F&P / GRL</strong> &mdash; Fountas &amp; Pinnell Guided Reading Level, a letter from A to Z+ (for example <code>R</code>). QuickScan looks it up from Scholastic when Scholastic has it. When Scholastic doesn't, QuickScan estimates the level from ATOS or Lexile and marks it &#8776;.</li>
+                        <li data-dra-answer><strong>DRA</strong> &mdash; Developmental Reading Assessment, a number from 1 to 80 used alongside GRL (for example <code>40</code>). QuickScan reads it from Scholastic's published GRL-to-DRA chart whenever it has a looked-up GRL. If the GRL was estimated, the DRA is too, and both are marked &#8776;. It may differ from the DRA printed on a particular edition.</li>
+                        <li><strong>Grade Level</strong> &mdash; approximate grade equivalent (for example <code>4</code>). Looked up when a book data source has one; otherwise estimated by QuickScan and marked &#8776;.</li>
                     </ul>
-                    <p>Alongside those five, QuickScan also shows <strong>Interest Level</strong> &mdash; the publisher's target-audience band (<code>LG</code>, <code>MG</code>, <code>MG+</code>, <code>UG</code>) &mdash; and, when available, the <strong>AR quiz number</strong>, <strong>AR points</strong> and <strong>word count</strong>. Those are publisher data about the book rather than reading levels QuickScan works out, which is why they aren't counted among the five.</p>
+                    <p>Alongside those five, QuickScan also shows <strong>Interest Level</strong> &mdash; the publisher's target-audience band (<code>LG</code>, <code>MG</code>, <code>MG+</code>, <code>UG</code>) &mdash; and, when available, the <strong>AR quiz number</strong>, <strong>AR points</strong> and <strong>word count</strong>. Those are publisher data about the book rather than reading levels QuickScan estimates, which is why they aren't counted among the five.</p>
                 </div>
             </div>
 
             <div class="faq-card animate-on-scroll">
-                <h3 class="faq-question">How can I tell whether QuickScan looked a level up or worked it out?</h3>
+                <h3 class="faq-question">How can I tell whether QuickScan looked a level up or estimated it?</h3>
                 <div class="faq-answer">
-                    <p>Every level QuickScan worked out for itself is marked with <strong>&#8776;</strong> &mdash; so <code>&#8776;R</code> is a Guided Reading Level QuickScan worked out, and a plain <code>R</code> is one it looked up. The mark appears on the book detail screen, in your scan history, on the home screen widgets and in the PDF export, and it is only ever applied to a value the app worked out itself. A level a publisher or Scholastic assigned is never marked, however high the letter is.</p>
+                    <p>Every level QuickScan estimates is marked with <strong>&#8776;</strong> &mdash; so <code>&#8776;R</code> is a Guided Reading Level QuickScan estimated, and a plain <code>R</code> is one it looked up. The mark appears on the book detail screen, in your scan history, on the home screen widgets and in the PDF export, and it is only ever applied to a value the app estimated. A level a publisher or Scholastic assigned is never marked, however high the letter is.</p>
                     <p>The mark is text rather than decoration, so it scales with Dynamic Type along with the value beside it. VoiceOver does not depend on the glyph: it speaks the qualifier aloud, reading an estimated level as &ldquo;Guided Reading Level, estimated, R&rdquo;.</p>
                     <p>The <strong>CSV export</strong> does the same job differently. Instead of the &#8776; glyph, it carries a <strong>Source</strong> column beside each of DRA, GRL and Grade, naming in words where that value came from. See <a href="#export">What do the &ldquo;Source&rdquo; columns mean?</a> below.</p>
-                    <p><strong>ATOS and Lexile are never marked</strong>, because QuickScan never estimates them &mdash; they are the values it reads <em>from</em>, not values it works out.</p>
+                    <p><strong>ATOS and Lexile are never marked</strong>, because QuickScan never estimates them &mdash; they are the values it reads <em>from</em>, not values it estimates.</p>
                 </div>
             </div>
 
             <div class="faq-card animate-on-scroll">
-                <h3 class="faq-question">Why does a worked-out Guided Reading Level show as a band rather than one letter?</h3>
+                <h3 class="faq-question">Why does an estimated Guided Reading Level show as a band rather than one letter?</h3>
                 <div class="faq-answer">
-                    <p>When QuickScan works a Guided Reading Level out for itself, it shows a <strong>three-letter band</strong> &mdash; <code>&#8776;G-I</code> rather than <code>&#8776;H</code> &mdash; and the DRA beneath it is read off that same band, so the letter and the number never disagree about the same book.</p>
+                    <p>When QuickScan estimates a Guided Reading Level, it shows a <strong>band of letters</strong> &mdash; <code>&#8776;G-I</code> rather than <code>&#8776;H</code> &mdash; and the DRA beneath it is read off that same band, so the letter and the number never disagree about the same book.</p>
                     <p>The band is what QuickScan is willing to claim. A single letter would say the app had picked that letter out of the alphabet on purpose; the band says the book sits in this stretch of the alphabet, which is the honest shape of a converted value. A level QuickScan <em>looked up</em> is never banded &mdash; a publisher's letter is shown exactly as the publisher assigned it.</p>
                 </div>
             </div>
@@ -800,8 +804,22 @@
             <div class="faq-card animate-on-scroll">
                 <h3 class="faq-question">When a GRL is missing</h3>
                 <div class="faq-answer">
-                    <p>Above P, QuickScan doesn't work a Guided Reading Level out for itself: where Scholastic has no level for a longer chapter book, QuickScan shows none rather than a letter it can't stand behind.</p>
+                    <p>Above P, QuickScan doesn't estimate a Guided Reading Level: where Scholastic has no level for a longer chapter book, QuickScan shows none rather than a letter it can't stand behind.</p>
                     <p>You may still see the other levels for that book &mdash; the ATOS level, the Lexile measure and the grade &mdash; with an em dash (&mdash;) where the Guided Reading Level would be.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Why does a book show a different level than before I updated?</h3>
+                <div class="faq-answer" data-level-changed>
+                    <p>Some levels will change. QuickScan now finds many more of Scholastic's own levels, and its estimates used to run a letter or two high. Levels from Scholastic, a publisher, or your own list are kept.</p>
+                    <p>Three things account for a book that reads differently than it did before:</p>
+                    <ul>
+                        <li><strong>A level that is looked up now.</strong> Where QuickScan once estimated a Guided Reading Level from ATOS or Lexile, it may now find Scholastic's own level for that book and show that instead.</li>
+                        <li><strong>An estimated level that was re-done.</strong> The conversion QuickScan uses for the levels it estimates was re-fitted, and the old one ran a letter or two high, so an estimate can move down.</li>
+                        <li><strong>A level above P, withheld.</strong> Where Scholastic has no level for a longer chapter book, QuickScan now shows no Guided Reading Level rather than a guess &mdash; so a book that used to show a letter may show a dash instead. See <a href="#reading-levels">When a GRL is missing</a> above.</li>
+                    </ul>
+                    <p>Nothing changes until you choose <strong>Update Levels &amp; Covers</strong>. When a book's level does move, its detail screen shows what the level was before, with <strong>Keep previous level</strong> to put it back.</p>
                 </div>
             </div>
 
@@ -815,7 +833,7 @@
                         <li><strong>New releases</strong> - May not have been assessed yet</li>
                         <li><strong>Self-published</strong> - Rarely have official reading levels</li>
                     </ul>
-                    <p>When no source has a Guided Reading Level, DRA or grade for a book, QuickScan works one out from the ATOS level or Lexile measure it does have, and marks it <strong>&#8776;</strong>. Above the ceiling described above, it works no Guided Reading Level out at all and shows none.</p>
+                    <p>When no source has a Guided Reading Level, DRA or grade for a book, QuickScan estimates one from the ATOS level or Lexile measure it does have, and marks it <strong>&#8776;</strong>. Above the ceiling described above, it estimates no Guided Reading Level at all and shows none.</p>
                 </div>
             </div>
 
@@ -824,8 +842,8 @@
                 <div class="faq-answer">
                     <p>Two different things happen, and QuickScan tells you which one produced each level.</p>
                     <p><strong>Looked up.</strong> The AR (ATOS) level, the Lexile measure and Scholastic's Guided Reading Level come from book data sources &mdash; AR BookFinder, Scholastic and Lexile among them &mdash; queried by ISBN when you scan. QuickScan does not keep its own database of books.</p>
-                    <p><strong>Worked out.</strong> Where Scholastic has no level, QuickScan uses Renaissance Learning's published ATOS-to-GRL chart. Renaissance describes that chart as giving &ldquo;reasonable approximations in most cases&rdquo;, and notes that a book's actual ATOS value &ldquo;might not correspond exactly to the chart&rdquo;. Fountas &amp; Pinnell do not publish a chart for converting ATOS or Lexile into a Guided Reading Level, and they consider one invalid: a letter describes more about a book than how hard the words are.</p>
-                    <p>An estimated level is a starting point for choosing a book, not a substitute for a level a publisher assigned. QuickScan never replaces a level it looked up with one it worked out, and every level it worked out is marked &#8776;.</p>
+                    <p><strong>Estimated.</strong> Where Scholastic has no level, QuickScan uses Renaissance Learning's published ATOS-to-GRL chart. Renaissance describes that chart as giving &ldquo;reasonable approximations in most cases&rdquo;, and notes that a book's actual ATOS value &ldquo;might not correspond exactly to the chart&rdquo;. When a book has a Lexile measure but no ATOS value, QuickScan estimates the level from its own Lexile-to-GRL ladder instead. Fountas &amp; Pinnell do not publish a chart for converting ATOS or Lexile into a Guided Reading Level, and they consider one invalid: a letter describes more about a book than how hard the words are.</p>
+                    <p>An estimated level is a starting point for choosing a book, not a substitute for a level a publisher assigned. QuickScan never replaces a level it looked up with one it estimated, and every level it estimated is marked &#8776;.</p>
                     <div class="tip-box">
                         <div class="tip-box-title">If a level looks missing</div>
                         <p>Because levels are queried when you scan rather than stored, a book data source that is temporarily unavailable shows up as a missing level rather than a wrong one. QuickScan's Settings screen has a <strong>Book Level Source Health</strong> section showing the current status of those sources.</p>
@@ -1062,14 +1080,16 @@
                 <h3 class="faq-question">What do the "Source" columns mean?</h3>
                 <div class="faq-answer">
                     <p>Three of the reading levels — DRA, GRL, and Grade — are each followed by a Source column that says <em>where that value came from</em>, using the same wording the app shows on screen:</p>
-                    <ul>
+                    <ul data-source-phrases>
                         <li><strong>Looked up</strong> — the value came from a book data source, not from QuickScan.</li>
                         <li><strong>From Scholastic GRL</strong> — the value came from Scholastic's published Guided Reading Level.</li>
                         <li><strong>Estimated from ATOS</strong> — QuickScan worked the value out from the book's ATOS level.</li>
                         <li><strong>Estimated from Lexile</strong> — QuickScan worked the value out from the book's Lexile measure.</li>
                         <li><strong>Imported</strong> — the value came from a CSV you imported, and QuickScan leaves it exactly as you provided it.</li>
-                        <li>A <strong>blank</strong> Source cell means the level beside it is blank too, so there is nothing to attribute.</li>
+                        <li><strong>From an earlier version</strong> — the value was recorded by an earlier version of QuickScan and has not been matched to a Scholastic level. It is shown exactly as it was recorded.</li>
+                        <li><strong>Kept from before</strong> &mdash; the value is one the book showed before an update changed it, and you chose <em>Keep previous level</em> rather than let the new one stand. QuickScan will not replace it again. You did not have to type it in: this is not the same as <strong>Imported</strong>, which means the value came from a file of yours.</li>
                     </ul>
+                    <p data-source-blank>A <strong>blank</strong> Source cell means there is no level in that column to attribute. It does not mean the level is doubted: a level carried over from an earlier version of QuickScan is not blank &mdash; it reads <strong>From an earlier version</strong>.</p>
                     <p>These columns are there so a level QuickScan estimated is never mistaken for one a publisher assigned. If you are sorting or filtering a class list, the Source column beside each level tells you which values to check against your own records first.</p>
                     <p>The <strong>&#8776;</strong> mark you see on screen is not repeated in the CSV cells &mdash; the Source column carries that information in words instead, so the level itself stays a plain value your spreadsheet can sort and filter.</p>
                 </div>
@@ -1085,10 +1105,28 @@
                         <li>Pick a <strong>.csv</strong> file from Files, iCloud Drive, or your device</li>
                         <li>QuickScan reads the file and shows a summary: <strong>Imported &middot; Skipped &middot; Failed</strong></li>
                     </ol>
-                    <p>The Import button is always available &mdash; you don't need any books in your library first, so it's the quickest way to bring an existing collection into a new install. The importer only accepts <strong>comma-separated <code>.csv</code> files</strong>; spreadsheets such as <code>.xlsx</code> or <code>.numbers</code> must be saved or exported as CSV first.</p>
+                    <p data-import-format-exception>The Import button is always available &mdash; you don't need any books in your library first, so it's the quickest way to bring an existing collection into a new install. The importer only accepts <strong>comma-separated <code>.csv</code> files</strong> &mdash; with one exception: a tab-separated export from <strong>BookScanner</strong> is recognised and imported as-is. Spreadsheets such as <code>.xlsx</code> or <code>.numbers</code> must be saved or exported as CSV first.</p>
                     <div class="tip-box">
                         <div class="tip-box-title">After an import</div>
-                        <p>An imported row keeps the levels exactly as you supplied them, and their Source column reads <strong>Imported</strong>. To fill in the levels and cover art for books that came in without them, tap <strong>Find Missing Levels &amp; Covers</strong>.</p>
+                        <p>An imported row keeps the levels exactly as you supplied them, and their Source column reads <strong>Imported</strong>. To fill in the levels and cover art for books that came in without them, tap <strong>Update Levels &amp; Covers</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Can I import my BookScanner library?</h3>
+                <div class="faq-answer" data-bookscanner-import>
+                    <p>Yes. QuickScan recognises the export BookScanner writes and imports it <strong>as-is</strong> &mdash; you do not have to reformat it, rename a column, or convert it to anything first. Pick the file BookScanner gave you and QuickScan takes it from there.</p>
+                    <ol class="steps-list">
+                        <li>In <strong>BookScanner</strong>, open <strong>Settings</strong> and tap <strong>Export</strong>, then send the file to Files or iCloud Drive</li>
+                        <li>In QuickScan, open the <strong>History</strong> tab and tap <strong>Import</strong></li>
+                        <li>Pick the <strong>.csv</strong> file BookScanner made</li>
+                        <li>QuickScan reads it and shows the usual summary: <strong>Imported &middot; Skipped &middot; Failed</strong></li>
+                    </ol>
+                    <p data-bookscanner-import-isbn>Every row comes across &mdash; including the books BookScanner itself had no <strong>ISBN</strong> for, which simply arrive without one. Your <strong>ATOS</strong> levels, AR quiz numbers, AR points, word counts, interest levels and <strong>Lexile</strong> measures come across exactly as they were.</p>
+                    <div class="tip-box">
+                        <div class="tip-box-title">About the levels</div>
+                        <p data-bookscanner-import-levels>BookScanner did not record <strong>DRA</strong>, <strong>GRL</strong> or <strong>Grade Level</strong>, so QuickScan estimates those three from the ATOS level and marks them <strong>&#8776;</strong>. Tap <strong>Update Levels &amp; Covers</strong> and QuickScan looks them up properly, replacing each estimate with a published value where one exists. These books show <strong>Brought over from BookScanner</strong> in History in place of a scan date.</p>
                     </div>
                 </div>
             </div>
@@ -1121,6 +1159,50 @@ The Giver,Lois Lowry,9780544336261</pre>
                         <div class="tip-box-title">Restoring a backup is different</div>
                         <p>The separate <strong>Restore from a backup</strong> control on the Import screen <em>updates</em> the books you already have from the file, rather than skipping them &mdash; that's how you put reading levels back onto a library you've already rebuilt. It never deletes a book.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Different Section -->
+    <section id="whats-different" class="faq-section">
+        <div class="container">
+            <span class="section-label">BookScanner</span>
+            <h2 class="section-title">What's different from the old BookScanner</h2>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">What came over, and where do I find it?</h3>
+                <div class="faq-answer">
+                    <p data-whats-different-band>Every book from your earlier BookScanner history is in the <strong>History</strong> tab, alongside everything you scan from now on. Those books read <strong>Brought over from BookScanner</strong> where a scan date would normally sit, so you can tell at a glance which ones came with you.</p>
+                    <p>History's filter sheet has a toggle for exactly those books, so you can look at what came over on its own whenever you want to &mdash; and turn it off again to see the whole library.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Is there anything to buy?</h3>
+                <div class="faq-answer">
+                    <p data-whats-different-nothing-to-buy>No. If you owned the earlier BookScanner, there is nothing to buy &mdash; this update installs in place of the version you had, under the same App Store record, and everything BookScanner did is included.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Why do some levels look different?</h3>
+                <div class="faq-answer">
+                    <p data-whats-different-levels>Your <strong>ATOS</strong> and <strong>Lexile</strong> values came across exactly as BookScanner had them. Some of the other levels arrive carrying the <strong>&#8776;</strong> mark instead &mdash; <em>About the levels</em> under <a href="#export">Can I import my BookScanner library?</a> above says which ones, and why.</p>
+                    <p>Tapping <strong>Update Levels &amp; Covers</strong> is what fills those in properly.</p>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">I'm still on iOS 14, 15, 16 or 17 &mdash; what happens to my books?</h3>
+                <div class="faq-answer">
+                    <p data-whats-different-floor>This version needs <strong>iOS 18.0</strong> or later. On an earlier iOS, the BookScanner already on your iPhone or iPad keeps working exactly as it is and your books stay on the device. Nothing is deleted, and nothing is taken away from you by staying where you are.</p>
+                    <p>To bring those books to a newer device:</p>
+                    <ol class="steps-list">
+                        <li>In <strong>BookScanner</strong>, open <strong>Settings</strong> and tap <strong>Export</strong></li>
+                        <li>Save the file to Files or iCloud Drive, or send it to yourself</li>
+                        <li>On the newer device, follow <a href="#export">Can I import my BookScanner library?</a> above</li>
+                    </ol>
                 </div>
             </div>
         </div>
