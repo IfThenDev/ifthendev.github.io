@@ -696,7 +696,7 @@
                         <li><strong>Library bound editions</strong> - May use different identifiers</li>
                         <li><strong>Promotional/advance copies</strong> - Often lack final ISBNs</li>
                     </ul>
-                    <p>Unfortunately, QuickScan requires an ISBN to look up book data. For books without ISBNs, you may need to check reading levels manually through AR BookFinder or Scholastic Book Wizard websites.</p>
+                    <p data-type-title-route>You can look the book up by its title instead. On the Home screen, tap <strong>Type Title</strong>, then enter the title and, if you know it, the author. QuickScan searches by title and shows the reading levels it finds. If no database knows the book under any title, you can still check its reading level manually on the AR BookFinder or Scholastic Book Wizard websites.</p>
                 </div>
             </div>
 
@@ -710,6 +710,8 @@
                         <li><strong>Out of print</strong> - Very old editions may have been removed from databases</li>
                         <li><strong>Regional edition</strong> - Some international editions aren't in US databases</li>
                         <li><strong>Network issue</strong> - Check your internet connection</li>
+                        <li data-type-title-failure><strong>Type the title</strong> - On the Book Not Found screen, tap it to search by the book's title instead of its ISBN</li>
+                        <li data-scan-cover-failure><strong>Scan the cover</strong> - On the Book Not Found screen on iPhone and iPad, tap it to read the title from the book's cover with the camera, then check it before you search</li>
                     </ul>
                     <div class="tip-box">
                         <div class="tip-box-title">Try This</div>
@@ -749,6 +751,15 @@
                         <li><strong>Adjust lighting</strong> - Too dark or too much glare can prevent scanning</li>
                         <li><strong>Try the other barcode</strong> - Some books have multiple barcodes; one may scan better</li>
                     </ul>
+                </div>
+            </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">Can QuickScan read a book's cover or spine?</h3>
+                <div class="faq-answer">
+                    <p data-scan-cover-route>Yes, on iPhone and iPad. On the Home screen, tap <strong>Scan Cover</strong>, hold the book inside the frame, then tap <strong>Capture</strong>. QuickScan reads the printed text on your device and opens <strong>Type Title</strong> with the title and author it read already filled in. Check both, correct anything it got wrong, and then search. Nothing is looked up or saved until you do. (<strong>Scan Cover</strong> appears only on devices whose camera can read text, and not in the Mac app.)</p>
+                    <p data-scan-cover-framings>On the camera screen, choose what you're pointing at: <strong>Cover</strong> for the front of the book, <strong>Spine</strong> for a book standing on a shelf, or <strong>ISBN</strong> for ISBN digits printed on the book. The choice only moves the frame on screen. If the cover is hard to read, such as a busy illustration or a shiny jacket, try the spine instead.</p>
+                    <p data-printed-isbn-route>Some book-fair and book-club editions carry a store barcode that isn't the book's ISBN, with the ISBN digits printed above it. Choose <strong>ISBN</strong> and hold the printed digits steady inside the frame. When QuickScan reads a valid ISBN, it looks the book up exactly as if you had scanned its barcode.</p>
                 </div>
             </div>
 
@@ -922,6 +933,13 @@
                     <p>Swipe left on any book in your history list to reveal the delete button, then tap <strong>Delete</strong>.</p>
                 </div>
             </div>
+
+            <div class="faq-card animate-on-scroll">
+                <h3 class="faq-question">I found a book by its title after its barcode wasn't found. Will the barcode work next time?</h3>
+                <div class="faq-answer">
+                    <p data-remembered-barcode>Yes. When a barcode isn't found and you then find the book by its title, QuickScan keeps the barcode you scanned with that book. The next time you scan it, QuickScan opens the book from your history with no lookup. Tap the book in History to see the barcode in the <strong>Scanned barcode</strong> row. If it's attached to the wrong book, tap the &#8855; button beside it (VoiceOver reads it as <strong>Remove scanned barcode</strong>). The barcode is forgotten right away; the book and its levels stay. A barcode belongs to one book at a time, so finding a different book with it moves it to that book.</p>
+                </div>
+            </div>
             
                   <div class="faq-card animate-on-scroll">
                       <h3 class="faq-question">How does the Grade Level filter work?</h3>
@@ -1048,7 +1066,7 @@
                 <h3 class="faq-question">What columns does the CSV have?</h3>
                 <div class="faq-answer">
                     <p>Every CSV QuickScan writes begins with this header row, and the columns appear in this order:</p>
-                    <pre data-export-schema>Title,Author,ISBN,ATOS Level,Lexile,DRA,DRA Source,GRL,GRL Source,Grade,Grade Source,Interest Level,AR Points,Word Count,AR Quiz #,Scanned Date</pre>
+                    <pre data-export-schema>Title,Author,ISBN,ATOS Level,Lexile,DRA,DRA Source,GRL,GRL Source,Grade,Grade Source,Interest Level,AR Points,Word Count,AR Quiz #,Scanned Date,Scanned Barcode</pre>
                     <p>An exported CSV re-imports exactly. An import file you build yourself does not have to match this row column-for-column &mdash; see <a href="#export">What should the import file look like?</a> below. What each column holds:</p>
                     <ul data-export-columns>
                         <li><strong>Title</strong> — the book's title.</li>
@@ -1067,11 +1085,12 @@
                         <li><strong>Word Count</strong> — the book's word count, as a whole number.</li>
                         <li><strong>AR Quiz #</strong> — the Accelerated Reader quiz number, as a whole number.</li>
                         <li><strong>Scanned Date</strong> — the date the book was added to your library.</li>
+                        <li><strong>Scanned Barcode</strong> — a barcode QuickScan remembers for this book: the one you scanned when the book had to be found by title instead. Scanning that barcode again opens the book. Blank for most books. A re-import remembers it again.</li>
                     </ul>
                     <p>A blank cell means QuickScan has no value for that column. Title, author, and ISBN are required on import; every other column is optional.</p>
                     <div class="tip-box">
                         <div class="tip-box-title">If you have a spreadsheet built against the old export</div>
-                        <p>Before version 6.4 the export had thirteen columns, without the three <strong>Source</strong> columns. A file in that older shape still imports whole: QuickScan matches columns by <em>name</em>, never by position, so the three columns it doesn't find simply go unasked-for. Nothing shifts and nothing lands in the wrong field.</p>
+                        <p>Before version 6.4 the export had thirteen columns, without the three <strong>Source</strong> columns. A file in that older shape still imports whole: QuickScan matches columns by <em>name</em>, never by position, so the three columns it doesn't find simply go unasked-for. Nothing shifts and nothing lands in the wrong field. Version 6.6 added <strong>Scanned Barcode</strong> as the last column; a file without it imports the same way, and simply remembers no barcodes.</p>
                     </div>
                 </div>
             </div>
@@ -1227,6 +1246,7 @@ The Giver,Lois Lowry,9780544336261</pre>
                         <div class="tip-box-title">Scanning Tip</div>
                         <p>Good lighting is especially important for webcam scanning. Position your book in a well-lit area for best results.</p>
                     </div>
+                    <p data-mac-typed-only>The Mac app scans barcodes but can't read a book's cover or spine, so it has no <strong>Scan Cover</strong>. To find a book by its words on a Mac, use <strong>Type Title</strong>; to use the webcam, hold the book's barcode up with <strong>Scan ISBN</strong>.</p>
                 </div>
             </div>
 
@@ -1316,7 +1336,7 @@ The Giver,Lois Lowry,9780544336261</pre>
                     <p>This indicates a network issue. Try:</p>
                     <ul>
                         <li>Check your WiFi or cellular connection</li>
-                        <li>Try again in a few moments</li>
+                        <li data-connection-retry>Once you're back online, tap <strong>Try again</strong> on the Connection Problem screen. QuickScan looks the same book up again, with no need to rescan</li>
                         <li>Make sure you're not in Airplane Mode</li>
                     </ul>
                     <p>QuickScan requires an internet connection to look up book data.</p>
