@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy &amp; Terms — PickleBoard</title>
     <meta name="description" content="PickleBoard privacy policy and terms of use: what the app stores on your devices, what it sends to Apple and RevenueCat, and how to delete it.">
+    <link rel="canonical" href="https://ifthendev.com/pickleboard/privacypolicy.html">
+    <meta property="og:title" content="Privacy Policy &amp; Terms of Use — PickleBoard">
+    <meta property="og:description" content="PickleBoard privacy policy and terms of use: what the app stores on your devices, what it sends to Apple and RevenueCat, and how to delete it.">
+    <meta property="og:url" content="https://ifthendev.com/pickleboard/privacypolicy.html">
+    <meta property="og:type" content="website">
     <link rel="icon" href="images/app-icon.png">
     <style>
         :root {
@@ -64,7 +69,7 @@
             text-align: center;
         }
 
-        header h1 {
+        header .site-title {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--color-primary);
@@ -158,6 +163,22 @@
             border-radius: 4px;
         }
 
+        .cta-button {
+            display: inline-block;
+            background: var(--color-primary);
+            color: var(--color-background);
+            padding: var(--s-3) var(--s-6);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .cta-button:hover,
+        .cta-button:focus-visible {
+            text-decoration: none;
+            opacity: 0.9;
+        }
+
         .updated {
             margin-top: var(--s-8);
             padding-top: var(--s-5);
@@ -225,15 +246,17 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <header>
-        <h1>PickleBoard</h1>
+        <p class="site-title">PickleBoard</p>
         <a href="index.html" class="back-link">&larr; Back to PickleBoard</a>
     </header>
 
     <main id="main-content" class="container">
 
+        <h1>Privacy Policy &amp; Terms of Use</h1>
+        <p class="lead">PickleBoard is a Watch-first pickleball scoreboard. We don't track you and we don't sell data — period. This page explains what the app stores on your devices, what it sends to Apple and RevenueCat, and why.</p>
+
         <section id="privacy-policy">
-            <h1>Privacy Policy</h1>
-            <p class="lead">PickleBoard is a Watch-first pickleball scoreboard. We don't track you and we don't sell data — period. This page explains what the app stores on your devices, what it sends to Apple and RevenueCat, and why.</p>
+            <h2>Privacy Policy</h2>
 
             <h3>1. Information We Don't Collect</h3>
             <p>PickleBoard has no user accounts, no sign-up, and no email list. We do not run analytics or advertising SDKs, we do not sell data, and we do not share data with advertisers. The only third-party service in the app is RevenueCat, which verifies your Pro purchase (see section 7).</p>
@@ -287,8 +310,8 @@
             <h3>4. License</h3>
             <p>Your use of PickleBoard is governed by the standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">Apple Standard End User License Agreement</a>.</p>
 
-            <h3>5. Subscriptions &amp; In-App Purchases</h3>
-            <p>PickleBoard is free to download. Pro features (Live Activity, voice announcements, match stats, share card) are unlocked with a one-time in-app purchase. The Pro purchase is associated with your Apple ID and can be restored on any device signed into the same Apple ID via the Restore Purchase action in Settings.</p>
+            <h3>5. In-App Purchase (Pro)</h3>
+            <p>PickleBoard is free to download. Free on iPhone: up to 3 matches per session (the count resets after 6 hours of inactivity), with Live Activity, Dynamic Island, widgets and voice announcements included. Apple Watch: 7-day free trial. Pro is a one-time purchase, not a subscription: unlimited iPhone matches, the Apple Watch scoreboard after the trial, game-over match details with Match Stats (location and weather), and the share card. The Pro purchase is tied to your Apple Account and can be restored on any iPhone or Apple Watch signed in to the same Apple Account with Restore Purchases (iPhone: Settings; Apple Watch: the Pro screen).</p>
 
             <h3>6. Data Accuracy</h3>
             <p>Weather and location data are provided by Apple WeatherKit and CoreLocation respectively; their accuracy is not guaranteed. PickleBoard is not responsible for any missed points, incorrect scores, or disagreements that occur during informal play. Always defer to a human referee in officiated games.</p>
@@ -300,7 +323,7 @@
             <p>These terms are governed by the laws of the State of Illinois, USA, without regard to its conflict-of-laws principles.</p>
 
             <h3>9. Support</h3>
-            <a href="https://ifthendev.com/contact/index.html?app=PickleBoard" class="cta-button">Contact Support</a><p> or visit the <a href="help.html">Help &amp; FAQ</a> page.</p>
+            <p><a href="https://ifthendev.com/contact/index.html?app=PickleBoard" class="cta-button">Contact Support</a> or visit the <a href="help.html">Help &amp; FAQ</a> page.</p>
         </section>
 
         <p class="updated"><strong>Last Updated:</strong> 2026-10-25</p>
@@ -310,7 +333,7 @@
         <a href="index.html">PickleBoard</a>
         <a href="help.html">Help</a>
         <a href="https://ifthendev.com">If Then Dev</a>
-        <a href="https://ifthendev.com/contact/index.html?app=PickleBoard" class="cta-button">Contact</a>
+        <a href="https://ifthendev.com/contact/index.html?app=PickleBoard">Contact</a>
         <p class="copyright">&copy; <span class="copyright-year">2026</span> If Then Dev, LLC. All rights reserved.</p>
     </footer>
     <script>document.querySelectorAll('.copyright-year').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
