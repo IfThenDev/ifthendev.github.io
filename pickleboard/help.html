@@ -436,6 +436,7 @@
 
         details.faq-card > summary::after {
             content: '+';
+            content: '+' / '';
             position: absolute;
             right: 0;
             top: 50%;
@@ -448,6 +449,7 @@
 
         details.faq-card[open] > summary::after {
             content: '\00d7';
+            content: '\00d7' / '';
         }
 
         details.faq-card .faq-answer {
@@ -758,7 +760,7 @@
             <h3>Singles</h3>
             <p>Singles serving rules: one server per side, with sides switching based on the server&rsquo;s score. The server number is suppressed because there&rsquo;s only one server per team.</p>
             <h3>Rally</h3>
-            <p>Score every rally, not just your serve. An optional <strong>freeze-at-target</strong> rule changes the finish: once either team is one point from the target (for example, 10 in a game to 11), a rally won by the receiving team earns the serve instead of a point, so only the serving team can score from there. Default OFF (matches 2026 USAP rules); enable in Settings if your house rules call for it.</p>
+            <p>Score every rally, not just your serve. An optional <strong>freeze-at-target</strong> rule changes the finish: once either team reaches one point from the target (for example, 10 in a game to 11), a rally won by the receiving team earns the serve instead of a point, so only the serving team can score from there. Default OFF (matches 2026 USAP rules); enable in Settings if your house rules call for it.</p>
             <h3>Game targets and win-by-2</h3>
             <p>PickleBoard supports targets of <strong>11</strong> (default), <strong>15</strong>, and <strong>21</strong>. Win-by-2 is enforced automatically &mdash; a game ends only when one team reaches the target with a 2-point lead.</p>
         </section>
@@ -798,7 +800,7 @@
             <p>PickleBoard ships widgets for both your Home Screen and your Lock Screen. Every variant follows the same three-state design: live score while a game is in progress, the last final score after a game ends, and a friendly &ldquo;Tap to score&rdquo; prompt before your first match.</p>
             <h3>Home Screen sizes</h3>
             <ul>
-                <li><strong>Small:</strong> Compact scoreboard with both team scores, mode, and the serving indicator. Falls back to the last final score (with a FINAL eyebrow) between games.</li>
+                <li><strong>Small:</strong> Compact scoreboard with both team scores (the serving team&rsquo;s score in green) and the server number in doubles. Falls back to the last final score (with a FINAL eyebrow) between games.</li>
                 <li><strong>Medium:</strong> Full team-name + score layout with the serving team highlighted. Same FINAL fallback between games, plus the relative timestamp (&ldquo;5m ago&rdquo;).</li>
             </ul>
             <h3>Lock Screen widgets</h3>
@@ -860,7 +862,7 @@
             <h3>Opt-in flow</h3>
             <p>Toggle Match Stats on in Settings (on iPhone the toggle appears once you have Pro). The first time you do, iOS prompts for Location access (When-In-Use). If you grant it, weather flows automatically &mdash; PickleBoard already has WeatherKit entitlement built in. If you deny Location, Settings replaces the Match Stats toggle with a recovery row that points you to system Settings, where you can allow Location later.</p>
             <h3>Rematch</h3>
-            <p>Tap Rematch on the game-over card to start a new game with the same settings (mode, target, freeze-at-target, timeout count). The score resets to 0&ndash;0 and team names carry over on iPhone.</p>
+            <p>Tap Rematch on the game-over card to start a new game with the same mode, target and freeze-at-target setting. The score resets to 0&ndash;0 and team names carry over on iPhone.</p>
             <h3>Share card</h3>
             <p>Tap Share on the game-over card (Pro on iPhone; included with Pro or the free trial on Apple Watch) to generate a square image &mdash; team names, final score, mode, target, location and weather chips (when stats are on), and the WeatherKit attribution footer &mdash; ready to share via Messages, Photos, Mail, or any social app. On Apple Watch, Share sends the image to your iPhone; open PickleBoard on your iPhone to finish sharing.</p>
             <p class="tip-box"><strong>Privacy:</strong> Location is captured once when a game ends (never continuously). The coordinates and place name are saved with the match on your devices, and they are sent to Apple&rsquo;s reverse-geocoding and WeatherKit services to look up the place name and the weather, and to Apple Maps when you tap the location chip to look for nearby places. Nothing is sent to a server we control. See the <a href="privacypolicy.html">Privacy Policy</a>.</p>
@@ -869,7 +871,7 @@
         <section id="timeouts" class="help-section">
             <span class="section-label">08 &middot; Timeouts</span>
             <h2>Timeouts</h2>
-            <p>Each team gets <strong>2 timeouts per game</strong> by default, whatever the game target. You can set 0, 1, 2 or 3 in Settings &rarr; New Game Defaults.</p>
+            <p>Each team gets <strong>2 timeouts</strong> in a new game started with the Reset button, whatever the game target.</p>
             <h3>Calling a timeout</h3>
             <ol class="steps-list">
                 <li>On iPhone: tap the Timeout button on the toolbar, then pick the team.</li>
@@ -877,7 +879,7 @@
             </ol>
             <h3>What happens</h3>
             <ul>
-                <li>The dot indicator below the team&rsquo;s score decrements one notch per timeout (e.g. 2 &rarr; 1 &rarr; 0 with the default of 2 timeouts per game).</li>
+                <li>In a game that starts with 2 timeouts, the dots below the team&rsquo;s score go 2 &rarr; 1 &rarr; 0 as the team calls them.</li>
                 <li>If voice announcements are on, PickleBoard speaks &ldquo;Time-out, team one&rdquo; or &ldquo;Time-out, team two&rdquo; on the device you&rsquo;re scoring with.</li>
                 <li>Timeouts are <strong>not</strong> undoable (per pickleball rules &mdash; calling one is final). Score actions remain fully undoable via the Undo button.</li>
             </ul>
@@ -930,23 +932,23 @@
             <details class="faq-card">
                 <summary class="faq-question">My Home Screen widget shows old data.</summary>
                 <div class="faq-answer">
-                    <p>The widget refreshes automatically when an active game starts, when scores change, and at game-over. If you see stale data after a reboot, open the iPhone app once to wake the shared state &mdash; the widget refreshes on the next system timeline tick.</p>
+                    <p>The widget updates when the score changes on your iPhone, at most once every few seconds. It updates again when a game ends. If the score changes twice within a few seconds, the widget can show the earlier score until the next rally ends or the game ends, or until iOS refreshes it on its own schedule, which can take several minutes or more.</p>
                 </div>
             </details>
 
             <details class="faq-card">
                 <summary class="faq-question">The Live Activity isn&rsquo;t showing on my Lock Screen.</summary>
                 <div class="faq-answer">
-                    <p>Check that Live Activities are on for PickleBoard (Settings &rarr; PickleBoard &rarr; Live Activities) and allowed on the Lock Screen (Settings &rarr; Face ID &amp; Passcode &rarr; Live Activities).</p>
+                    <p>The Live Activity appears only for games scored on iPhone. Check that Live Activities are on for PickleBoard (Settings &rarr; PickleBoard &rarr; Live Activities) and allowed on the Lock Screen (Settings &rarr; Face ID &amp; Passcode &rarr; Live Activities).</p>
                 </div>
             </details>
 
             <details class="faq-card">
                 <summary class="faq-question">I renamed a team mid-game and the Live Activity still shows the old name.</summary>
                 <div class="faq-answer">
-                    <p>This is an iOS limitation, not a bug. When PickleBoard starts a Live Activity, the team names get baked into the activity&rsquo;s <em>attributes</em> &mdash; iOS treats those as fixed metadata and won&rsquo;t let an app update them while the activity is running. Score, server, side, and timeouts all keep updating live; team names are the one piece that&rsquo;s pinned at start time.</p>
-                    <p><strong>What still updates everywhere else:</strong> the iPhone scoreboard and your iPhone widgets pick up the new names right away. Only the running Live Activity (Lock Screen + Dynamic Island) keeps the old names.</p>
-                    <p><strong>If you want the new names on the Live Activity:</strong> tap the trash icon and start a new game, then type the names you want before scoring. The new game&rsquo;s Live Activity starts with the updated names.</p>
+                    <p>PickleBoard sets the team names when the Live Activity starts, along with the game mode and the number of timeout dots, and iOS doesn&rsquo;t let an app change those while the Live Activity is running. The rest of the Live Activity refreshes whenever the score changes.</p>
+                    <p><strong>What updates right away:</strong> the iPhone scoreboard shows the new names as soon as you type them. The running Live Activity (Lock Screen + Dynamic Island) keeps the old names.</p>
+                    <p><strong>If you want the new names on the Live Activity:</strong> finish the current game. The Live Activity dismisses about 30 seconds after the game ends, and the next game&rsquo;s Live Activity starts with the team names in use at that point (Rematch keeps your new names). Starting a new game before the current one ends keeps the same Live Activity, still showing the old names.</p>
                 </div>
             </details>
 
