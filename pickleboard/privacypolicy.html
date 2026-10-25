@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy &amp; Terms — PickleBoard</title>
-    <meta name="description" content="PickleBoard privacy policy and terms of use. We don't collect your data — here's what we do collect on-device, why, and how to control it.">
+    <meta name="description" content="PickleBoard privacy policy and terms of use: what the app stores on your devices, what it sends to Apple and RevenueCat, and how to delete it.">
     <link rel="icon" href="images/app-icon.png">
     <style>
         :root {
@@ -233,13 +233,13 @@
 
         <section id="privacy-policy">
             <h1>Privacy Policy</h1>
-            <p class="lead">PickleBoard is a Watch-first pickleball scoreboard. We don't track you and we don't sell data — period. This page tells you what the app does collect, where, and why.</p>
+            <p class="lead">PickleBoard is a Watch-first pickleball scoreboard. We don't track you and we don't sell data — period. This page explains what the app stores on your devices, what it sends to Apple and RevenueCat, and why.</p>
 
             <h3>1. Information We Don't Collect</h3>
-            <p>PickleBoard does not run a third-party analytics SDK. We don't have a server collecting your usage. We don't sell or share data with advertisers. There is no user account, no email signup, and no telemetry.</p>
+            <p>PickleBoard has no user accounts, no sign-up, and no email list. We do not run analytics or advertising SDKs, we do not sell data, and we do not share data with advertisers. The only third-party service in the app is RevenueCat, which verifies your Pro purchase (see section 7).</p>
 
-            <h3>2. Microphone &amp; Audio</h3>
-            <p>The voice score announcement feature uses Apple's on-device speech synthesizer (AVSpeechSynthesizer). Audio is generated locally and played through the Watch's speaker — nothing is recorded, stored, or transmitted off your device. PickleBoard does not request microphone permission.</p>
+            <h3>2. Voice Announcements &amp; Audio</h3>
+            <p>Voice score announcements use Apple's speech synthesizer (AVSpeechSynthesizer). The speech is generated on your device and played through your iPhone or Apple Watch speaker; nothing is recorded, stored, or transmitted. PickleBoard does not request microphone permission.</p>
 
             <h3>3. Apple Health (HealthKit)</h3>
             <p>If you grant permission, PickleBoard reads your heart rate during a game (to estimate calories) and saves each completed game to Apple Health as a pickleball workout: start and end time, duration, and estimated calories. On Apple Watch the workout is recorded live during the game; on iPhone it is saved when the game ends. Health data stays in Apple Health on your devices. It is never sent to a server we control, never used for advertising, and never shared with third parties. You can turn off Log to Apple Health in PickleBoard Settings, or revoke access at any time in Settings &rarr; Privacy &amp; Security &rarr; Health.</p>
@@ -251,21 +251,24 @@
             <h3>5. Apple Weather Attribution</h3>
             <p>Weather data provided by Apple Weather. <a href="https://weatherkit.apple.com/legal-attribution.html" target="_blank" rel="noopener noreferrer">Other Data Sources</a>.</p>
 
-            <h3>6. App Group Shared Storage</h3>
-            <p>PickleBoard uses an Apple App Group container (<code>group.com.ifthendev.pickleboard</code>) to share live game state between the iPhone app and the Watch app. This is local-device storage on your Apple devices — Apple's WatchConnectivity framework is the only mechanism that moves data between your iPhone and Watch, and that traffic is end-to-end encrypted by Apple.</p>
+            <h3>6. App Group &amp; Watch Connectivity</h3>
+            <p>PickleBoard uses an Apple App Group container (<code>group.com.ifthendev.pickleboard</code>) so the app, its widgets and its Live Activity on the same device can share the current game and recent results. An App Group never leaves the device it is on. Between your Apple Watch and iPhone, PickleBoard uses Apple's WatchConnectivity framework for three things, all sent from Apple Watch to iPhone: the request that opens the Pro screen on your iPhone, a share image you create on Apple Watch, and each finished match record (score, teams, and, if Match Stats is on, its location and weather). Apple handles the transfer between your paired devices; nothing passes through a server we control.</p>
 
-            <h3>7. Subscriptions &amp; Purchases (RevenueCat)</h3>
-            <p>The optional Pro in-app purchase is processed by Apple. PickleBoard uses RevenueCat to manage entitlement state across your iPhone and Watch. RevenueCat may collect anonymous purchase identifiers as part of providing this service. See the <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">RevenueCat Privacy Policy</a> for details.</p>
+            <h3>7. In-App Purchase (RevenueCat)</h3>
+            <p>PickleBoard Pro is a one-time in-app purchase processed by Apple. PickleBoard uses RevenueCat to check whether your Pro purchase is active on your iPhone and Apple Watch. To do this, the RevenueCat SDK sends RevenueCat a randomly generated app user ID, your PickleBoard purchase and transaction history from the App Store, basic device and app information (such as device model, operating system version and app version), and your IP address as part of each request. We use RevenueCat only to verify your Pro purchase. See the <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">RevenueCat Privacy Policy</a> for details.</p>
             <p>App Store payments are handled entirely by Apple. PickleBoard never sees your payment method.</p>
 
             <h3>8. Children's Privacy</h3>
             <p>PickleBoard is rated 4+ on the App Store and does not knowingly collect any personal information from users of any age. The app does not have a sign-up, login, or chat surface.</p>
 
-            <h3>9. Changes to This Policy</h3>
+            <h3>9. Data Retention &amp; Deletion</h3>
+            <p>PickleBoard keeps your last 5 matches on each device (iPhone and Apple Watch), including any location and weather saved with them; older matches are removed automatically as new ones are added. On iPhone you can delete a match in Settings &rarr; Match History. Workouts saved to Apple Health stay in the Health app until you delete them there. Deleting PickleBoard from a device removes its PickleBoard data from that device. Purchase records held by RevenueCat are covered by the RevenueCat Privacy Policy; contact us if you need help with a request.</p>
+
+            <h3>10. Changes to This Policy</h3>
             <p>If we change how the app handles data, we will update this page and bump the Last Updated date below. Material changes will also be reflected in the App Store What's New release notes for the corresponding update.</p>
 
-            <h3>10. Contact</h3>
-            <p>Contact support with any privacy questions.</p>
+            <h3>11. Contact</h3>
+            <p>Questions about this policy? <a href="https://ifthendev.com/contact/index.html?app=PickleBoard">Contact us</a> or visit the <a href="help.html">Help &amp; FAQ</a> page.</p>
         </section>
 
         <section id="terms">
@@ -300,7 +303,7 @@
             <a href="https://ifthendev.com/contact/index.html?app=PickleBoard" class="cta-button">Contact Support</a><p> or visit the <a href="help.html">Help &amp; FAQ</a> page.</p>
         </section>
 
-        <p class="updated"><strong>Last Updated:</strong> 2026-04-27</p>
+        <p class="updated"><strong>Last Updated:</strong> 2026-10-25</p>
     </main>
 
     <footer>
