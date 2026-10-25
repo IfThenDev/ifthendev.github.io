@@ -737,7 +737,7 @@
         <section id="getting-started" class="help-section">
             <span class="section-label">01 &middot; Getting Started</span>
             <h2>Getting Started</h2>
-            <p>PickleBoard runs on Apple Watch and iPhone. The Watch app is the primary experience &mdash; a glanceable scoreboard right on your wrist. The iPhone app mirrors the same scoreboard for sideline scoring or Live Activity and Dynamic Island use during a game.</p>
+            <p>PickleBoard runs on Apple Watch and iPhone. The Watch app is the primary experience &mdash; a glanceable scoreboard right on your wrist. The iPhone app has its own full scoreboard for sideline scoring. Each device scores its own game, and scores don&rsquo;t sync between them during play. Games scored on iPhone also show as a Live Activity on the Lock Screen, and in the Dynamic Island on iPhone models that have one.</p>
             <h3>Your first game</h3>
             <ol class="steps-list">
                 <li>Open PickleBoard on your Watch (or iPhone).</li>
@@ -758,7 +758,7 @@
             <h3>Singles</h3>
             <p>Singles serving rules: one server per side, with sides switching based on the server&rsquo;s score. The server number is suppressed because there&rsquo;s only one server per team.</p>
             <h3>Rally</h3>
-            <p>Score every rally, not just your serve. An optional <strong>freeze-at-target</strong> rule limits the leading team to scoring on their own serve once they reach game point. Default OFF (matches 2026 USAP rules); enable in Settings if your house rules call for it.</p>
+            <p>Score every rally, not just your serve. An optional <strong>freeze-at-target</strong> rule changes the finish: once either team is one point from the target (for example, 10 in a game to 11), a rally won by the receiving team earns the serve instead of a point, so only the serving team can score from there. Default OFF (matches 2026 USAP rules); enable in Settings if your house rules call for it.</p>
             <h3>Game targets and win-by-2</h3>
             <p>PickleBoard supports targets of <strong>11</strong> (default), <strong>15</strong>, and <strong>21</strong>. Win-by-2 is enforced automatically &mdash; a game ends only when one team reaches the target with a 2-point lead.</p>
         </section>
@@ -775,7 +775,7 @@
             </ol>
             <p class="tip-box"><strong>Tip:</strong> Voice announcements use the on-device speech synthesizer. No audio is recorded, and nothing is transmitted off your device.</p>
             <h3>On iPhone and Apple Watch</h3>
-            <p>Each device speaks the score for the game it is scoring. On iPhone, the Live Activity and Dynamic Island also keep the score on your Lock Screen.</p>
+            <p>Each device speaks the score for the game it is scoring. For games scored on iPhone, the Live Activity also keeps the score on your Lock Screen, and in the Dynamic Island on iPhone models that have one.</p>
         </section>
 
         <section id="live-activity" class="help-section">
@@ -853,7 +853,7 @@
             <ul>
                 <li><strong>Game-over card</strong> (iPhone &amp; Watch) &mdash; two extra chips appear next to the always-shown Mode and Target chips: a location chip and a weather chip.</li>
                 <li><strong>Share card</strong> (1080&times;1080 image) &mdash; the same chips embed in the exported image, plus an Apple WeatherKit attribution footer at the bottom (Apple&rsquo;s WeatherKit terms require this whenever weather is shown).</li>
-                <li><strong>Match history</strong> &mdash; your last 5 games persist their location and weather, so history views and the Home Screen widget&rsquo;s FINAL state pick them up too.</li>
+                <li><strong>Match history</strong> &mdash; your last 5 games keep their location and weather. On iPhone, Settings &rarr; Match History lists them and can re-share each game&rsquo;s card.</li>
             </ul>
             <h3>When it&rsquo;s off</h3>
             <p>The default is off. With Match Stats off, no Location prompt fires, no network request is made for weather, and the game-over card simply shows Mode and Target chips without place or weather. Nothing about the score, the engine, or your match history is degraded &mdash; you just lose the &ldquo;where and what weather&rdquo; layer.</p>
