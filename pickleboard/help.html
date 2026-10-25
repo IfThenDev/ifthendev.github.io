@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Help &amp; FAQ — PickleBoard</title>
     <meta name="description" content="Help and FAQ for PickleBoard, the Watch-first pickleball scoreboard. Learn how to use scoring modes, voice announcements, Live Activity, widgets, and more.">
     <meta name="theme-color" content="#0F2A45">
     <link rel="icon" href="images/app-icon.png">
+    <link rel="canonical" href="https://ifthendev.com/pickleboard/help.html">
+    <meta property="og:title" content="Help &amp; FAQ — PickleBoard">
+    <meta property="og:description" content="Help and FAQ for PickleBoard, the Watch-first pickleball scoreboard. Learn how to use scoring modes, voice announcements, Live Activity, widgets, and more.">
+    <meta property="og:url" content="https://ifthendev.com/pickleboard/help.html">
+    <meta property="og:type" content="website">
 
     <style>
         :root {
@@ -265,7 +271,8 @@
             margin-bottom: var(--s-2);
         }
 
-        .toc-card h3 {
+        .toc-card .toc-title {
+            display: block;
             font-size: var(--fs-body);
             font-weight: 600;
             color: var(--white);
@@ -573,13 +580,13 @@
         }
 
         /* === Scroll-reveal === */
-        .animate-on-scroll {
+        .js .animate-on-scroll {
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
-        .animate-on-scroll.visible {
+        .js .animate-on-scroll.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -635,7 +642,7 @@
             }
             .bg-orb { animation: none; }
             .cta-card::before { animation: none; }
-            .animate-on-scroll {
+            .js .animate-on-scroll {
                 opacity: 1;
                 transform: none;
             }
@@ -671,57 +678,57 @@
             <div class="toc-grid">
                 <a href="#getting-started" class="toc-card">
                     <span class="toc-num">01</span>
-                    <h3>Getting Started</h3>
+                    <span class="toc-title">Getting Started</span>
                     <p>Watch vs iPhone, your first game.</p>
                 </a>
                 <a href="#scoring-modes" class="toc-card">
                     <span class="toc-num">02</span>
-                    <h3>Scoring Modes</h3>
+                    <span class="toc-title">Scoring Modes</span>
                     <p>Doubles, singles, rally, freeze-at-target.</p>
                 </a>
                 <a href="#voice" class="toc-card">
                     <span class="toc-num">03</span>
-                    <h3>Voice Announcements</h3>
+                    <span class="toc-title">Voice Announcements</span>
                     <p>&ldquo;4, 2, 1&rdquo; spoken from your wrist.</p>
                 </a>
                 <a href="#live-activity" class="toc-card">
                     <span class="toc-num">04</span>
-                    <h3>Live Activity &amp; Dynamic Island</h3>
+                    <span class="toc-title">Live Activity &amp; Dynamic Island</span>
                     <p>Score on your Lock Screen, automatically.</p>
                 </a>
                 <a href="#widget" class="toc-card">
                     <span class="toc-num">05</span>
-                    <h3>iPhone Widgets</h3>
+                    <span class="toc-title">iPhone Widgets</span>
                     <p>Home Screen and Lock Screen — live score and last-match.</p>
                 </a>
                 <a href="#watch-extras" class="toc-card">
                     <span class="toc-num">06</span>
-                    <h3>Watch Complication &amp; Always-On</h3>
+                    <span class="toc-title">Watch Complication &amp; Always-On</span>
                     <p>Quick-launch and a dimmed score on AOD.</p>
                 </a>
                 <a href="#match-stats" class="toc-card">
                     <span class="toc-num">07</span>
-                    <h3>Match Stats, Weather &amp; Rematch</h3>
+                    <span class="toc-title">Match Stats, Weather &amp; Rematch</span>
                     <p>Game-over card with weather and one-tap restart.</p>
                 </a>
                 <a href="#timeouts" class="toc-card">
                     <span class="toc-num">08</span>
-                    <h3>Timeouts</h3>
+                    <span class="toc-title">Timeouts</span>
                     <p>Two per game, voice-announced.</p>
                 </a>
                 <a href="#subscription" class="toc-card">
                     <span class="toc-num">09</span>
-                    <h3>Pro Unlock</h3>
+                    <span class="toc-title">Pro Unlock</span>
                     <p>One-time purchase, how to restore.</p>
                 </a>
                 <a href="#pickleball-rules" class="toc-card">
                     <span class="toc-num">10</span>
-                    <h3>Pickleball Rules</h3>
+                    <span class="toc-title">Pickleball Rules</span>
                     <p>Official USA Pickleball rules &amp; references.</p>
                 </a>
                 <a href="#troubleshooting" class="toc-card">
                     <span class="toc-num">11</span>
-                    <h3>Troubleshooting</h3>
+                    <span class="toc-title">Troubleshooting</span>
                     <p>Common issues and fixes.</p>
                 </a>
             </div>
@@ -988,6 +995,10 @@
         // Mirrors index.html exactly; reduced-motion users skip observation entirely.
         (function() {
             if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelectorAll('.animate-on-scroll').forEach(function(el) { el.classList.add('visible'); });
+                return;
+            }
+            if (!('IntersectionObserver' in window)) {
                 document.querySelectorAll('.animate-on-scroll').forEach(function(el) { el.classList.add('visible'); });
                 return;
             }
