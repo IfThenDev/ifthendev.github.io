@@ -511,7 +511,7 @@
             margin: 0 auto var(--s-6);
         }
 
-        .contact-button {
+        .cta-button {
             display: inline-block;
             background: var(--pb-green);
             color: var(--pb-blue-deep);
@@ -523,7 +523,8 @@
             transition: transform 0.3s ease;
         }
 
-        .contact-button:hover {
+        .cta-button:hover,
+        .cta-button:focus-visible {
             transform: scale(1.05);
         }
 
@@ -738,7 +739,7 @@
                 <li>When the game ends, review the game-over card and tap Rematch to play again.</li>
             </ol>
             <h3>Free vs Pro</h3>
-            <p>PickleBoard is free to download and play. Pro features &mdash; Live Activity, Dynamic Island, voice announcements, and match stats &mdash; are unlocked with a one-time in-app purchase. See the <a href="#subscription">Pro Unlock</a> section for details.</p>
+            <p>PickleBoard is free to download. Free on iPhone: up to 3 matches per session (the count resets after 6 hours of inactivity), with Live Activity, Dynamic Island, widgets and voice announcements included. Apple Watch: 7-day free trial. Pro is a one-time purchase, not a subscription: unlimited iPhone matches, the Apple Watch scoreboard after the trial, game-over match details with Match Stats (location and weather), and the share card. See the <a href="#subscription">Pro Unlock</a> section for details.</p>
         </section>
 
         <section id="scoring-modes" class="help-section">
@@ -878,12 +879,12 @@
         <section id="subscription" class="help-section">
             <span class="section-label">09 &middot; Pro Unlock (One-Time IAP)</span>
             <h2>Pro Unlock</h2>
-            <p>PickleBoard is free to download. Pro features &mdash; Live Activity, Dynamic Island, voice announcements, and match stats &mdash; are unlocked with a single one-time in-app purchase. There is no subscription, no auto-renewal, and no recurring charge.</p>
+            <p>PickleBoard is free to download. Free on iPhone: up to 3 matches per session (the count resets after 6 hours of inactivity), with Live Activity, Dynamic Island, widgets and voice announcements included. Apple Watch: 7-day free trial. Pro is a one-time purchase, not a subscription: unlimited iPhone matches, the Apple Watch scoreboard after the trial, game-over match details with Match Stats (location and weather), and the share card. There is no auto-renewal and no recurring charge.</p>
             <h3>Restoring your purchase</h3>
             <p>If you&rsquo;ve already purchased Pro and want to restore on a new device:</p>
             <ul>
-                <li><strong>iPhone:</strong> Settings &rarr; Restore Purchases.</li>
-                <li><strong>Watch:</strong> The Pro screen on Watch shows a hand-off button to wake the paywall on your paired iPhone. Purchase and restore both flow through iPhone.</li>
+                <li><strong>iPhone:</strong> Settings &rarr; <strong>Restore Purchases</strong>.</li>
+                <li><strong>Watch:</strong> On the Pro screen, tap <strong>Restore Purchases</strong>, or tap <strong>Open on iPhone</strong> to buy or restore from your paired iPhone.</li>
             </ul>
         </section>
 
@@ -977,7 +978,7 @@
             <a href="index.html" class="footer-link">PickleBoard</a>
             <a href="privacypolicy.html" class="footer-link">Privacy Policy</a>
             <a href="https://ifthendev.com" class="footer-link">If Then Dev</a>
-            <a href="https://ifthendev.com/contact/index.html?app=PickleBoard" class="cta-button">Contact Support</a>
+            <a href="https://ifthendev.com/contact/index.html?app=PickleBoard" class="footer-link">Contact Support</a>
         </div>
         <p class="footer-copy">&copy; <span class="copyright-year">2026</span> If Then Dev, LLC. All rights reserved.</p>
     </footer>
