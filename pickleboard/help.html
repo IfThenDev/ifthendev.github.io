@@ -759,16 +759,16 @@
         <section id="voice" class="help-section">
             <span class="section-label">03 &middot; Voice Announcements</span>
             <h2>Voice Announcements</h2>
-            <p>After each point, your <strong>Apple Watch</strong> speaks the score aloud &mdash; server, receiver, server number, the way the pros call it. For example, <strong>&ldquo;4, 2, 1&rdquo;</strong> means the serving team has 4 points, the receiving team has 2, and the second server is up. Your eyes stay on the ball.</p>
+            <p>After each point, PickleBoard speaks the score aloud on your Apple Watch or iPhone: the serving team&rsquo;s score, the receiving team&rsquo;s score, then the server number. For example, <strong>&ldquo;4, 2, 1&rdquo;</strong> means the serving team has 4 points, the receiving team has 2, and the first server (server 1) is serving. Your eyes stay on the ball.</p>
             <h3>How to enable</h3>
             <ol class="steps-list">
-                <li>Open PickleBoard on your Watch.</li>
-                <li>Tap the Settings button on the toolbar.</li>
-                <li>Toggle <strong>Voice Announcements</strong> on.</li>
+                <li>On iPhone: tap the Settings gear on the toolbar and turn on <strong>Voice score announcements</strong>.</li>
+                <li>On Apple Watch: tap the Settings button on the toolbar and turn on <strong>Voice</strong>.</li>
+                <li>Voice is on by default on both devices; turn it off in the same place.</li>
             </ol>
             <p class="tip-box"><strong>Tip:</strong> Voice announcements use the on-device speech synthesizer. No audio is recorded, and nothing is transmitted off your device.</p>
-            <h3>iPhone vs Watch</h3>
-            <p>Voice announcements play on the Apple Watch only. The iPhone scoreboard is silent by design &mdash; Live Activity and Dynamic Island carry the visual update on iPhone.</p>
+            <h3>On iPhone and Apple Watch</h3>
+            <p>Each device speaks the score for the game it is scoring. On iPhone, the Live Activity and Dynamic Island also keep the score on your Lock Screen.</p>
         </section>
 
         <section id="live-activity" class="help-section">
@@ -803,8 +803,8 @@
             </ul>
             <h3>How to add a Home Screen widget</h3>
             <ol class="steps-list">
-                <li>Long-press an empty area of the Home Screen until icons jiggle.</li>
-                <li>Tap the <strong>+</strong> button at the top-left.</li>
+                <li>Long-press an empty area of the Home Screen, then tap <strong>Edit</strong> (top-left).</li>
+                <li>Tap <strong>Add Widget</strong>.</li>
                 <li>Search &ldquo;PickleBoard&rdquo; and pick the size you want.</li>
             </ol>
             <h3>How to add a Lock Screen widget</h3>
@@ -828,13 +828,13 @@
             <h3>Always-On Display</h3>
             <p>When you lower your wrist mid-game, the Always-On Display dims to a luminance-friendly version of the scoreboard &mdash; the score is still readable, and there&rsquo;s no extra battery drain. The display restores full brightness when you raise your wrist.</p>
             <h3>Swipe-to-score gesture</h3>
-            <p>Don&rsquo;t want to tap? Swipe up on a team&rsquo;s side of the scoreboard to add a point. Swipe gestures are an alternative to tap input &mdash; both work the same way.</p>
+            <p>Don&rsquo;t want to tap? Swipe right to give Team 1 a point, or swipe left to give Team 2 a point. Up-and-down swipes are ignored, so a stray brush won&rsquo;t score. Swipes and taps work the same way.</p>
         </section>
 
         <section id="match-stats" class="help-section">
             <span class="section-label">07 &middot; Match Stats, Weather &amp; Rematch</span>
             <h2>Match Stats, Weather &amp; Rematch</h2>
-            <p>Match Stats is an opt-in feature that records <strong>where you played</strong> and <strong>the weather during your match</strong>, then surfaces both alongside your final score on the game-over screen and your shared image.</p>
+            <p>Match Stats is an opt-in feature that records <strong>where you played</strong> and <strong>the weather during your match</strong>, then surfaces both alongside your final score on the game-over screen and your shared image. Match Stats is part of Pro on iPhone; on Apple Watch it works during the free trial and with Pro.</p>
             <h3>What gets captured</h3>
             <p>At the moment a game ends, PickleBoard takes two readings (only if Match Stats is enabled in Settings):</p>
             <ul>
@@ -851,12 +851,12 @@
             <h3>When it&rsquo;s off</h3>
             <p>The default is off. With Match Stats off, no Location prompt fires, no network request is made for weather, and the game-over card simply shows Mode and Target chips without place or weather. Nothing about the score, the engine, or your match history is degraded &mdash; you just lose the &ldquo;where and what weather&rdquo; layer.</p>
             <h3>Opt-in flow</h3>
-            <p>Toggle Match Stats on in Settings. The first time you do, iOS prompts for Location access (When-In-Use). If you grant it, weather flows automatically &mdash; PickleBoard already has WeatherKit entitlement built in. If you deny Location, the toggle reverts and Settings shows a recovery row pointing to iPhone&rsquo;s system Settings.</p>
+            <p>Toggle Match Stats on in Settings (on iPhone the toggle appears once you have Pro). The first time you do, iOS prompts for Location access (When-In-Use). If you grant it, weather flows automatically &mdash; PickleBoard already has WeatherKit entitlement built in. If you deny Location, the toggle reverts and Settings shows a recovery row pointing to iPhone&rsquo;s system Settings.</p>
             <h3>Rematch</h3>
             <p>Tap Rematch on the game-over card to start a new game with the same settings (mode, target, freeze-at-target, timeout count). The score resets to 0&ndash;0 and team names carry over on iPhone.</p>
             <h3>Share card</h3>
-            <p>Tap Share on the game-over card to generate the 1080&times;1080 image &mdash; team names, final score, mode, target, location and weather chips (when stats are on), and the WeatherKit attribution footer &mdash; ready to share via Messages, Photos, Mail, or any social app.</p>
-            <p class="tip-box"><strong>Privacy:</strong> Location is captured once per game-end (never continuously), weather is fetched once per game-end, and both stay on your device only &mdash; nothing is sent to PickleBoard servers. Both are explained in the <a href="privacypolicy.html">Privacy Policy</a>.</p>
+            <p>Tap Share on the game-over card (Pro on iPhone; included with Pro or the free trial on Apple Watch) to generate the 1080&times;1080 image &mdash; team names, final score, mode, target, location and weather chips (when stats are on), and the WeatherKit attribution footer &mdash; ready to share via Messages, Photos, Mail, or any social app.</p>
+            <p class="tip-box"><strong>Privacy:</strong> Location is captured once when a game ends (never continuously). The coordinates and place name are saved with the match on your devices, and they are sent to Apple&rsquo;s reverse-geocoding and WeatherKit services to look up the place name and the weather. Nothing is sent to a server we control. See the <a href="privacypolicy.html">Privacy Policy</a>.</p>
         </section>
 
         <section id="timeouts" class="help-section">
@@ -871,7 +871,7 @@
             <h3>What happens</h3>
             <ul>
                 <li>The dot indicator below the team&rsquo;s score decrements one notch per timeout (e.g. 2 &rarr; 1 &rarr; 0 with the default of 2 timeouts per game).</li>
-                <li>If voice announcements are on, the Watch speaks &ldquo;Time-out, team one&rdquo; or &ldquo;Time-out, team two&rdquo;.</li>
+                <li>If voice announcements are on, PickleBoard speaks &ldquo;Time-out, team one&rdquo; or &ldquo;Time-out, team two&rdquo; on the device you&rsquo;re scoring with.</li>
                 <li>Timeouts are <strong>not</strong> undoable (per pickleball rules &mdash; calling one is final). Score actions remain fully undoable via the Undo button.</li>
             </ul>
         </section>
@@ -899,7 +899,7 @@
                 <li><a href="https://usapickleball.org/" target="_blank" rel="noopener noreferrer">usapickleball.org</a> &mdash; rules updates, equipment standards, and tournament info.</li>
             </ul>
             <h3>What PickleBoard implements</h3>
-            <p>PickleBoard supports the three most common casual-play scoring formats: Doubles (traditional side-out), Singles, and Rally (also called Rally Scoring). For first-server-only-on-first-service, server rotation rules, and the official 7-foot non-volley zone, defer to the USAP rulebook. For everything that happens on the scoreboard &mdash; points, sides, timeouts, freeze-at-target &mdash; PickleBoard is the source of truth.</p>
+            <p>PickleBoard supports the three most common casual-play scoring formats: Doubles (traditional side-out), Singles, and Rally (also called Rally Scoring). For the first-server exception (games start at 0-0-2), server rotation rules, and the official 7-foot non-volley zone, defer to the USAP rulebook. For everything that happens on the scoreboard &mdash; points, sides, timeouts, freeze-at-target &mdash; PickleBoard is the source of truth.</p>
         </section>
 
         <section id="troubleshooting" class="help-section">
@@ -909,14 +909,14 @@
             <details class="faq-card">
                 <summary class="faq-question">My Watch doesn&rsquo;t see my iPhone &mdash; what now?</summary>
                 <div class="faq-answer">
-                    <p>Make sure both apps are launched at least once on each device, and that your Watch is paired and within Bluetooth range of your iPhone. PickleBoard uses WatchConnectivity for the paywall hand-off only &mdash; scoreboard state is independent on each device, so a connection issue won&rsquo;t affect your live scoring.</p>
+                    <p>Make sure PickleBoard is installed and has been opened at least once on both devices, and that your Watch is paired and nearby. PickleBoard uses WatchConnectivity to send three things from your Watch to your iPhone: the Open on iPhone request from the Pro screen, share images, and finished match records. Scoring runs independently on each device, so a connection issue won&rsquo;t affect your live score.</p>
                 </div>
             </details>
 
             <details class="faq-card">
                 <summary class="faq-question">Voice announcements aren&rsquo;t playing.</summary>
                 <div class="faq-answer">
-                    <p>Check three things: (1) Voice Announcements is toggled on in Settings on the Watch app, (2) your Watch isn&rsquo;t muted (Silent Mode off), and (3) iPhone Focus or Do Not Disturb isn&rsquo;t suppressing audio. Voice plays only on the Watch &mdash; iPhone is silent by design.</p>
+                    <p>Check three things: (1) voice is on in PickleBoard Settings on the device you&rsquo;re scoring with (iPhone: Voice score announcements; Apple Watch: Voice), (2) that device isn&rsquo;t muted (Silent Mode off) and its volume is up, and (3) a Focus or Do Not Disturb setting isn&rsquo;t silencing audio.</p>
                 </div>
             </details>
 
@@ -930,7 +930,7 @@
             <details class="faq-card">
                 <summary class="faq-question">The Live Activity isn&rsquo;t showing on my Lock Screen.</summary>
                 <div class="faq-answer">
-                    <p>Live Activities require iOS 16.1 or later (PickleBoard targets iOS 26). Check Settings &rarr; PickleBoard &rarr; Live Activities is enabled. Live Activities also respect system-level settings (Settings &rarr; Face ID &amp; Passcode &rarr; Live Activities).</p>
+                    <p>Check that Live Activities are on for PickleBoard (Settings &rarr; PickleBoard &rarr; Live Activities) and allowed on the Lock Screen (Settings &rarr; Face ID &amp; Passcode &rarr; Live Activities).</p>
                 </div>
             </details>
 
@@ -938,7 +938,7 @@
                 <summary class="faq-question">I renamed a team mid-game and the Live Activity still shows the old name.</summary>
                 <div class="faq-answer">
                     <p>This is an iOS limitation, not a bug. When PickleBoard starts a Live Activity (on the first awarded point of a game), the team names get baked into the activity&rsquo;s <em>attributes</em> &mdash; iOS treats those as fixed metadata and won&rsquo;t let an app update them while the activity is running. Score, server, side, and timeouts all keep updating live; team names are the one piece that&rsquo;s pinned at start time.</p>
-                    <p><strong>What still updates everywhere else:</strong> the iPhone scoreboard, Home Screen widget, Watch scoreboard, and Watch widget all pick up the new names instantly when you edit them on iPhone. Only the running Live Activity (Lock Screen + Dynamic Island) is stuck on the old names.</p>
+                    <p><strong>What still updates everywhere else:</strong> the iPhone scoreboard and your iPhone widgets pick up the new names right away. Only the running Live Activity (Lock Screen + Dynamic Island) keeps the old names.</p>
                     <p><strong>If you want the new names on the Live Activity:</strong> tap the trash icon and start a new game. Type the names you want, then award the first point &mdash; the Live Activity will start with the updated names.</p>
                 </div>
             </details>
@@ -953,14 +953,14 @@
             <details class="faq-card">
                 <summary class="faq-question">Match stats won&rsquo;t capture weather.</summary>
                 <div class="faq-answer">
-                    <p>WeatherKit requires an internet connection at game-end and your iPhone must have Location services enabled with PickleBoard authorized for &ldquo;When in Use.&rdquo; If the network is unreachable or location is denied, the game-over card still shows score, mode, and target &mdash; the weather chip is simply omitted.</p>
+                    <p>WeatherKit needs an internet connection when the game ends, and the device that finished the match (iPhone or Apple Watch) must have Location enabled for PickleBoard (When In Use). On iPhone, Match Stats also needs Pro. If the network is unreachable or location is denied, the game-over card still shows the score; the weather chip is simply left out.</p>
                 </div>
             </details>
 
             <details class="faq-card">
                 <summary class="faq-question">How do I restore my Pro purchase on a new Watch?</summary>
                 <div class="faq-answer">
-                    <p>Open PickleBoard on your Watch and tap the Pro screen. You&rsquo;ll see a hand-off button that wakes the paywall on your paired iPhone &mdash; tap it, then tap Restore Purchases on iPhone. Once iPhone confirms the restore, the Watch picks up Pro on its next sync.</p>
+                    <p>Open PickleBoard on your Watch and go to the Pro screen. Tap <strong>Restore Purchases</strong> to restore on the Watch, or tap <strong>Open on iPhone</strong> and restore from your iPhone (Settings &rarr; Restore Purchases).</p>
                 </div>
             </details>
         </section>
