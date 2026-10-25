@@ -741,7 +741,7 @@
             <h3>Your first game</h3>
             <ol class="steps-list">
                 <li>Open PickleBoard on your Watch (or iPhone).</li>
-                <li>Tap a team&rsquo;s side of the scoreboard to add a point.</li>
+                <li>Tap the side of the team that won the rally. PickleBoard works out the points, server changes and side-outs.</li>
                 <li>Use the toolbar to undo a point, open Settings, reset the match, or call a timeout.</li>
                 <li>When the game ends, review the game-over card and tap Rematch to play again.</li>
             </ol>
@@ -835,7 +835,7 @@
             <h3>Always-On Display</h3>
             <p>When you lower your wrist mid-game, the Always-On Display dims to a luminance-friendly version of the scoreboard &mdash; the score is still readable, and there&rsquo;s no extra battery drain. The display restores full brightness when you raise your wrist.</p>
             <h3>Swipe-to-score gesture</h3>
-            <p>Don&rsquo;t want to tap? Swipe right to give Team 1 a point, or swipe left to give Team 2 a point. Up-and-down swipes are ignored, so a stray brush won&rsquo;t score. Swipes and taps work the same way.</p>
+            <p>Don&rsquo;t want to tap? Swipe right when Team 1 wins the rally, or swipe left when Team 2 wins it. Up-and-down swipes are ignored, so a stray brush won&rsquo;t count. Swipes and taps work the same way.</p>
         </section>
 
         <section id="match-stats" class="help-section">
@@ -851,18 +851,18 @@
             <h3>Where it appears</h3>
             <p>When stats are <strong>on</strong>, three surfaces get richer:</p>
             <ul>
-                <li><strong>Game-over card</strong> (iPhone &amp; Watch) &mdash; two extra chips appear next to the always-shown Mode and Target chips: a location chip and a weather chip.</li>
-                <li><strong>Share card</strong> (1080&times;1080 image) &mdash; the same chips embed in the exported image, plus an Apple WeatherKit attribution footer at the bottom (Apple&rsquo;s WeatherKit terms require this whenever weather is shown).</li>
+                <li><strong>Game-over card</strong> (iPhone &amp; Watch) &mdash; two extra chips appear next to the Mode and Target chips (and the Duration chip on iPhone): a location chip and a weather chip.</li>
+                <li><strong>Share card</strong> (square image) &mdash; the same chips embed in the exported image, plus an Apple WeatherKit attribution footer at the bottom (Apple&rsquo;s WeatherKit terms require this whenever weather is shown).</li>
                 <li><strong>Match history</strong> &mdash; your last 5 games keep their location and weather. On iPhone, Settings &rarr; Match History lists them and can re-share each game&rsquo;s card.</li>
             </ul>
             <h3>When it&rsquo;s off</h3>
-            <p>The default is off. With Match Stats off, no Location prompt fires, no network request is made for weather, and the game-over card simply shows Mode and Target chips without place or weather. Nothing about the score, the engine, or your match history is degraded &mdash; you just lose the &ldquo;where and what weather&rdquo; layer.</p>
+            <p>The default is off. With Match Stats off, no Location prompt fires, no network request is made for weather, and the game-over card shows the Mode and Target chips (plus Duration on iPhone) without place or weather. On iPhone without Pro, the game-over chips appear as locked Pro previews. Nothing about the score, the engine, or your match history is degraded &mdash; you just lose the &ldquo;where and what weather&rdquo; layer.</p>
             <h3>Opt-in flow</h3>
-            <p>Toggle Match Stats on in Settings (on iPhone the toggle appears once you have Pro). The first time you do, iOS prompts for Location access (When-In-Use). If you grant it, weather flows automatically &mdash; PickleBoard already has WeatherKit entitlement built in. If you deny Location, the toggle reverts and Settings shows a recovery row pointing to iPhone&rsquo;s system Settings.</p>
+            <p>Toggle Match Stats on in Settings (on iPhone the toggle appears once you have Pro). The first time you do, iOS prompts for Location access (When-In-Use). If you grant it, weather flows automatically &mdash; PickleBoard already has WeatherKit entitlement built in. If you deny Location, Settings replaces the Match Stats toggle with a recovery row that points you to system Settings, where you can allow Location later.</p>
             <h3>Rematch</h3>
             <p>Tap Rematch on the game-over card to start a new game with the same settings (mode, target, freeze-at-target, timeout count). The score resets to 0&ndash;0 and team names carry over on iPhone.</p>
             <h3>Share card</h3>
-            <p>Tap Share on the game-over card (Pro on iPhone; included with Pro or the free trial on Apple Watch) to generate the 1080&times;1080 image &mdash; team names, final score, mode, target, location and weather chips (when stats are on), and the WeatherKit attribution footer &mdash; ready to share via Messages, Photos, Mail, or any social app.</p>
+            <p>Tap Share on the game-over card (Pro on iPhone; included with Pro or the free trial on Apple Watch) to generate a square image &mdash; team names, final score, mode, target, location and weather chips (when stats are on), and the WeatherKit attribution footer &mdash; ready to share via Messages, Photos, Mail, or any social app. On Apple Watch, Share sends the image to your iPhone; open PickleBoard on your iPhone to finish sharing.</p>
             <p class="tip-box"><strong>Privacy:</strong> Location is captured once when a game ends (never continuously). The coordinates and place name are saved with the match on your devices, and they are sent to Apple&rsquo;s reverse-geocoding and WeatherKit services to look up the place name and the weather. Nothing is sent to a server we control. See the <a href="privacypolicy.html">Privacy Policy</a>.</p>
         </section>
 
