@@ -696,7 +696,7 @@
                 <a href="#live-activity" class="toc-card">
                     <span class="toc-num">04</span>
                     <span class="toc-title">Live Activity &amp; Dynamic Island</span>
-                    <p>Score on your Lock Screen, automatically.</p>
+                    <p>Score on your Lock Screen for games scored on iPhone.</p>
                 </a>
                 <a href="#widget" class="toc-card">
                     <span class="toc-num">05</span>
@@ -768,7 +768,7 @@
         <section id="voice" class="help-section">
             <span class="section-label">03 &middot; Voice Announcements</span>
             <h2>Voice Announcements</h2>
-            <p>After each point, PickleBoard speaks the score aloud on your Apple Watch or iPhone: Team 1&rsquo;s score, then Team 2&rsquo;s score, then (in doubles) the server number. For example, <strong>&ldquo;4, 2, 1&rdquo;</strong> means Team 1 has 4 points, Team 2 has 2, and the serving team&rsquo;s first server (server 1) is serving. Singles and rally announce just the two scores. Your eyes stay on the ball.</p>
+            <p>After each point, PickleBoard speaks the score aloud on your Apple Watch or iPhone: the serving team&rsquo;s score, then the receiving team&rsquo;s score, then (in doubles) the server number. For example, <strong>&ldquo;4, 2, 1&rdquo;</strong> means the serving team has 4 points, the receiving team has 2, and the serving team&rsquo;s first server (server 1) is serving. Singles and rally announce just the two scores. Your eyes stay on the ball.</p>
             <h3>How to enable</h3>
             <ol class="steps-list">
                 <li>On iPhone: tap the Settings gear on the toolbar and turn on <strong>Voice score announcements</strong>.</li>
@@ -786,18 +786,18 @@
             <p>During a game scored on iPhone, PickleBoard automatically pins the score to your Lock Screen as a Live Activity, and to the Dynamic Island on iPhone models that have one. No app to open. No interruption to play. Games scored on Apple Watch don&rsquo;t start a Live Activity.</p>
             <h3>What you&rsquo;ll see</h3>
             <ul>
-                <li><strong>Lock Screen:</strong> Both team names (or &ldquo;Team 1&rdquo; / &ldquo;Team 2&rdquo;), the live score, and the serving team&rsquo;s indicator.</li>
+                <li><strong>Lock Screen:</strong> Both team names (or &ldquo;Team 1&rdquo; / &ldquo;Team 2&rdquo;), the live score, and the serving team&rsquo;s indicator. It refreshes on every point, side-out and timeout.</li>
                 <li><strong>Dynamic Island compact:</strong> Score split between the two leading and trailing edges of the island.</li>
                 <li><strong>Dynamic Island expanded:</strong> Long-press the island for the full scoreboard.</li>
             </ul>
             <h3>How it ends</h3>
-            <p>The Live Activity dismisses automatically about 30 seconds after the game-over moment, giving you time to glance at the final score before the system clears it.</p>
+            <p>The Live Activity dismisses automatically about 30 seconds after the game-over moment, giving you time to glance at the final score before the system clears it. Starting a new game ends the Live Activity right away, and an Undo after the game ends brings it back.</p>
         </section>
 
         <section id="widget" class="help-section">
             <span class="section-label">05 &middot; iPhone Widgets</span>
             <h2>iPhone Widgets</h2>
-            <p>PickleBoard ships widgets for both your Home Screen and your Lock Screen. Every variant follows the same three-state design: live score while a game is in progress, the last final score after a game ends, and a friendly &ldquo;Tap to score&rdquo; prompt before your first match.</p>
+            <p>PickleBoard ships widgets for both your Home Screen and your Lock Screen. Every variant follows the same three-state design: live score while a game scored on iPhone is in progress, the last final score after a game ends, and a friendly &ldquo;Tap to score&rdquo; prompt before your first match.</p>
             <h3>Home Screen sizes</h3>
             <ul>
                 <li><strong>Small:</strong> Compact scoreboard with both team scores (the serving team&rsquo;s score in green) and the server number in doubles. Falls back to the last final score (with a FINAL eyebrow) between games.</li>
@@ -939,16 +939,16 @@
             <details class="faq-card">
                 <summary class="faq-question">The Live Activity isn&rsquo;t showing on my Lock Screen.</summary>
                 <div class="faq-answer">
-                    <p>The Live Activity appears only for games scored on iPhone. Check that Live Activities are on for PickleBoard (Settings &rarr; PickleBoard &rarr; Live Activities) and allowed on the Lock Screen (Settings &rarr; Face ID &amp; Passcode &rarr; Live Activities; on iPhone models with Touch ID, Settings &rarr; Touch ID &amp; Passcode &rarr; Live Activities).</p>
+                    <p>The Live Activity appears only for games scored on iPhone. Check that Live Activities are on for PickleBoard (Settings &rarr; Apps &rarr; PickleBoard &rarr; Live Activities) and allowed on the Lock Screen (Settings &rarr; Face ID &amp; Passcode &rarr; Live Activities; on iPhone models with Touch ID, Settings &rarr; Touch ID &amp; Passcode &rarr; Live Activities).</p>
                 </div>
             </details>
 
             <details class="faq-card">
                 <summary class="faq-question">I renamed a team mid-game and the Live Activity still shows the old name.</summary>
                 <div class="faq-answer">
-                    <p>PickleBoard sets the team names when the Live Activity starts, along with the game mode and the number of timeout dots, and iOS doesn&rsquo;t let an app change those while the Live Activity is running. The rest of the Live Activity refreshes whenever the score changes.</p>
+                    <p>PickleBoard sets the team names when the Live Activity starts, along with the game mode and the number of timeout dots, and iOS doesn&rsquo;t let an app change those while the Live Activity is running. The rest of the Live Activity refreshes on every point, side-out and timeout.</p>
                     <p><strong>What updates right away:</strong> the iPhone scoreboard shows the new names as soon as you type them. The running Live Activity (Lock Screen + Dynamic Island) keeps the old names.</p>
-                    <p><strong>If you want the new names on the Live Activity:</strong> finish the current game. The Live Activity dismisses about 30 seconds after the game ends, and the next game&rsquo;s Live Activity starts with the team names in use at that point (Rematch keeps your new names). Starting a new game before the current one ends keeps the same Live Activity, still showing the old names.</p>
+                    <p><strong>If you want the new names on the Live Activity:</strong> finish the current game. The Live Activity dismisses about 30 seconds after the game ends, and the next game&rsquo;s Live Activity starts with the team names in use at that point (Rematch keeps your new names). Starting a new game ends the current Live Activity right away, and the new game&rsquo;s Live Activity starts with the team names in use.</p>
                 </div>
             </details>
 
