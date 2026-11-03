@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soccer Scoreboard — Help &amp; FAQ</title>
-    <meta name="description" content="Help and FAQ for Soccer Scoreboard: the match clock, added and stoppage time, extra time and kicks from the penalty mark, what's free vs the one-time Pro unlock, and how your data stays on your device.">
+    <meta name="description" content="Help and FAQ for Soccer Scoreboard: the match clock, added and stoppage time, extra time and kicks from the penalty mark, fixing a saved match's date and adding notes like the game #, what's free vs the one-time Pro unlock, and how your data stays on your device.">
     <meta name="theme-color" content="#0C1A12">
     <link rel="icon" href="images/app-icon.png">
     <meta property="og:title" content="Soccer Scoreboard — Help &amp; FAQ">
-    <meta property="og:description" content="How the trustworthy match clock, added/stoppage time, and kicks from the penalty mark work — plus what's free, the one-time Pro unlock, and how your data stays on device.">
+    <meta property="og:description" content="How the trustworthy match clock, added/stoppage time, and kicks from the penalty mark work, how to fix a saved match's date and add notes — plus what's free, the one-time Pro unlock, and how your data stays on device.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ifthendev.com/soccerscoreboard/help.html">
     <meta property="og:image" content="images/app-icon.png">
@@ -163,7 +163,7 @@
 
         .toc-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: var(--s-4);
         }
 
@@ -461,13 +461,18 @@
                     <h3>Clock &amp; Rules</h3>
                     <p>The match clock, added and stoppage time, extra time, and kicks from the penalty mark.</p>
                 </a>
-                <a href="#pro" class="toc-card">
+                <a href="#saved-matches" class="toc-card">
                     <span class="toc-num">02</span>
+                    <h3>Saved Matches</h3>
+                    <p>Fix a match's date, add notes like the game #, and choose whether notes go out when you share.</p>
+                </a>
+                <a href="#pro" class="toc-card">
+                    <span class="toc-num">03</span>
                     <h3>Free vs Pro</h3>
                     <p>What's free, the one-time $4.99 Pro unlock, restore, and grandfathering.</p>
                 </a>
                 <a href="#privacy" class="toc-card">
-                    <span class="toc-num">03</span>
+                    <span class="toc-num">04</span>
                     <h3>Privacy &amp; Offline</h3>
                     <p>Works fully offline, no account, no data collected, and how to get support.</p>
                 </a>
@@ -497,6 +502,14 @@
                 <summary class="faq-question">Can I correct the clock if the time is wrong?</summary>
                 <div class="faq-answer">
                     <p>Yes. Press and hold the clock to open a quick picker, dial in the exact minutes and seconds, and tap Set. It works whether you're counting up or counting down, and a single Undo puts it back if you change your mind — handy if the clock was accidentally paused or started late.</p>
+                </div>
+            </details>
+
+            <details class="faq-card">
+                <summary class="faq-question">Why did my clock stop and ask me to end the match?</summary>
+                <div class="faq-answer">
+                    <p>The match was most likely left running after the final whistle. Once the current period runs 60 minutes past its set length — 105:00 in a 45-minute first half — the clock holds there, and your widgets and Apple Watch show the same held time. The board says "This match was left running" with when it started, and gives you two choices: <strong>End Match</strong> saves it to History, and <strong>Keep Playing</strong> carries on from the held time.</p>
+                    <p>Nothing ends on its own, and a long match with added time and extra time never reaches the hold.</p>
                 </div>
             </details>
 
@@ -544,8 +557,43 @@
             </details>
         </section>
 
+        <section id="saved-matches" class="help-section">
+            <span class="section-label">02 &middot; Saved Matches</span>
+            <h2>Saved Matches</h2>
+            <p>Every match you end is saved to History on your device. Open one to read the whole match back, fix its date, or add notes.</p>
+
+            <details class="faq-card">
+                <summary class="faq-question">Wrong date or need a game #?</summary>
+                <div class="faq-answer">
+                    <p>Open the match in History and tap <strong>Edit</strong>. Change the <strong>Played on</strong> date (it can't be later than today) or type your notes. Only the date and notes can be changed. The score, teams, and timeline stay as they were recorded. Each match has its own "Include notes when sharing" switch.</p>
+                    <p>Your notes appear at the bottom of the match, below the timeline, and the first line shows on the match's History row. Tip: put the game # on its own first line so you can spot it in History at a glance.</p>
+                </div>
+            </details>
+
+            <details class="faq-card">
+                <summary class="faq-question">Are my match notes private?</summary>
+                <div class="faq-answer">
+                    <p>Yes. Notes are saved only on your device with the match. They show in History and on the match detail, never on the Live Activity, widgets, Lock Screen, or Apple Watch. They're added to a shared message only if you turn on "Include notes when sharing" for that match, and never to the image.</p>
+                </div>
+            </details>
+
+            <details class="faq-card">
+                <summary class="faq-question">Do notes go out when I share?</summary>
+                <div class="faq-answer">
+                    <p>Only when that match's <strong>"Include notes when sharing"</strong> switch is on. It's off until you turn it on, and it turns off if you clear the notes, so if you type new notes later, turn it back on. When it's on, your notes go in the text sent with the score card picture, never on the picture itself, and the match screen says "Included when you share this match."</p>
+                </div>
+            </details>
+
+            <details class="faq-card">
+                <summary class="faq-question">Why do my older matches show a different day now?</summary>
+                <div class="faq-answer">
+                    <p>History now dates every match by the day it kicked off. A match that never kicked off uses the day it finished, or else the day it was created. So a match you forgot to end now shows on its real game day. There's nothing you need to do, and if a date is still wrong, open the match and tap Edit.</p>
+                </div>
+            </details>
+        </section>
+
         <section id="pro" class="help-section">
-            <span class="section-label">02 &middot; Free vs Pro</span>
+            <span class="section-label">03 &middot; Free vs Pro</span>
             <h2>Free vs Pro</h2>
             <p>Soccer Scoreboard is free to download and free to keep score with. Pro is a single one-time purchase that unlocks the glanceable surface.</p>
 
@@ -593,7 +641,7 @@
         </section>
 
         <section id="privacy" class="help-section">
-            <span class="section-label">03 &middot; Privacy &amp; Offline</span>
+            <span class="section-label">04 &middot; Privacy &amp; Offline</span>
             <h2>Privacy &amp; Offline</h2>
             <p>Soccer Scoreboard is built to keep your data on your device. If Then Dev does not collect personal data, run analytics, or store your matches on a server.</p>
 
@@ -607,7 +655,7 @@
             <details class="faq-card">
                 <summary class="faq-question">What data does the app collect about me?</summary>
                 <div class="faq-answer">
-                    <p>None. The privacy label is <strong>Data Not Collected</strong>. There are no ads, no analytics, and no tracking of any kind. Your matches stay on your device. See the <a href="privacypolicy.html">Privacy Policy</a> for the specifics.</p>
+                    <p>None. The privacy label is <strong>Data Not Collected</strong>. There are no ads, no analytics, and no tracking of any kind. Your matches stay on your device. Anything you share goes only where you send it through the iOS share sheet. See the <a href="privacypolicy.html">Privacy Policy</a> for the specifics.</p>
                 </div>
             </details>
 
