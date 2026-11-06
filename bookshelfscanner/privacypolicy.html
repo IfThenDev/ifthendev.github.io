@@ -200,28 +200,32 @@
                 <p>No personal information, device identifiers, or user data is sent with these requests. The third-party services used are Google Books, Open Library, and ISBNdb. They receive only the ISBN necessary to return book metadata.</p>
 
                 <h3>Local Data Storage</h3>
-                <p>Your library data is stored locally on your device. This includes:</p>
+                <p>Your library data is stored on your device, in Bookshelf Scanner's own private storage, which no other app can read. If iCloud is on, it is also kept in your private iCloud database (see iCloud Sync below). This includes:</p>
                 <ul>
                     <li>Book details: titles, authors, ISBNs, cover images, statuses, locations, notes, and dates</li>
                     <li>Student information: first name, last name, borrower code, and optionally email and phone number</li>
                     <li>Checkout history: which student borrowed which book, checkout dates, due dates, and return dates</li>
                     <li>Custom statuses, locations, and app settings</li>
                 </ul>
-                <p>This data remains on your device and under your control. You can delete individual books, students, checkout records, or your entire library at any time from within the app.</p>
+                <p>This data remains under your control. You can delete individual books, students, checkout records, or your entire library at any time from within the app, except for the one-time safety copy described below.</p>
+                <p>After you update to Bookshelf Scanner 3.1, a one-time safety copy of your library stays in the app's private storage on your device. This copy is never uploaded, it is removed if you delete the app, and a later version of the app removes it.</p>
 
                 <h3>Student Data</h3>
                 <p>Bookshelf Scanner allows teachers to enter student names and optional contact information to manage book checkouts. This student data:</p>
                 <ul>
                     <li>Is entered and managed entirely by the teacher</li>
-                    <li>Is stored only on the device and optionally in the teacher's personal iCloud account</li>
+                    <li>Is stored only in Bookshelf Scanner's private storage on the device and, if iCloud is on, in the teacher's private iCloud database</li>
                     <li>Is never transmitted to If Then Dev or any third party</li>
                     <li>Is never used for advertising, profiling, or any purpose other than library management</li>
-                    <li>Can be deleted at any time by the teacher</li>
+                    <li>Can be deleted at any time by the teacher, except for the one-time safety copy described under Local Data Storage, which a later version of the app removes</li>
                 </ul>
                 <p>Teachers are responsible for ensuring their use of student information within Bookshelf Scanner complies with their school's data policies and applicable laws such as FERPA. If Then Dev does not have access to any student data entered into the app.</p>
 
                 <h3>iCloud Sync</h3>
-                <p>If you have iCloud enabled, your library data (including books, students, and checkout history) may sync across your Apple devices using your personal iCloud account. This sync uses Apple's CloudKit service and is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple's privacy policy</a>. Your data is stored in your private iCloud container and is not accessible to If Then Dev.</p>
+                <p>If you have iCloud enabled, your library data (including books, students, and checkout history) may sync across your Apple devices using your personal iCloud account. This sync uses Apple's CloudKit service and is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple's privacy policy</a>. Your data is stored in your private iCloud database and is not accessible to If Then Dev.</p>
+
+                <h3>Working with QuickScan</h3>
+                <p>If QuickScan is installed on the same device, you can ask it to find reading levels for your books. When you do, Bookshelf Scanner shares each book's ISBN, title, and author with the QuickScan app through a shared container on your device, and QuickScan returns the reading levels it finds. Bookshelf Scanner also reads from that container whether QuickScan's leveling is unlocked. No student information is shared with QuickScan, and nothing passes through If Then Dev servers.</p>
 
                 <h3>In-App Purchase</h3>
                 <p>Bookshelf Scanner offers an optional in-app purchase managed through the App Store. We use RevenueCat to manage purchase status. RevenueCat may collect anonymous purchase data and device identifiers to facilitate subscription management. See <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">RevenueCat's privacy policy</a> for details. Your payment information is handled entirely by Apple and is never shared with If Then Dev.</p>
@@ -268,7 +272,7 @@
         </main>
 
         <footer>
-            <p>Last Updated: March 17, 2026</p>
+            <p>Last Updated: November 6, 2026</p>
             <p>&copy; <span class="copyright-year">2026</span> If Then Dev, LLC. All rights reserved.</p>
             <p><a href="https://ifthendev.com/contact/index.html?app=Bookshelf%20Scanner">Contact Support</a></p>
         </footer>
